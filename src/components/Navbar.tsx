@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -13,10 +12,8 @@ const navItems: NavItem[] = [
   { id: 'technology', label: 'Technologie' },
   { id: 'process', label: 'Postup' },
   { id: 'surfaces', label: 'Povrchy' },
-  { id: 'samples', label: 'Ukázky' },
   { id: 'facility', label: 'Lakovna' },
   { id: 'quality', label: 'Kvalita' },
-  { id: 'solar', label: 'Fotovoltaika' },
   { id: 'contact', label: 'Kontakt' }
 ];
 
@@ -79,10 +76,11 @@ const Navbar: React.FC = () => {
       <div className="container max-w-7xl mx-auto px-4 flex justify-between items-center">
         <a 
           href="#hero" 
-          className="text-primary font-bold text-xl z-10"
+          className="text-primary font-bold text-xl z-10 flex items-center"
           onClick={() => handleNavClick('hero')}
         >
-          Prášková Lakovna
+          <span className="font-extrabold">Betrim</span>
+          <span className="text-sm ml-2 text-foreground/70">Prášková lakovna</span>
         </a>
         
         {/* Desktop Navigation */}

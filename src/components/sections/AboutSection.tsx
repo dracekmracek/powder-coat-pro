@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
@@ -9,21 +8,18 @@ const AboutSection: React.FC = () => {
     <section id="about" className="bg-white">
       <div className="container max-w-7xl mx-auto px-4">
         <SectionHeader
-          title="O naší lakovně"
-          subtitle="První zakázková lakovna ve Fulneku s více než 25 lety zkušeností"
+          title="O naší společnosti"
+          subtitle="Prášková lakovna Betrim - tradice a kvalita ve Fulneku od roku 1997"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <ScrollReveal className="order-2 lg:order-1">
-            <h3 className="text-2xl font-semibold mb-4">Naše firma zahájila činnost v oboru práškového lakování počátkem roku 1997</h3>
+            <h3 className="text-2xl font-semibold mb-4">Specialisté na práškové lakování s více než 25letou zkušeností</h3>
             <p className="text-muted-foreground mb-6">
-              Jako první zakázková lakovna ve Fulneku jsme přinesli profesionální služby v oblasti práškového lakování s důrazem na kvalitu a spokojenost našich zákazníků.
+              Společnost Betrim s.r.o. zahájila činnost v oboru práškového lakování počátkem roku 1997 jako první zakázková lakovna ve Fulneku.
             </p>
             <p className="text-muted-foreground mb-6">
-              Mezi naše hlavní cíle patří v první řadě spokojenost zákazníka a to jak v počátku obchodního vztahu, tak i v průběhu užívání našich služeb.
-            </p>
-            <p className="text-muted-foreground mb-6">
-              Naší nejlepší reklamou je spokojený zákazník, který dokáže ocenit naši flexibilitu a 100% péči včetně komplexnosti a finalizace, kterou nabízíme.
+              Naší prioritou je spokojenost zákazníka - od začátku obchodního vztahu až po dlouhodobé užívání našich služeb. Klademe důraz na flexibilitu, komplexnost a stoprocentní péči o každou zakázku.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
@@ -33,7 +29,7 @@ const AboutSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Kvalita</h4>
-                  <p className="text-sm text-muted-foreground">Vysoká kvalita zpracování</p>
+                  <p className="text-sm text-muted-foreground">Prvotřídní zpracování zakázek</p>
                 </div>
               </div>
               
@@ -53,7 +49,7 @@ const AboutSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Komplexnost</h4>
-                  <p className="text-sm text-muted-foreground">Kompletní služby na jednom místě</p>
+                  <p className="text-sm text-muted-foreground">Kompletní zpracování zakázky</p>
                 </div>
               </div>
               
@@ -72,8 +68,8 @@ const AboutSection: React.FC = () => {
           <ScrollReveal delay={200} className="order-1 lg:order-2">
             <div className="relative rounded-xl overflow-hidden aspect-square shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1587582816472-81e94768469a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                alt="Naše lakovna" 
+                src="/images/powder-coating-facility.jpg" 
+                alt="Lakovna Betrim" 
                 className="w-full h-full object-cover"
               />
             </div>

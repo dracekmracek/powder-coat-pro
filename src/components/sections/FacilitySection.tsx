@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
@@ -9,8 +8,8 @@ const FacilitySection: React.FC = () => {
     <section id="facility" className="bg-secondary">
       <div className="container max-w-7xl mx-auto px-4">
         <SectionHeader
-          title="Naše lakovna"
-          subtitle="Moderní zařízení a technologie pro nejlepší výsledky"
+          title="Lakovna Betrim"
+          subtitle="Moderní vybavení a technologie pro prvotřídní výsledky"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -38,7 +37,7 @@ const FacilitySection: React.FC = () => {
               </div>
               
               <div className="p-4 bg-primary/10 rounded-lg text-center">
-                <p className="text-sm font-medium">Po telefonické domluvě je možno tyto parametry překročit</p>
+                <p className="text-sm font-medium">Po telefonické domluvě na čísle +420 603 269 881 je možno tyto parametry překročit</p>
               </div>
               
               <div className="mt-8">
@@ -102,8 +101,8 @@ const FacilitySection: React.FC = () => {
           <ScrollReveal delay={200}>
             <div className="aspect-video rounded-xl overflow-hidden shadow-xl border border-border">
               <img 
-                src="https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                alt="Naše lakovna" 
+                src="/images/powder-coating-facility-main.jpg" 
+                alt="Lakovna Betrim" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -111,15 +110,15 @@ const FacilitySection: React.FC = () => {
             <div className="mt-6 grid grid-cols-2 gap-6">
               <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
                 <img 
-                  src="https://images.unsplash.com/photo-1511149755252-35875a99dfd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                  alt="Vybavení lakovny" 
+                  src="/images/powder-coating-equipment.jpg" 
+                  alt="Vybavení lakovny Betrim" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
                 <img 
-                  src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                  alt="Lakovací proces" 
+                  src="/images/powder-coating-process.jpg" 
+                  alt="Práškové lakování Betrim" 
                   className="w-full h-full object-cover"
                 />
               </div>

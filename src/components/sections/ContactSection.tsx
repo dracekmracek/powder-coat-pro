@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
@@ -11,7 +10,7 @@ const ContactSection: React.FC = () => {
       <div className="container max-w-7xl mx-auto px-4">
         <SectionHeader
           title="Kontaktujte nás"
-          subtitle="Jsme připraveni odpovědět na vaše dotazy a pomoci vám s vaším projektem"
+          subtitle="Jsme zde pro vaše dotazy a požadavky na práškové lakování"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -25,8 +24,7 @@ const ContactSection: React.FC = () => {
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg mb-1">Lakovna Fulnek</h4>
-                    <p className="text-muted-foreground">Betrim s.r.o.</p>
+                    <h4 className="font-semibold text-lg mb-1">Betrim s.r.o.</h4>
                     <p className="text-muted-foreground">Masarykova 411</p>
                     <p className="text-muted-foreground">742 45 Fulnek</p>
                     <p className="text-muted-foreground mt-2">IČO: 25376837 | DIČ: CZ25376837</p>

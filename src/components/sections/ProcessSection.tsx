@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
@@ -10,13 +9,13 @@ const ProcessSection: React.FC = () => {
       <div className="container max-w-7xl mx-auto px-4">
         <SectionHeader
           title="Technologický postup"
-          subtitle="Komplexní proces zajišťující maximální kvalitu a trvanlivost povrchové úpravy"
+          subtitle="Precizní proces zajišťující maximální kvalitu a trvanlivost povrchové úpravy"
         />
         
         <ScrollReveal>
           <div className="bg-secondary p-6 md:p-8 rounded-xl mb-12">
-            <h3 className="text-xl font-semibold mb-4">TECHNICKÉ SPECIFIKACE PRÁŠKOVÉ LAKOVNY</h3>
-            <h4 className="font-medium mb-4">Procedura lakování:</h4>
+            <h3 className="text-xl font-semibold mb-4">SPECIFIKACE PROCESU LAKOVÁNÍ</h3>
+            <h4 className="font-medium mb-4">Standardní postup při práškování:</h4>
             
             <div className="overflow-x-auto">
               <table className="w-full">

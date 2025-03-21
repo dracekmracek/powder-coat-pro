@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
@@ -9,15 +8,15 @@ const SurfacesSection: React.FC = () => {
       <div className="container max-w-7xl mx-auto px-4">
         <SectionHeader
           title="Povrchová úprava"
-          subtitle="Různé typy povrchových úprav pro různé účely a požadavky"
+          subtitle="Komplexní řešení povrchových úprav pro různé aplikace"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
           <ScrollReveal>
             <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">VLASTNÍ POVRCHOVÁ ÚPRAVA</h3>
+              <h3 className="text-xl font-semibold mb-4">SLUŽBY POVRCHOVÝCH ÚPRAV</h3>
               <p className="text-muted-foreground mb-4">
-                Provádíme nástřik práškovými barvami pro tvarově složité díly ve vysoké kvalitě v rámci kontinuálního automatického provozu.
+                Provádíme kvalitní nástřik práškovými barvami i pro tvarově složité díly v rámci automatizovaného provozu.
               </p>
               
               <h4 className="font-medium mt-6 mb-3">Předúpravy:</h4>
@@ -25,21 +24,13 @@ const SurfacesSection: React.FC = () => {
                 Chemické odmaštění, zinečnatý fosfát
               </p>
               
-              <h4 className="font-medium mt-6 mb-3">Používané barvy:</h4>
-              <p className="text-muted-foreground mb-2">
-                Široká škála barev dle požadavků zákazníka:
-              </p>
+              <h4 className="font-medium mt-6 mb-3">Barevné možnosti:</h4>
               <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-4">
-                <li>Hladké, jemné nebo hrubá struktura</li>
-                <li>Lesklé, pololesklé, matné</li>
-                <li>Odstíny dle stupnice RAL</li>
-                <li>Barvy jak pro vnitřní, tak i vnější prostředí</li>
-              </ul>
-              
-              <h4 className="font-medium mt-6 mb-3">Další služby:</h4>
-              <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                <li>Balení nastříkaných dílů</li>
-                <li>Zajištění dovozu a odvozu stříkaných dílů</li>
+                <li>Hladké, jemné nebo hrubé struktury</li>
+                <li>Lesklé, pololesklé, matné provedení</li>
+                <li>Kompletní vzorník RAL</li>
+                <li>Vhodné pro interiér i exteriér</li>
+                <li>Balení a doprava hotových dílů</li>
               </ul>
             </div>
           </ScrollReveal>
@@ -47,12 +38,11 @@ const SurfacesSection: React.FC = () => {
           <ScrollReveal delay={200}>
             <div className="bg-white p-6 rounded-xl shadow-sm mb-6">
               <h3 className="text-xl font-semibold mb-4">TRYSKACÍ ZAŘÍZENÍ</h3>
-              <h4 className="font-medium mb-2">ZÁVĚSNÉ TYP: TZNZ 4, MODIFIKACE: TZNZ 4-11/20-23</h4>
               <p className="text-muted-foreground mb-4">
-                Tryská ocelovým a nerezovým granulátem
+                Využíváme kvalitní tryskací zařízení s ocelovým a nerezovým granulátem pro dokonalou předúpravu.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                 <div className="p-4 bg-primary/5 rounded-lg">
                   <p className="font-medium">Průměr obrobku</p>
                   <p className="text-2xl font-bold text-primary">2,000 mm</p>
@@ -66,34 +56,13 @@ const SurfacesSection: React.FC = () => {
                   <p className="text-2xl font-bold text-primary">1,000 kg</p>
                 </div>
               </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">TRYSKÁNÍ A PRÁŠKOVÁNÍ</h3>
               
-              <h4 className="font-medium mb-2">Tryskání:</h4>
+              <h4 className="font-medium mb-2">Typické aplikace:</h4>
               <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-4">
-                <li>Tryskáme výrobky ocelovou drtí na Sa2,5</li>
-                <li>Provádíme tryskání nerezových a hliníkových dílů balotinou</li>
+                <li>Tryskání ocelových dílů na stupeň Sa2,5</li>
+                <li>Tryskání nerezových a hliníkových dílů balotinou</li>
+                <li>Možnost volby mezi zinečnatým a železitým fosfátem</li>
               </ul>
-              
-              <h4 className="font-medium mt-6 mb-2">Práškování:</h4>
-              <p className="text-muted-foreground mb-4">
-                Práškované výrobky jsou postřikem odmaštěny a fosfátovány ve 3 až 6 technologických krocích dle různého užití výrobku (interiér, exteriér, vlhké prostředí) a dle různých materiálů.
-              </p>
-              
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-                <li>Fosfátování s pasivací postřikem na 6-ti stupňové lince předúprav v délce předúprav 60-ti metrů vhodné pro exteriér</li>
-                <li>Fosfátování postřikem na 4-stupňové lince předúprav v délce 18-ti metrů</li>
-                <li>Fosfátování velko-rozměrných dílů s 3-stupňovou předúpravou v postřikovém zařízení s pasivací</li>
-              </ul>
-              
-              <p className="text-muted-foreground mb-2">
-                Výrobky po předúpravě jsou v posledním kroku sušeny při 110 – 125°C
-              </p>
-              <p className="text-muted-foreground">
-                Možno použít zinečnatý fosfát nebo železitý fosfát
-              </p>
             </div>
           </ScrollReveal>
         </div>
@@ -103,14 +72,14 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1520106392146-ef585c111254?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                  alt="Matný povrch" 
+                  src="/images/powder-coating-matte.jpg" 
+                  alt="Matná povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Matný povrch</h3>
-                <p className="text-muted-foreground">Elegantní matný povrch s nízkou odrazivostí, vhodný pro interiérové i exteriérové použití.</p>
+                <p className="text-muted-foreground">Elegantní matné provedení s nízkou odrazivostí, ideální pro moderní design.</p>
               </div>
             </div>
           </ScrollReveal>
@@ -119,14 +88,14 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1532456745301-b2c645d8b80d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                  alt="Lesklý povrch" 
+                  src="/images/powder-coating-glossy.jpg" 
+                  alt="Lesklá povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Lesklý povrch</h3>
-                <p className="text-muted-foreground">Vysoce lesklý povrch s vysokou odrazivostí, vhodný pro dekorativní účely.</p>
+                <p className="text-muted-foreground">Vysoce lesklé provedení s dokonalou odrazivostí pro reprezentativní vzhled.</p>
               </div>
             </div>
           </ScrollReveal>
@@ -135,14 +104,14 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1575652756267-5f04c3341cc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                  alt="Strukturovaný povrch" 
+                  src="/images/powder-coating-textured.jpg" 
+                  alt="Strukturovaná povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Strukturovaný povrch</h3>
-                <p className="text-muted-foreground">Povrch s reliéfní strukturou, vhodný pro zakrytí drobných nerovností a zvýšení odolnosti.</p>
+                <p className="text-muted-foreground">Povrch s reliéfní strukturou pro zvýšenou odolnost a skrytí drobných vad.</p>
               </div>
             </div>
           </ScrollReveal>

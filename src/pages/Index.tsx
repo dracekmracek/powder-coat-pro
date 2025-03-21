@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,10 +6,8 @@ import AboutSection from '@/components/sections/AboutSection';
 import TechnologySection from '@/components/sections/TechnologySection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import SurfacesSection from '@/components/sections/SurfacesSection';
-import SamplesSection from '@/components/sections/SamplesSection';
 import FacilitySection from '@/components/sections/FacilitySection';
 import QualitySection from '@/components/sections/QualitySection';
-import SolarSection from '@/components/sections/SolarSection';
 import ContactSection from '@/components/sections/ContactSection';
 
 const Index: React.FC = () => {
@@ -47,10 +44,8 @@ const Index: React.FC = () => {
       <TechnologySection />
       <ProcessSection />
       <SurfacesSection />
-      <SamplesSection />
       <FacilitySection />
       <QualitySection />
-      <SolarSection />
       <ContactSection />
       
       <Footer />
