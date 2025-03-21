@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
       const scrollY = window.pageYOffset;
       
       sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
+        const sectionHeight = (current as HTMLElement).offsetHeight;
         const sectionTop = (current as HTMLElement).offsetTop - 100;
         const sectionId = current.getAttribute('id') || '';
         
@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
         
         {/* Mobile Navigation */}
         <div className={cn(
-          "fixed inset-0 bg-white z-[5] flex flex-col justify-center transition-transform duration-300 ease-in-out md:hidden",
+          "fixed inset-0 bg-white/95 backdrop-blur-sm z-[5] flex flex-col justify-center transition-transform duration-300 ease-in-out md:hidden",
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         )}>
           <nav className="container px-4">
