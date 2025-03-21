@@ -7,6 +7,7 @@ import SectionHeader from '@/components/SectionHeader';
 import FeatureCard from '@/components/FeatureCard';
 import ScrollReveal from '@/components/ScrollReveal';
 import ContactForm from '@/components/ContactForm';
+import TechnologyProcess from '@/components/TechnologyProcess';
 import { 
   Layers, 
   Droplet, 
@@ -193,48 +194,70 @@ const Index: React.FC = () => {
             subtitle="Využíváme moderní technologie pro dosažení maximální kvality povrchové úpravy"
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard
-              title="Elektrostatické práškové lakování"
-              description="Moderní metoda lakování využívající elektrostatické nabíjení práškové barvy, která přilne na uzemněný kovový povrch."
-              icon={<PaintBucket size={24} />}
-              delay={0}
-            />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <ScrollReveal>
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">PRÁŠKOVÁ LAKOVNA</h3>
+                <p className="text-muted-foreground mb-4">
+                  Příprava povrchu je prováděna v průjezdném postřikovacím stroji s technologií zinečnatého fosfátování.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Pro odmaštění používáme PRAGOLOD 59, silně alkalický přípravek pro odstraňování nánosů konzervačních prostředků a mastných nečistot. Následuje dvoustupňový oplach demineralizovanou vodou. Před fosfátováním je zařazena aktivace povrchu PRAGOFOS 1927. Pro vlastní fosfátování používáme PRAGOFOS 1920.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Sušení probíhá v sušící peci při teplotě 100 až 120°C. Nanášení práškových barev provádíme automatickým zařízením firmy WAGNER.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Plastová kabina Super Cube je dimenzována pro rychlou změnu barvy. Hodí se pro automatické i ruční nanášení při vícebarevném provozu a povrchovou úpravu větších sérií. Těžko přístupná nebo tvarově složitá místa se dokončují na pracovišti ručního lakýrníka. K odsávání prášku používáme odtahovou filtrační jednotku kombinovanou s cyklónovým odlučovačem. Vlastní nástřik provádíme pistolemi PEM-C4-HiCoat.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Následuje vytvrzení barvy ve vypalovací peci při teplotě až 225°C. Vypalovací pec je v provedení s termosifonovým uzávěrem, který minimalizuje únik tepla do okolí.
+                </p>
+                <p className="text-muted-foreground">
+                  Zinečnatý fosfát je kvalitní předúpravou pod práškovými barvami, která výrazně omezuje rozšíření koroze pod povlakem a zajišťuje dlouhou životnost. Pro venkovní užití používáme výhradně polyesterové barvy fasádní kvality odolné vůči povětrnostním vlivům a UV záření.
+                </p>
+              </div>
+            </ScrollReveal>
             
-            <FeatureCard
-              title="Široká škála barev RAL"
-              description="Nabízíme kompletní vzorník barev dle standardu RAL, včetně metalických, matných i strukturovaných variant."
-              icon={<Droplet size={24} />}
-              delay={100}
-            />
-            
-            <FeatureCard
-              title="Vícevrstevné lakování"
-              description="Pro specifické požadavky provádíme vícevrstevné lakování pro dosažení speciálních vizuálních a funkčních vlastností."
-              icon={<Layers size={24} />}
-              delay={200}
-            />
-            
-            <FeatureCard
-              title="Předúprava povrchu"
-              description="Kvalitní odmašťování a fosfátování povrchu pro zajištění perfektní přilnavosti a dlouhodobé životnosti nátěru."
-              icon={<Workflow size={24} />}
-              delay={300}
-            />
-            
-            <FeatureCard
-              title="Vypalování v peci"
-              description="Vytvrzování laku probíhá v moderní vypalovací peci při teplotách 180-200°C pro dosažení optimálních vlastností."
-              icon={<Zap size={24} />}
-              delay={400}
-            />
-            
-            <FeatureCard
-              title="Kontrola kvality"
-              description="Každý zpracovaný díl prochází pečlivou kontrolou kvality před předáním zákazníkovi."
-              icon={<ShieldCheck size={24} />}
-              delay={500}
-            />
+            <ScrollReveal delay={200}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FeatureCard
+                  title="Elektrostatické práškové lakování"
+                  description="Moderní metoda lakování využívající elektrostatické nabíjení práškové barvy, která přilne na uzemněný kovový povrch."
+                  icon={<PaintBucket size={24} />}
+                  delay={0}
+                />
+                
+                <FeatureCard
+                  title="Široká škála barev RAL"
+                  description="Nabízíme kompletní vzorník barev dle standardu RAL, včetně metalických, matných i strukturovaných variant."
+                  icon={<Droplet size={24} />}
+                  delay={100}
+                />
+                
+                <FeatureCard
+                  title="Vícevrstevné lakování"
+                  description="Pro specifické požadavky provádíme vícevrstevné lakování pro dosažení speciálních vizuálních a funkčních vlastností."
+                  icon={<Layers size={24} />}
+                  delay={200}
+                />
+                
+                <FeatureCard
+                  title="Předúprava povrchu"
+                  description="Kvalitní odmašťování a fosfátování povrchu pro zajištění perfektní přilnavosti a dlouhodobé životnosti nátěru."
+                  icon={<Workflow size={24} />}
+                  delay={300}
+                />
+              </div>
+              
+              <div className="mt-6 relative aspect-video rounded-xl overflow-hidden shadow-xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+                  alt="Technologie práškového lakování" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -247,146 +270,121 @@ const Index: React.FC = () => {
             subtitle="Komplexní proces zajišťující maximální kvalitu a trvanlivost povrchové úpravy"
           />
           
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20 hidden md:block"></div>
-            
-            <div className="space-y-12">
-              <ScrollReveal>
-                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="md:text-right md:pr-12">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
-                      Krok 1
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">Příjem zakázky a kontrola</h3>
-                    <p className="text-muted-foreground">
-                      Pečlivá kontrola vstupního materiálu, konzultace s klientem ohledně požadovaných parametrů.
-                    </p>
-                  </div>
-                  
-                  <div className="hidden md:block">
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white z-10">
-                      <Check size={16} />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
-                      <img 
-                        src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                        alt="Příjem zakázky" 
-                        className="rounded-lg w-full h-48 object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
+          <ScrollReveal>
+            <div className="bg-secondary p-6 md:p-8 rounded-xl mb-12">
+              <h3 className="text-xl font-semibold mb-4">TECHNICKÉ SPECIFIKACE PRÁŠKOVÉ LAKOVNY</h3>
+              <h4 className="font-medium mb-4">Procedura lakování:</h4>
               
-              <ScrollReveal>
-                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="md:order-2 md:pl-12">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
-                      Krok 2
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">Chemická předúprava</h3>
-                    <p className="text-muted-foreground">
-                      Odmašťování, odrezování, fosfátování a další procesy pro dokonalou přípravu povrchu.
-                    </p>
-                  </div>
-                  
-                  <div className="md:order-1 hidden md:block">
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white z-10">
-                      <Check size={16} />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-sm border border-border p-6 mr-8">
-                      <img 
-                        src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                        alt="Chemická předúprava" 
-                        className="rounded-lg w-full h-48 object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="md:text-right md:pr-12">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
-                      Krok 3
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">Nanášení práškové barvy</h3>
-                    <p className="text-muted-foreground">
-                      Elektrostatické nanášení práškové barvy pomocí pneumatických pistolí ve speciální kabině.
-                    </p>
-                  </div>
-                  
-                  <div className="hidden md:block">
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white z-10">
-                      <Check size={16} />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
-                      <img 
-                        src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                        alt="Nanášení barvy" 
-                        className="rounded-lg w-full h-48 object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="md:order-2 md:pl-12">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
-                      Krok 4
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">Vytvrzování v peci</h3>
-                    <p className="text-muted-foreground">
-                      Vytvrzení nanesené práškové barvy při teplotách 180-200°C po dobu 10-20 minut.
-                    </p>
-                  </div>
-                  
-                  <div className="md:order-1 hidden md:block">
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white z-10">
-                      <Check size={16} />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-sm border border-border p-6 mr-8">
-                      <img 
-                        src="https://images.unsplash.com/photo-1606210122158-eeb10e0823bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                        alt="Vytvrzování" 
-                        className="rounded-lg w-full h-48 object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="md:text-right md:pr-12">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
-                      Krok 5
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">Kontrola kvality</h3>
-                    <p className="text-muted-foreground">
-                      Důkladná kontrola každého lakovaného dílu včetně měření tloušťky vrstvy a vizuální kontroly.
-                    </p>
-                  </div>
-                  
-                  <div className="hidden md:block">
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white z-10">
-                      <Check size={16} />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
-                      <img 
-                        src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                        alt="Kontrola kvality" 
-                        className="rounded-lg w-full h-48 object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-primary/10 text-left">
+                      <th className="p-3 font-medium">OPERACE</th>
+                      <th className="p-3 font-medium">PROSTŘEDÍ</th>
+                      <th className="p-3 font-medium">DOBA (min)</th>
+                      <th className="p-3 font-medium">TEPLOTA (°C)</th>
+                      <th className="p-3 font-medium">TLAK (bar)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">1. ODMAŠTĚNÍ</td>
+                      <td className="p-3">ALKALICKÉ</td>
+                      <td className="p-3">3</td>
+                      <td className="p-3">60</td>
+                      <td className="p-3">DO 1,2</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">2. 1° OPLACH</td>
+                      <td className="p-3">DEMI VODA</td>
+                      <td className="p-3">0,5</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">3. 2° OPLACH</td>
+                      <td className="p-3">DEMI VODA</td>
+                      <td className="p-3">0,5</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">4. OPL. RÁM</td>
+                      <td className="p-3">DEMI VODA</td>
+                      <td className="p-3">0,2</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">6. ZN-FOSFÁT</td>
+                      <td className="p-3">KYSELÉ</td>
+                      <td className="p-3">3</td>
+                      <td className="p-3">55</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">7. 1° OPLACH</td>
+                      <td className="p-3">DEMI VODA</td>
+                      <td className="p-3">0,5</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">8. 2° OPLACH</td>
+                      <td className="p-3">DEMI VODA</td>
+                      <td className="p-3">0,5</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">9. PASIVACE</td>
+                      <td className="p-3">KYSELÉ</td>
+                      <td className="p-3">0,5</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">10. OPL.RÁM</td>
+                      <td className="p-3">DEMI VODA</td>
+                      <td className="p-3">0,2</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">DO 1,0</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">11. SUŠENÍ</td>
+                      <td className="p-3">VZDUCH</td>
+                      <td className="p-3">10</td>
+                      <td className="p-3">DO 130</td>
+                      <td className="p-3">-</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">12. CHLAZENÍ</td>
+                      <td className="p-3">VZDUCH</td>
+                      <td className="p-3">10</td>
+                      <td className="p-3">20</td>
+                      <td className="p-3">-</td>
+                    </tr>
+                    <tr className="border-b border-border/30 hover:bg-primary/5">
+                      <td className="p-3">13. LAKOVÁNÍ</td>
+                      <td className="p-3">-</td>
+                      <td className="p-3">-</td>
+                      <td className="p-3">-</td>
+                      <td className="p-3">-</td>
+                    </tr>
+                    <tr className="hover:bg-primary/5">
+                      <td className="p-3">14. TVRZENÍ</td>
+                      <td className="p-3">VZDUCH</td>
+                      <td className="p-3">25</td>
+                      <td className="p-3">DO 225</td>
+                      <td className="p-3">-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
+          
+          <TechnologyProcess />
         </div>
       </section>
       
@@ -397,6 +395,92 @@ const Index: React.FC = () => {
             title="Povrchová úprava"
             subtitle="Různé typy povrchových úprav pro různé účely a požadavky"
           />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            <ScrollReveal>
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">VLASTNÍ POVRCHOVÁ ÚPRAVA</h3>
+                <p className="text-muted-foreground mb-4">
+                  Provádíme nástřik práškovými barvami pro tvarově složité díly ve vysoké kvalitě v rámci kontinuálního automatického provozu.
+                </p>
+                
+                <h4 className="font-medium mt-6 mb-3">Předúpravy:</h4>
+                <p className="text-muted-foreground mb-4">
+                  Chemické odmaštění, zinečnatý fosfát
+                </p>
+                
+                <h4 className="font-medium mt-6 mb-3">Používané barvy:</h4>
+                <p className="text-muted-foreground mb-2">
+                  Široká škála barev dle požadavků zákazníka:
+                </p>
+                <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-4">
+                  <li>Hladké, jemné nebo hrubá struktura</li>
+                  <li>Lesklé, pololesklé, matné</li>
+                  <li>Odstíny dle stupnice RAL</li>
+                  <li>Barvy jak pro vnitřní, tak i vnější prostředí</li>
+                </ul>
+                
+                <h4 className="font-medium mt-6 mb-3">Další služby:</h4>
+                <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                  <li>Balení nastříkaných dílů</li>
+                  <li>Zajištění dovozu a odvozu stříkaných dílů</li>
+                </ul>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={200}>
+              <div className="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <h3 className="text-xl font-semibold mb-4">TRYSKACÍ ZAŘÍZENÍ</h3>
+                <h4 className="font-medium mb-2">ZÁVĚSNÉ TYP: TZNZ 4, MODIFIKACE: TZNZ 4-11/20-23</h4>
+                <p className="text-muted-foreground mb-4">
+                  Tryská ocelovým a nerezovým granulátem
+                </p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Průměr obrobku</p>
+                    <p className="text-2xl font-bold text-primary">2,000 mm</p>
+                  </div>
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Výška obrobku</p>
+                    <p className="text-2xl font-bold text-primary">2,300 mm</p>
+                  </div>
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Nosnost závěsu</p>
+                    <p className="text-2xl font-bold text-primary">1,000 kg</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">TRYSKÁNÍ A PRÁŠKOVÁNÍ</h3>
+                
+                <h4 className="font-medium mb-2">Tryskání:</h4>
+                <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-4">
+                  <li>Tryskáme výrobky ocelovou drtí na Sa2,5</li>
+                  <li>Provádíme tryskání nerezových a hliníkových dílů balotinou</li>
+                </ul>
+                
+                <h4 className="font-medium mt-6 mb-2">Práškování:</h4>
+                <p className="text-muted-foreground mb-4">
+                  Práškované výrobky jsou postřikem odmaštěny a fosfátovány ve 3 až 6 technologických krocích dle různého užití výrobku (interiér, exteriér, vlhké prostředí) a dle různých materiálů.
+                </p>
+                
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
+                  <li>Fosfátování s pasivací postřikem na 6-ti stupňové lince předúprav v délce předúprav 60-ti metrů vhodné pro exteriér</li>
+                  <li>Fosfátování postřikem na 4-stupňové lince předúprav v délce 18-ti metrů</li>
+                  <li>Fosfátování velko-rozměrných dílů s 3-stupňovou předúpravou v postřikovém zařízení s pasivací</li>
+                </ul>
+                
+                <p className="text-muted-foreground mb-2">
+                  Výrobky po předúpravě jsou v posledním kroku sušeny při 110 – 125°C
+                </p>
+                <p className="text-muted-foreground">
+                  Možno použít zinečnatý fosfát nebo železitý fosfát
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ScrollReveal>
@@ -443,54 +527,6 @@ const Index: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">Strukturovaný povrch</h3>
                   <p className="text-muted-foreground">Povrch s reliéfní strukturou, vhodný pro zakrytí drobných nerovností a zvýšení odolnosti.</p>
-                </div>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={300}>
-              <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1598546644893-2acb863e209d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                    alt="Metalický povrch" 
-                    className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">Metalický povrch</h3>
-                  <p className="text-muted-foreground">Povrch s metalickým efektem, který dodává výrobkům luxusní vzhled.</p>
-                </div>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={400}>
-              <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1619588346535-854603d17b3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                    alt="Antikorozní povrch" 
-                    className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">Antikorozní povrch</h3>
-                  <p className="text-muted-foreground">Speciální úprava pro maximální ochranu proti korozi v náročných podmínkách.</p>
-                </div>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={500}>
-              <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1636488123000-cadebcc92c70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
-                    alt="Speciální povrch" 
-                    className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">Speciální povrchy</h3>
-                  <p className="text-muted-foreground">Na míru vytvořené povrchové úpravy podle specifických požadavků zákazníka.</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -614,8 +650,93 @@ const Index: React.FC = () => {
             subtitle="Moderní zařízení a technologie pro nejlepší výsledky"
           />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <ScrollReveal>
+              <div className="bg-white p-6 rounded-xl shadow-sm h-full">
+                <h3 className="text-xl font-semibold mb-4">Maximální rozměry lakovaných dílců</h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Délka</p>
+                    <p className="text-2xl font-bold text-primary">3,500 mm</p>
+                  </div>
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Výška</p>
+                    <p className="text-2xl font-bold text-primary">1,500 mm</p>
+                  </div>
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Šířka</p>
+                    <p className="text-2xl font-bold text-primary">1,200 mm</p>
+                  </div>
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="font-medium">Váha</p>
+                    <p className="text-2xl font-bold text-primary">110 kg/m</p>
+                  </div>
+                </div>
+                
+                <div className="p-4 bg-primary/10 rounded-lg text-center">
+                  <p className="text-sm font-medium">Po telefonické domluvě je možno tyto parametry překročit</p>
+                </div>
+                
+                <div className="mt-8">
+                  <h3 className="text-xl font-semibold mb-4">Vybavení naší práškové lakovny</h3>
+                  
+                  <ul className="space-y-4">
+                    <li className="flex items-start">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
+                        <Check size={14} />
+                      </div>
+                      <div>
+                        <h4 className="font-medium">Automatická linka</h4>
+                        <p className="text-sm text-muted-foreground">Pro efektivní zpracování velkých sérií výrobků</p>
+                      </div>
+                    </li>
+                    
+                    <li className="flex items-start">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
+                        <Check size={14} />
+                      </div>
+                      <div>
+                        <h4 className="font-medium">Moderní lakovací kabina</h4>
+                        <p className="text-sm text-muted-foreground">S účinným odsáváním a recyklací prášku</p>
+                      </div>
+                    </li>
+                    
+                    <li className="flex items-start">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
+                        <Check size={14} />
+                      </div>
+                      <div>
+                        <h4 className="font-medium">Vypalovací pec</h4>
+                        <p className="text-sm text-muted-foreground">S přesnou regulací teploty pro dokonalé vytvrzení</p>
+                      </div>
+                    </li>
+                    
+                    <li className="flex items-start">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
+                        <Check size={14} />
+                      </div>
+                      <div>
+                        <h4 className="font-medium">Předúpravová linka</h4>
+                        <p className="text-sm text-muted-foreground">Pro dokonalou přípravu povrchu před lakováním</p>
+                      </div>
+                    </li>
+                    
+                    <li className="flex items-start">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
+                        <Check size={14} />
+                      </div>
+                      <div>
+                        <h4 className="font-medium">Kontrolní stanoviště</h4>
+                        <p className="text-sm text-muted-foreground">Pro důkladnou kontrolu kvality každého výrobku</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={200}>
               <div className="aspect-video rounded-xl overflow-hidden shadow-xl border border-border">
                 <img 
                   src="https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
@@ -623,65 +744,23 @@ const Index: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={200}>
-              <h3 className="text-2xl font-semibold mb-4">Vybavení naší práškové lakovny</h3>
-              <p className="text-muted-foreground mb-6">
-                Naše lakovna je vybavena moderními technologiemi pro práškové lakování, které umožňují dosahovat nejvyšší kvality povrchové úpravy.
-              </p>
               
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
-                    <Check size={14} />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Automatická linka</h4>
-                    <p className="text-sm text-muted-foreground">Pro efektivní zpracování velkých sérií výrobků</p>
-                  </div>
-                </li>
-                
-                <li className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
-                    <Check size={14} />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Moderní lakovací kabina</h4>
-                    <p className="text-sm text-muted-foreground">S účinným odsáváním a recyklací prášku</p>
-                  </div>
-                </li>
-                
-                <li className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
-                    <Check size={14} />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Vypalovací pec</h4>
-                    <p className="text-sm text-muted-foreground">S přesnou regulací teploty pro dokonalé vytvrzení</p>
-                  </div>
-                </li>
-                
-                <li className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
-                    <Check size={14} />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Předúpravová linka</h4>
-                    <p className="text-sm text-muted-foreground">Pro dokonalou přípravu povrchu před lakováním</p>
-                  </div>
-                </li>
-                
-                <li className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 mt-0.5">
-                    <Check size={14} />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Kontrolní stanoviště</h4>
-                    <p className="text-sm text-muted-foreground">Pro důkladnou kontrolu kvality každého výrobku</p>
-                  </div>
-                </li>
-              </ul>
+              <div className="mt-6 grid grid-cols-2 gap-6">
+                <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
+                  <img 
+                    src="https://images.unsplash.com/photo-1511149755252-35875a99dfd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+                    alt="Vybavení lakovny" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
+                  <img 
+                    src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+                    alt="Lakovací proces" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </ScrollReveal>
           </div>
         </div>
@@ -697,31 +776,29 @@ const Index: React.FC = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal delay={200} className="order-2 lg:order-1">
-              <h3 className="text-2xl font-semibold mb-4">Naše zásady kvality</h3>
-              <p className="text-muted-foreground mb-6">
-                Naše firma si zakládá na dodržování nejvyšších standardů kvality ve všech fázích procesu lakování. Kvalitu považujeme za klíčový faktor našeho úspěchu.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="bg-secondary p-6 rounded-xl">
-                  <h4 className="font-semibold mb-2">Certifikace a standardy</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Dodržujeme přísné normy a standardy pro práškové lakování. Naše procesy jsou certifikovány a pravidelně kontrolovány.
-                  </p>
-                </div>
+              <div className="bg-secondary p-6 md:p-8 rounded-xl">
+                <h3 className="text-xl font-semibold mb-4">Politika kvality společnosti BETRIM s.r.o.</h3>
+                <p className="text-muted-foreground mb-4">
+                  Společnost BETRIM s.r.o. se zabývá realizací práškových povrchových úprav kovových materiálů v rozsahu nejrozmanitějších požadavků zákazníků na detailní a přesné lakování. Zaměřujeme se nejen na tuzemský, ale také na zahraniční trh.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Naší vizí je trvale vycházet vstříc požadavkům zákazníků na kvalitu, objem a technické zpracování zakázek a ujišťování zákazníka o dobré spolupráci se seriózní, dynamickou a dobře fungující společností, kde rozhodujícím ukazatelem je plnění dohodnutých závazků v termínu a maximální dohodnuté kvalitě povrchové úpravy nebo poskytnuté služby. Tato snaha vedení společnosti vede a zavazuje ke zvyšování spokojenosti zákazníka, zaměstnanců a spolupracovníků.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Vytváříme podmínky pro neustálý rozvoj našich zaměstnanců ovlivňujících kvalitu povrchové úpravy a souvisejících poskytovaných služeb. Podporujeme a vytváříme podmínky pro aktivní účast všech zaměstnanců a dalších osob při zlepšování systému managementu kvality.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Naším záměrem a vizí je zavést a trvale a udržitelně zlepšovat systém managementu kvality podle normy EN ISO 9001:2015. Tuto politiku uplatňujeme ve vztahu ke všem zainteresovaným stranám.
+                </p>
                 
-                <div className="bg-secondary p-6 rounded-xl">
-                  <h4 className="font-semibold mb-2">Kontrola kvality</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Každý výrobek prochází důkladnou kontrolou kvality před odesláním zákazníkovi. Kontrolujeme tloušťku vrstvy, přilnavost, vzhled a další parametry.
-                  </p>
-                </div>
-                
-                <div className="bg-secondary p-6 rounded-xl">
-                  <h4 className="font-semibold mb-2">Neustálé zlepšování</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Pravidelně investujeme do nových technologií a vzdělávání našich zaměstnanců, abychom neustále zlepšovali kvalitu našich služeb.
-                  </p>
+                <div className="mt-6 pt-6 border-t border-border/30 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Ve Fulneku, 1.5.2023</p>
+                  </div>
+                  <div className="mt-4 sm:mt-0">
+                    <p className="font-medium">Jindřich Schich</p>
+                    <p className="text-sm text-muted-foreground">jednatel</p>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
@@ -804,39 +881,75 @@ const Index: React.FC = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <ScrollReveal>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Adresa</h3>
-                    <p className="text-muted-foreground">Průmyslová zóna 123, 742 45 Fulnek</p>
-                  </div>
-                </div>
+              <div className="bg-secondary p-6 md:p-8 rounded-xl">
+                <h3 className="text-xl font-semibold mb-6">Kontaktní informace</h3>
                 
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
-                    <Phone size={24} />
+                <div className="space-y-8">
+                  <div className="flex items-start">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                      <MapPin size={24} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-1">Lakovna Fulnek</h4>
+                      <p className="text-muted-foreground">Betrim s.r.o.</p>
+                      <p className="text-muted-foreground">Masarykova 411</p>
+                      <p className="text-muted-foreground">742 45 Fulnek</p>
+                      <p className="text-muted-foreground mt-2">IČO: 25376837 | DIČ: CZ25376837</p>
+                    </div>
                   </div>
+                  
                   <div>
-                    <h3 className="font-semibold text-lg mb-1">Telefon</h3>
-                    <p className="text-muted-foreground">+420 555 123 456</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@praskovaLakovna.cz</p>
+                    <h4 className="font-semibold text-lg mb-3">Kontaktní osoby</h4>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                          <Phone size={18} />
+                        </div>
+                        <div>
+                          <p className="font-medium">Jindřich Schich - Jednatel</p>
+                          <p className="text-muted-foreground">+420 603 269 881</p>
+                          <p className="text-muted-foreground">schich@betrim.cz</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                          <Phone size={18} />
+                        </div>
+                        <div>
+                          <p className="font-medium">Ludmila Bordovská - Účetní</p>
+                          <p className="text-muted-foreground">+420 732 203 404</p>
+                          <p className="text-muted-foreground">ludmilabordovska@seznam.cz</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                          <Phone size={18} />
+                        </div>
+                        <div>
+                          <p className="font-medium">Jarmila Zemanová - Sekretariát</p>
+                          <p className="text-muted-foreground">+420 739 234 955</p>
+                          <p className="text-muted-foreground">zemanova@betrim.cz</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                          <Phone size={18} />
+                        </div>
+                        <div>
+                          <p className="font-medium">Vlastimil Fojtík - Vedoucí výroby</p>
+                          <p className="text-muted-foreground">+420 604 818 247</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
                 <div className="pt-6 mt-8">
-                  <h3 className="font-semibold text-xl mb-4">Mapa</h3>
+                  <h4 className="font-semibold text-lg mb-4">Mapa</h4>
                   <div className="aspect-[4/3] rounded-xl overflow-hidden border border-border shadow-sm">
                     <iframe 
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20581.569717398906!2d17.86658766211365!3d49.71277257076461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713fa3dc5349f73%3A0x400af0f6614e880!2s742%2045%20Fulnek!5e0!3m2!1scs!2scz!4v1696425901234!5m2!1scs!2scz" 
