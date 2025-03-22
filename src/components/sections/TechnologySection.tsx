@@ -68,14 +68,6 @@ const TechnologySection: React.FC = () => {
               </p>
             </div>
             
-<<<<<<< Updated upstream
-            <div className="mt-6 relative aspect-video rounded-xl overflow-hidden shadow-xl">
-              <img 
-                src="/images/powder-coating-tech.jpg" 
-                alt="Technologie práškového lakování Betrim" 
-                className="w-full h-full object-cover"
-              />
-=======
             <div className="space-y-4">
               <div className="bg-muted/30 p-4 rounded-lg">
                 <h4 className="font-medium mb-2">Technické parametry:</h4>
@@ -128,7 +120,6 @@ const TechnologySection: React.FC = () => {
                   </ul>
                 </div>
               </div>
->>>>>>> Stashed changes
             </div>
           </div>
         </div>
