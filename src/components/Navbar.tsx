@@ -27,14 +27,20 @@ const Navbar: React.FC = () => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
       document.body.style.height = '100%';
+      document.body.style.position = 'fixed'; // Přidáno pro lepší blokování scrollu
+      document.body.style.width = '100%'; // Přidáno pro zabránění horizontálnímu posunu
     } else {
       document.body.style.overflow = '';
       document.body.style.height = '';
+      document.body.style.position = ''; // Reset pozice
+      document.body.style.width = ''; // Reset šířky
     }
     
     return () => {
       document.body.style.overflow = '';
       document.body.style.height = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, [isMenuOpen]);
 
@@ -69,13 +75,12 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false);
   }, []);
 
+  // Vylepšená funkce pro navigaci - spolehlivější fungování odkazů
   const handleNavClick = useCallback((id: string) => {
-    // Nejdřív zavřeme menu s menším zpožděním
-    setTimeout(() => {
-      closeMenu();
-    }, 50);
-
-    // Pak se přesuneme na danou sekci s malým zpožděním, aby se menu stihlo zavřít
+    // Nejdřív zavřeme menu okamžitě
+    closeMenu();
+    
+    // Pak se přesuneme na danou sekci s malým zpožděním
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -88,7 +93,7 @@ const Navbar: React.FC = () => {
           behavior: 'smooth'
         });
       }
-    }, 100);
+    }, 150); // Zvýšené zpoždění pro spolehlivější fungování
   }, [closeMenu]);
 
   return (
@@ -147,7 +152,7 @@ const Navbar: React.FC = () => {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - upravené pro lepší fungování odkazů */}
         {isMenuOpen && (
           <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-40 flex flex-col justify-start overflow-auto h-[100vh] pt-20 md:hidden">
             <nav className="container px-4 py-6">
