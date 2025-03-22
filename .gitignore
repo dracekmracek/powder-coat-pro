@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vite/
+404.html
+build-deploy.sh
+cursorMindDoc.txt
+cursorrules.txt
+public/create-folders.mjs
+public/generate-direct.html
+public/generate-images.html
