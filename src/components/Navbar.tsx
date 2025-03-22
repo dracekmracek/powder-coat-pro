@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -22,54 +22,81 @@ const Navbar: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState('');
 
+  // Blokování scrollování při otevřeném menu
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-      
-      // Determine active section based on scroll position
-      const sections = document.querySelectorAll('section[id]');
-      const scrollY = window.pageYOffset;
-      
-      sections.forEach(current => {
-        const sectionHeight = (current as HTMLElement).offsetHeight;
-        const sectionTop = (current as HTMLElement).offsetTop - 100;
-        const sectionId = current.getAttribute('id') || '';
-        
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          setActiveSection(sectionId);
-        }
-      });
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
     };
+  }, [isMenuOpen]);
 
+  const handleScroll = useCallback(() => {
+    setScrollPosition(window.scrollY);
+    
+    // Determine active section based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(current => {
+      const sectionHeight = (current as HTMLElement).offsetHeight;
+      const sectionTop = (current as HTMLElement).offsetTop - 100;
+      const sectionId = current.getAttribute('id') || '';
+      
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        setActiveSection(sectionId);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
-  };
+  }, []);
 
-  const handleNavClick = (id: string) => {
-    closeMenu();
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const handleNavClick = useCallback((id: string) => {
+    // Nejdřív zavřeme menu s menším zpožděním
+    setTimeout(() => {
+      closeMenu();
+    }, 50);
+
+    // Pak se přesuneme na danou sekci s malým zpožděním, aby se menu stihlo zavřít
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  }, [closeMenu]);
 
   return (
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrollPosition > 10 
-          ? "bg-white/80 backdrop-blur shadow-sm py-3" 
+          ? "bg-white/90 backdrop-blur shadow-sm py-3" 
           : "bg-transparent py-5"
       )}
     >
@@ -77,9 +104,16 @@ const Navbar: React.FC = () => {
         <a 
           href="#hero" 
           className="text-primary font-bold text-xl z-10 flex items-center"
-          onClick={() => handleNavClick('hero')}
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick('hero');
+          }}
         >
-          <span className="font-extrabold">Betrim</span>
+          <img 
+            src="images/Logo_Betrim.png" 
+            alt="Betrim" 
+            className="h-10 w-auto" 
+          />
           <span className="text-sm ml-2 text-foreground/70">Prášková lakovna</span>
         </a>
         
@@ -106,7 +140,7 @@ const Navbar: React.FC = () => {
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden z-10 p-2 rounded-md text-foreground"
+          className="md:hidden z-50 p-2 rounded-md text-foreground"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -114,30 +148,29 @@ const Navbar: React.FC = () => {
         </button>
         
         {/* Mobile Navigation */}
-        <div className={cn(
-          "fixed inset-0 bg-white/95 backdrop-blur-sm z-[5] flex flex-col justify-center transition-transform duration-300 ease-in-out md:hidden",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}>
-          <nav className="container px-4">
-            <ul className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <li key={item.id} className="border-b border-border/30 pb-2">
-                  <button
-                    onClick={() => handleNavClick(item.id)}
-                    className={cn(
-                      "block w-full text-left px-4 py-2 text-lg font-medium transition-colors duration-200",
-                      activeSection === item.id
-                        ? "text-primary"
-                        : "text-foreground/80 hover:text-primary"
-                    )}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
+        {isMenuOpen && (
+          <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-40 flex flex-col justify-start overflow-auto h-[100vh] pt-20 md:hidden">
+            <nav className="container px-4 py-6">
+              <ul className="flex flex-col space-y-6">
+                {navItems.map((item) => (
+                  <li key={item.id} className="border-b border-border/30 pb-4">
+                    <button
+                      onClick={() => handleNavClick(item.id)}
+                      className={cn(
+                        "block w-full text-left px-4 py-2 text-xl font-medium transition-colors duration-200",
+                        activeSection === item.id
+                          ? "text-primary"
+                          : "text-foreground/80 hover:text-primary"
+                      )}
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
