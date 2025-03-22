@@ -26,7 +26,7 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
                 <img 
-                  src="/images/facility/factory-interior.jpg" 
+                  src="/powder-coat-pro/images/facility/factory-interior.jpg" 
                   alt="Příjem zakázky" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -53,7 +53,7 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 mr-8">
                 <img 
-                  src="/images/process/chemical-pretreatment.jpg" 
+                  src="/powder-coat-pro/images/process/chemical-pretreatment.jpg" 
                   alt="Chemická předúprava" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -80,7 +80,7 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
                 <img 
-                  src="/images/process/powder-coating-application.jpg" 
+                  src="/powder-coat-pro/images/process/powder-coating-application.jpg" 
                   alt="Nanášení barvy" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -107,7 +107,7 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 mr-8">
                 <img 
-                  src="/images/surfaces/surface-finish-1.jpg" 
+                  src="/powder-coat-pro/images/surfaces/surface-finish-1.jpg" 
                   alt="Vytvrzování" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -134,7 +134,7 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
                 <img 
-                  src="/images/quality/quality-inspection.jpg" 
+                  src="/powder-coat-pro/images/quality/quality-inspection.jpg" 
                   alt="Kontrola kvality" 
                   className="rounded-lg w-full h-48 object-cover"
                 />

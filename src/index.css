@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -41,28 +40,37 @@
   * {
     @apply border-border;
     scroll-behavior: smooth;
+    box-sizing: border-box;
   }
   
-  body {
+  html, body {
     @apply bg-background text-foreground antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    max-width: 100vw;
   }
   
   section {
-    @apply py-20 sm:py-28;
+    @apply py-16 sm:py-20 relative;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold tracking-tight mb-1;
+    @apply text-3xl md:text-4xl font-bold tracking-tight mb-4 mx-auto text-center;
+    max-width: 100%;
   }
   
   .section-subtitle {
-    @apply text-lg text-muted-foreground mb-12;
+    @apply text-lg text-muted-foreground mb-12 mx-auto text-center;
+    max-width: 100%;
   }
   
   .container-narrow {
-    @apply max-w-5xl mx-auto px-4;
+    @apply max-w-5xl mx-auto px-6 sm:px-8;
   }
   
   .reveal {
@@ -96,4 +104,147 @@
 /* Enhanced card styles */
 .feature-card {
   @apply relative p-6 rounded-xl transition-all duration-300 bg-white border border-border shadow-sm hover:shadow-md;
+}
+
+/* Animace pro metalické efekty */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(-45deg);
+  }
+  20%, 100% {
+    transform: translateX(200%) rotate(-45deg);
+  }
+}
+
+.animate-shine {
+  overflow: hidden;
+}
+
+.animate-shine div {
+  animation: shine 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animace pro sprejové částice */
+@keyframes spray {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translate(10px, 10px);
+  }
+}
+
+.spray-particle {
+  animation: spray 2s ease-out forwards;
+}
+
+/* Animace pro pulzování a realistické přechody mezi sekcemi */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-effect {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.secondary.DEFAULT');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.primary.DEFAULT');
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(from theme('colors.primary.DEFAULT') h s calc(l - 5%));
+}
+
+/* Barevné stíny a efekty pro lakovací prvky */
+.shadow-powder {
+  box-shadow: 0 10px 25px -5px hsl(from theme('colors.primary.DEFAULT') h s calc(l - 10%) / 0.3),
+              0 8px 10px -6px hsl(from theme('colors.primary.DEFAULT') h s calc(l - 10%) / 0.2);
+}
+
+.spray-bg {
+  background-image: radial-gradient(circle at 30% 70%, 
+    hsl(from theme('colors.primary.DEFAULT') h s calc(l + 20%) / 0.1) 0%, 
+    transparent 70%),
+    radial-gradient(circle at 80% 20%, 
+    hsl(from theme('colors.primary.DEFAULT') h s calc(l + 30%) / 0.15) 0%, 
+    transparent 60%);
+}
+
+/* Specifické efekty pro lakovnu */
+.coating-pattern {
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4ddff' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Opravy pro responzivitu */
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    max-width: 1280px;
+  }
+}
+
+/* Zabránění přetékání obsahu ve všech sekcích */
+div, section, header, footer, nav {
+  max-width: 100vw;
+}
+
+/* Vylepšení pro lepší čitelnost */
+p {
+  max-width: 65ch;
+}
+
+/* Centrování celé aplikace */
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Responzivní obrázky */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }

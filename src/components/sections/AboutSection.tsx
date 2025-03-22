@@ -5,14 +5,14 @@ import { Check } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="bg-white">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section id="about" className="bg-white py-16 md:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           title="O naší společnosti"
           subtitle="Prášková lakovna Betrim - tradice a kvalita ve Fulneku od roku 1997"
         />
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <ScrollReveal className="order-2 lg:order-1">
             <h3 className="text-2xl font-semibold mb-4">Specialisté na práškové lakování s více než 25letou zkušeností</h3>
             <p className="text-muted-foreground mb-6">
@@ -22,7 +22,7 @@ const AboutSection: React.FC = () => {
               Naší prioritou je spokojenost zákazníka - od začátku obchodního vztahu až po dlouhodobé užívání našich služeb. Klademe důraz na flexibilitu, komplexnost a stoprocentní péči o každou zakázku.
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
               <div className="flex items-start">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
                   <Check size={20} />
@@ -68,7 +68,7 @@ const AboutSection: React.FC = () => {
           <ScrollReveal delay={200} className="order-1 lg:order-2">
             <div className="relative rounded-xl overflow-hidden aspect-square shadow-xl">
               <img 
-                src="/images/powder-coating-facility.jpg" 
+                src="/powder-coat-pro/images/powder-coating-facility.jpg" 
                 alt="Lakovna Betrim" 
                 className="w-full h-full object-cover"
               />

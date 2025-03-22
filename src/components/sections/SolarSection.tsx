@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
@@ -16,7 +15,7 @@ const SolarSection: React.FC = () => {
           <ScrollReveal>
             <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-border">
               <img 
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+                src="/powder-coat-pro/images/solar-energy.jpg" 
                 alt="Fotovoltaická elektrárna" 
                 className="w-full h-full object-cover"
               />
