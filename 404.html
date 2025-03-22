@@ -12,7 +12,7 @@
     let pathName = l.pathname;
     
     // Uložíme původní cestu a parametry do sessionStorage pro pozdější obnovení
-    sessionStorage.setItem('redirectPath', pathName);
+    sessionStorage.setItem('redirectPath', pathName + l.search + l.hash);
     
     // Přesměrujeme na základní cestu projektu
     let redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
@@ -23,6 +23,6 @@
 </head>
 <body>
   <h1>Přesměrování...</h1>
-  <p>Pokud nejste přesměrováni automaticky, klikněte <a href="/powder-coat-pro/">zde</a>.</p>
+  <p>Pokud nejste přesměrováni automaticky, klikněte <a href="/">zde</a>.</p>
 </body>
 </html> 
