@@ -5,11 +5,18 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-primary text-white pt-16 pb-8">
-      <div className="container max-w-7xl mx-auto px-4">
+    <footer className="bg-primary text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
-            <h3 className="text-xl font-bold mb-4">Betrim</h3>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/powder-coat-pro/images/Logo_Betrim.png" 
+                alt="Betrim" 
+                className="h-10 w-auto mr-2" 
+              />
+              <h3 className="text-xl font-bold">Betrim</h3>
+            </div>
             <p className="mb-6 text-primary-foreground/90">
               Prášková lakovna ve Fulneku s tradicí od roku 1997. Poskytujeme kvalitní služby v oblasti práškového lakování a povrchových úprav.
             </p>

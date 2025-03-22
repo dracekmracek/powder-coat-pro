@@ -96,86 +96,96 @@ const Navbar: React.FC = () => {
     }, 150); // Zvýšené zpoždění pro spolehlivější fungování
   }, [closeMenu]);
 
+  // Určuje, zda je navbar průhledný nebo ne na základě pozice scrollu
+  const isTransparent = scrollPosition < 50 && !isMenuOpen;
+
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrollPosition > 10 
-          ? "bg-white/90 backdrop-blur shadow-sm py-3" 
-          : "bg-transparent py-5"
+        "fixed top-0 z-50 w-full transition-all duration-300",
+        isTransparent 
+          ? "bg-transparent" 
+          : "bg-white bg-opacity-90 backdrop-blur-md shadow-sm"
       )}
     >
-      <div className="container max-w-7xl mx-auto px-4 flex justify-between items-center">
-        <a 
-          href="#hero" 
-          className="text-primary font-bold text-xl z-10 flex items-center"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick('hero');
-          }}
-        >
-          <img 
-            src="images/Logo_Betrim.png" 
-            alt="Betrim" 
-            className="h-10 w-auto" 
-          />
-          <span className="text-sm ml-2 text-foreground/70">Prášková lakovna</span>
-        </a>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:block">
-          <ul className="flex space-x-1">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <button
-                  onClick={() => handleNavClick(item.id)}
-                  className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200",
-                    activeSection === item.id
-                      ? "text-primary"
-                      : "text-foreground/70 hover:text-primary hover:bg-primary/5"
-                  )}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden z-50 p-2 rounded-md text-foreground"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-        
-        {/* Mobile Navigation - upravené pro lepší fungování odkazů */}
-        {isMenuOpen && (
-          <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-40 flex flex-col justify-start overflow-auto h-[100vh] pt-20 md:hidden">
-            <nav className="container px-4 py-6">
-              <ul className="flex flex-col space-y-6">
-                {navItems.map((item) => (
-                  <li key={item.id} className="border-b border-border/30 pb-4">
-                    <button
-                      onClick={() => handleNavClick(item.id)}
-                      className={cn(
-                        "block w-full text-left px-4 py-2 text-xl font-medium transition-colors duration-200",
-                        activeSection === item.id
-                          ? "text-primary"
-                          : "text-foreground/80 hover:text-primary"
-                      )}
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        )}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <a 
+            href="#hero" 
+            className={cn(
+              "font-bold text-xl z-10 flex items-center",
+              isTransparent ? "text-white" : "text-primary"
+            )}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('hero');
+            }}
+          >
+            <img 
+              src="/powder-coat-pro/images/Logo_Betrim.png" 
+              alt="Betrim" 
+              className="h-10 w-auto" 
+            />
+          </a>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block">
+            <ul className="flex space-x-1">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => handleNavClick(item.id)}
+                    className={cn(
+                      "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200",
+                      activeSection === item.id
+                        ? "text-primary"
+                        : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                    )}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className={cn(
+              "md:hidden z-50 p-2 rounded-md",
+              isTransparent ? "text-foreground" : "text-foreground"
+            )}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          
+          {/* Mobile Navigation - upravené pro lepší fungování odkazů */}
+          {isMenuOpen && (
+            <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-40 flex flex-col justify-start overflow-auto h-[100vh] pt-20 md:hidden">
+              <nav className="container px-4 py-6">
+                <ul className="flex flex-col space-y-6">
+                  {navItems.map((item) => (
+                    <li key={item.id} className="border-b border-border/30 pb-4">
+                      <button
+                        onClick={() => handleNavClick(item.id)}
+                        className={cn(
+                          "block w-full text-left px-4 py-2 text-xl font-medium transition-colors duration-200",
+                          activeSection === item.id
+                            ? "text-primary"
+                            : "text-foreground/80 hover:text-primary"
+                        )}
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

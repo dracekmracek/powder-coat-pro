@@ -5,14 +5,14 @@ import { Check } from 'lucide-react';
 
 const FacilitySection: React.FC = () => {
   return (
-    <section id="facility" className="bg-secondary">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section id="facility" className="py-16 md:py-24 bg-secondary relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
-          title="Lakovna Betrim"
-          subtitle="Moderní vybavení a technologie pro prvotřídní výsledky"
+          title="Naše lakovna"
+          subtitle="Moderní technologické vybavení pro maximální kvalitu povrchových úprav"
         />
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <ScrollReveal>
             <div className="bg-white p-6 rounded-xl shadow-sm h-full">
               <h3 className="text-xl font-semibold mb-4">Maximální rozměry lakovaných dílců</h3>
@@ -101,7 +101,11 @@ const FacilitySection: React.FC = () => {
           <ScrollReveal delay={200}>
             <div className="aspect-video rounded-xl overflow-hidden shadow-xl border border-border">
               <img 
+<<<<<<< Updated upstream
                 src="/images/powder-coating-facility-main.jpg" 
+=======
+                src="/powder-coat-pro/images/facility/factory-interior.jpg" 
+>>>>>>> Stashed changes
                 alt="Lakovna Betrim" 
                 className="w-full h-full object-cover"
               />
@@ -110,14 +114,22 @@ const FacilitySection: React.FC = () => {
             <div className="mt-6 grid grid-cols-2 gap-6">
               <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
                 <img 
+<<<<<<< Updated upstream
                   src="/images/powder-coating-equipment.jpg" 
+=======
+                  src="/powder-coat-pro/images/technology/powder-coating-process.jpg" 
+>>>>>>> Stashed changes
                   alt="Vybavení lakovny Betrim" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
                 <img 
+<<<<<<< Updated upstream
                   src="/images/powder-coating-process.jpg" 
+=======
+                  src="/powder-coat-pro/images/process/powder-coating-application.jpg" 
+>>>>>>> Stashed changes
                   alt="Práškové lakování Betrim" 
                   className="w-full h-full object-cover"
                 />

@@ -4,14 +4,14 @@ import SectionHeader from '@/components/SectionHeader';
 
 const SurfacesSection: React.FC = () => {
   return (
-    <section id="surfaces" className="bg-secondary">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section id="surfaces" className="py-16 md:py-24 bg-white relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
           title="Povrchová úprava"
-          subtitle="Komplexní řešení povrchových úprav pro různé aplikace"
+          subtitle="Specializujeme se na vysoce kvalitní práškové lakování s profesionální předúpravou povrchu"
         />
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <ScrollReveal>
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-semibold mb-4">SLUŽBY POVRCHOVÝCH ÚPRAV</h3>
@@ -72,7 +72,11 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
+<<<<<<< Updated upstream
                   src="/images/powder-coating-matte.jpg" 
+=======
+                  src="/powder-coat-pro/images/surfaces/surface-finish-1.jpg" 
+>>>>>>> Stashed changes
                   alt="Matná povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
@@ -88,7 +92,11 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
+<<<<<<< Updated upstream
                   src="/images/powder-coating-glossy.jpg" 
+=======
+                  src="/powder-coat-pro/images/surfaces/color-samples.jpg" 
+>>>>>>> Stashed changes
                   alt="Lesklá povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
@@ -104,7 +112,11 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
+<<<<<<< Updated upstream
                   src="/images/powder-coating-textured.jpg" 
+=======
+                  src="/powder-coat-pro/images/technology/powder-coating-process.jpg" 
+>>>>>>> Stashed changes
                   alt="Strukturovaná povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />

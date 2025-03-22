@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   <title>Betrim - Přesměrování</title>
   <script>
+    // Jediný segment cesty, který chceme zachovat je první po doméně (tj. 'powder-coat-pro')
     const pathSegmentsToKeep = 1;
-    const location = window.location;
-    const l = location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' + 
-      location.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-      (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
-      location.hash;
     
-    sessionStorage.redirect = location.pathname + location.search + location.hash;
-    window.location.href = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + 
-      '/powder-coat-pro/';
+    let l = window.location;
+    
+    // Uložíme původní cestu a parametry do sessionStorage pro pozdější obnovení
+    sessionStorage.redirect = l.pathname + l.search + l.hash;
+    
+    // Přesměrujeme na základní cestu projektu
+    window.location.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, pathSegmentsToKeep + 1).join('/') + '/'
+    );
   </script>
 </head>
 <body>

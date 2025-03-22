@@ -67,3 +67,68 @@ Simply open [Lovable](https://lovable.dev/projects/a0ec66ef-2cce-48a8-a04a-76bcb
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
+## Betrim - Práškové lakování
+
+### Řešení problému s "bílou obrazovkou" na GitHub Pages
+
+Pokud se po nasazení na GitHub Pages zobrazuje pouze bílá obrazovka, problém byl pravděpodobně způsoben nesprávnou konfigurací cest v aplikaci. Tento problém byl vyřešen následujícím způsobem:
+
+1. **Správná konfigurace `base` v `vite.config.ts`**:
+   - Pro GitHub Pages je nutné nastavit správnou základní cestu: `/powder-coat-pro/`
+   - Tím zajistíme, že všechny relativní cesty v aplikaci budou směřovat na správné umístění
+
+2. **Přidání souboru `404.html` pro správné routování:**
+   - GitHub Pages standardně nepodporuje routování SPA aplikací
+   - Soubor `404.html` zajišťuje přesměrování na hlavní stránku a zachování původní URL v session storage
+   - Skript v `index.html` pak tuto URL použije pro správné zobrazení požadované stránky
+
+3. **Proces nasazení na GitHub Pages:**
+   - Použijte připravený skript `build-deploy.sh`, který:
+     - Vytvoří produkční build
+     - Připraví větev `gh-pages`
+     - Nasadí aplikaci na GitHub Pages
+   - Alternativně můžete použít npm skript: `npm run deploy`
+
+### Generování obrázků
+
+Pro generování zástupných obrázků pro web můžete použít:
+
+1. **Lokální generátor** - otevřete soubor `public/generate-direct.html` v prohlížeči
+   - Vygenerujte obrázky přímo v prohlížeči
+   - Stáhněte je jako ZIP soubor
+   - Extrahujte do složky `public`
+
+### Základní struktura projektu
+
+```
+├── public/
+│   ├── images/              # Obrázky pro web
+│   │   ├── technology/      # Obrázky technologií
+│   │   ├── process/         # Obrázky procesů
+│   │   ├── surfaces/        # Obrázky povrchů
+│   │   ├── facility/        # Obrázky zařízení
+│   │   └── quality/         # Obrázky kvality
+│   └── generate-direct.html # Nástroj pro generování obrázků
+├── src/
+│   ├── components/          # Komponenty aplikace
+│   ├── app/                 # Stránky aplikace
+│   └── ...                  # Další soubory a složky
+├── vite.config.ts           # Konfigurace Vite
+├── index.html               # Hlavní HTML soubor
+├── 404.html                 # Soubor pro přesměrování (GitHub Pages)
+└── build-deploy.sh          # Skript pro build a nasazení
+```
+
+### Příkazy
+
+```bash
+# Vývojový server
+npm run dev
+
+# Vytvoření produkčního buildu
+npm run build
+
+# Nasazení na GitHub Pages
+npm run deploy
+```

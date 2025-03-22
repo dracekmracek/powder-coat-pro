@@ -36,7 +36,7 @@ const Index: React.FC = () => {
   }, []);
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-background">
       <Navbar />
       
       <HeroSection />

@@ -27,7 +27,11 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
                 <img 
+<<<<<<< Updated upstream
                   src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+=======
+                  src="/powder-coat-pro/images/facility/factory-interior.jpg" 
+>>>>>>> Stashed changes
                   alt="Příjem zakázky" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -54,7 +58,11 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 mr-8">
                 <img 
+<<<<<<< Updated upstream
                   src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+=======
+                  src="/powder-coat-pro/images/process/chemical-pretreatment.jpg" 
+>>>>>>> Stashed changes
                   alt="Chemická předúprava" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -81,7 +89,11 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
                 <img 
+<<<<<<< Updated upstream
                   src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+=======
+                  src="/powder-coat-pro/images/process/powder-coating-application.jpg" 
+>>>>>>> Stashed changes
                   alt="Nanášení barvy" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -108,7 +120,11 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 mr-8">
                 <img 
+<<<<<<< Updated upstream
                   src="https://images.unsplash.com/photo-1606210122158-eeb10e0823bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+=======
+                  src="/powder-coat-pro/images/surfaces/surface-finish-1.jpg" 
+>>>>>>> Stashed changes
                   alt="Vytvrzování" 
                   className="rounded-lg w-full h-48 object-cover"
                 />
@@ -135,7 +151,11 @@ const TechnologyProcess: React.FC = () => {
               </div>
               <div className="bg-white rounded-xl shadow-sm border border-border p-6 ml-8">
                 <img 
+<<<<<<< Updated upstream
                   src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" 
+=======
+                  src="/powder-coat-pro/images/quality/quality-inspection.jpg" 
+>>>>>>> Stashed changes
                   alt="Kontrola kvality" 
                   className="rounded-lg w-full h-48 object-cover"
                 />

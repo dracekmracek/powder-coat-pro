@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import ScrollReveal from './ScrollReveal';
@@ -17,9 +16,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   className
 }) => {
   return (
-    <div className={cn('mb-12', centered && 'text-center', className)}>
+    <div className={cn('mb-12 text-center w-full', className)}>
       <ScrollReveal>
-        <h2 className="section-title">{title}</h2>
+        <h2 className="section-title max-w-3xl mx-auto">{title}</h2>
       </ScrollReveal>
       
       {subtitle && (
