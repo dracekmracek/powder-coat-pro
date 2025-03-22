@@ -72,11 +72,7 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
-<<<<<<< Updated upstream
-                  src="/images/powder-coating-matte.jpg" 
-=======
                   src="/powder-coat-pro/images/surfaces/surface-finish-1.jpg" 
->>>>>>> Stashed changes
                   alt="Matná povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
@@ -92,11 +88,7 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
-<<<<<<< Updated upstream
-                  src="/images/powder-coating-glossy.jpg" 
-=======
                   src="/powder-coat-pro/images/surfaces/color-samples.jpg" 
->>>>>>> Stashed changes
                   alt="Lesklá povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
@@ -112,11 +104,7 @@ const SurfacesSection: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-border h-full">
               <div className="h-48 overflow-hidden">
                 <img 
-<<<<<<< Updated upstream
-                  src="/images/powder-coating-textured.jpg" 
-=======
                   src="/powder-coat-pro/images/technology/powder-coating-process.jpg" 
->>>>>>> Stashed changes
                   alt="Strukturovaná povrchová úprava Betrim" 
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
