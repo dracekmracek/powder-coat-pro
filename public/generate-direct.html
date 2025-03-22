@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generátor obrázků pro Betrim - Přímé ukládání</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        h1, h2 {
+            color: #0ea5e9;
+        }
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        button {
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 0 10px;
+        }
+        button:hover {
+            background-color: #0284c7;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f3f4f6;
+        }
+        .status.success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .status.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .canvas-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .canvas-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .canvas-item canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+        .folder-tree {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-bottom: 30px;
+        }
+        .folder-tree ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .folder-tree ul li::before {
+            content: "📁 ";
+        }
+        .folder-tree ul li.file::before {
+            content: "📄 ";
+        }
+        code {
+            background: #f1f5f9;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generátor obrázků pro Betrim - Přímé ukládání</h1>
+    <p>Tento nástroj vygeneruje všechny potřebné obrázky pro web Betrim a uloží je přímo do správných složek v projektu.</p>
+
+    <div class="folder-tree">
+        <p><strong>Struktura vytvořených složek:</strong></p>
+        <ul>
+            <li>public
+                <ul>
+                    <li>images
+                        <ul>
+                            <li class="file">powder-coating-hero.jpg</li>
+                            <li>technology
+                                <ul>
+                                    <li class="file">powder-coating-process.jpg</li>
+                                </ul>
+                            </li>
+                            <li>process
+                                <ul>
+                                    <li class="file">chemical-pretreatment.jpg</li>
+                                    <li class="file">powder-coating-application.jpg</li>
+                                </ul>
+                            </li>
+                            <li>surfaces
+                                <ul>
+                                    <li class="file">surface-finish-1.jpg</li>
+                                    <li class="file">color-samples.jpg</li>
+                                </ul>
+                            </li>
+                            <li>facility
+                                <ul>
+                                    <li class="file">factory-interior.jpg</li>
+                                </ul>
+                            </li>
+                            <li>quality
+                                <ul>
+                                    <li class="file">quality-inspection.jpg</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="button-container">
+        <button id="generateBtn">Vygenerovat a uložit obrázky</button>
+        <button id="downloadZipBtn">Stáhnout jako ZIP</button>
+    </div>
+
+    <div id="statusContainer" class="status" style="display: none;"></div>
+
+    <div class="canvas-container" id="canvasContainer">
+        <!-- Canvas elementy budou přidány pomocí JavaScriptu -->
+    </div>
+
+    <script>
+        // Definice obrázků pro generování
+        const imagesToGenerate = [
+            { 
+                id: 'hero-image', 
+                title: 'Práškové lakování', 
+                path: 'images/powder-coating-hero.jpg',
+                width: 1200, 
+                height: 800, 
+                primaryColor: '#0ea5e9', 
+                secondaryColor: '#0f172a', 
+                iconType: 'spray'
+            },
+            { 
+                id: 'technology-image', 
+                title: 'Technologie lakování', 
+                path: 'images/technology/powder-coating-process.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#0284c7', 
+                secondaryColor: '#1e293b', 
+                iconType: 'spray' 
+            },
+            { 
+                id: 'chemical-pretreatment', 
+                title: 'Chemická předúprava', 
+                path: 'images/process/chemical-pretreatment.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#065f46', 
+                secondaryColor: '#064e3b', 
+                iconType: 'chemical' 
+            },
+            { 
+                id: 'powder-application', 
+                title: 'Nanášení práškové barvy', 
+                path: 'images/process/powder-coating-application.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#be123c', 
+                secondaryColor: '#881337', 
+                iconType: 'spray' 
+            },
+            { 
+                id: 'surface-finish', 
+                title: 'Povrchová úprava', 
+                path: 'images/surfaces/surface-finish-1.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#4f46e5', 
+                secondaryColor: '#312e81', 
+                iconType: 'surface' 
+            },
+            { 
+                id: 'color-samples', 
+                title: 'Vzorky barev', 
+                path: 'images/surfaces/color-samples.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#7c2d12', 
+                secondaryColor: '#431407', 
+                iconType: 'color' 
+            },
+            { 
+                id: 'factory-interior', 
+                title: 'Lakovna Betrim', 
+                path: 'images/facility/factory-interior.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#1e40af', 
+                secondaryColor: '#172554', 
+                iconType: 'factory' 
+            },
+            { 
+                id: 'quality-inspection', 
+                title: 'Kontrola kvality', 
+                path: 'images/quality/quality-inspection.jpg',
+                width: 800, 
+                height: 500, 
+                primaryColor: '#365314', 
+                secondaryColor: '#1a2e05', 
+                iconType: 'quality' 
+            }
+        ];
+
+        // Funkce pro vytvoření a zobrazení canvas elementů
+        function createCanvasElements() {
+            const container = document.getElementById('canvasContainer');
+            
+            imagesToGenerate.forEach(image => {
+                const canvasItem = document.createElement('div');
+                canvasItem.className = 'canvas-item';
+                
+                const canvas = document.createElement('canvas');
+                canvas.id = image.id;
+                canvas.width = image.width;
+                canvas.height = image.height;
+                
+                const title = document.createElement('p');
+                title.textContent = `${image.title} (${image.path})`;
+                
+                canvasItem.appendChild(canvas);
+                canvasItem.appendChild(title);
+                container.appendChild(canvasItem);
+            });
+        }
+
+        // Funkce pro vykreslení obrázku na canvas
+        function drawPlaceholderImage(canvasId, title, primaryColor, secondaryColor, iconType) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, primaryColor);
+            gradient.addColorStop(1, secondaryColor);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Add some patterns or texture
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const size = Math.random() * 50 + 20;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Draw icon
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = 3;
+            
+            const iconSize = Math.min(width, height) * 0.15;
+            const iconX = width / 2;
+            const iconY = height / 2;
+            
+            if (iconType === 'spray') {
+                // Draw spray gun icon
+                ctx.beginPath();
+                ctx.moveTo(iconX - iconSize / 2, iconY);
+                ctx.lineTo(iconX + iconSize / 2, iconY);
+                ctx.moveTo(iconX, iconY - iconSize / 2);
+                ctx.lineTo(iconX, iconY + iconSize / 2);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(iconX, iconY, iconSize / 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+            } else if (iconType === 'factory') {
+                // Draw factory icon
+                ctx.beginPath();
+                ctx.moveTo(iconX - iconSize, iconY + iconSize / 2);
+                ctx.lineTo(iconX - iconSize, iconY - iconSize / 3);
+                ctx.lineTo(iconX - iconSize / 2, iconY - iconSize / 1.5);
+                ctx.lineTo(iconX, iconY - iconSize / 3);
+                ctx.lineTo(iconX, iconY + iconSize / 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                
+                // Draw chimney
+                ctx.beginPath();
+                ctx.moveTo(iconX - iconSize / 1.5, iconY - iconSize / 3);
+                ctx.lineTo(iconX - iconSize / 1.5, iconY - iconSize);
+                ctx.lineTo(iconX - iconSize / 2, iconY - iconSize);
+                ctx.lineTo(iconX - iconSize / 2, iconY - iconSize / 2);
+                ctx.stroke();
+            } else if (iconType === 'color') {
+                // Draw color palette
+                for (let i = 0; i < 5; i++) {
+                    const angle = (i / 5) * Math.PI * 2;
+                    const x = iconX + Math.cos(angle) * iconSize;
+                    const y = iconY + Math.sin(angle) * iconSize;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, iconSize / 3, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                }
+                
+                ctx.beginPath();
+                ctx.arc(iconX, iconY, iconSize / 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+            } else if (iconType === 'quality') {
+                // Draw checkmark
+                ctx.beginPath();
+                ctx.moveTo(iconX - iconSize / 2, iconY);
+                ctx.lineTo(iconX - iconSize / 6, iconY + iconSize / 2);
+                ctx.lineTo(iconX + iconSize / 2, iconY - iconSize / 2);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+            } else if (iconType === 'chemical') {
+                // Draw flask
+                ctx.beginPath();
+                ctx.moveTo(iconX - iconSize / 3, iconY - iconSize / 2);
+                ctx.lineTo(iconX - iconSize / 2, iconY + iconSize / 3);
+                ctx.lineTo(iconX + iconSize / 2, iconY + iconSize / 3);
+                ctx.lineTo(iconX + iconSize / 3, iconY - iconSize / 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                
+                // Draw liquid
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.beginPath();
+                ctx.moveTo(iconX - iconSize / 3, iconY);
+                ctx.lineTo(iconX - iconSize / 3.5, iconY + iconSize / 3);
+                ctx.lineTo(iconX + iconSize / 3.5, iconY + iconSize / 3);
+                ctx.lineTo(iconX + iconSize / 3, iconY);
+                ctx.closePath();
+                ctx.fill();
+            } else if (iconType === 'surface') {
+                // Draw surface finish
+                ctx.lineWidth = 5;
+                for (let i = 0; i < 5; i++) {
+                    const y = iconY - iconSize + i * iconSize / 2;
+                    ctx.beginPath();
+                    ctx.moveTo(iconX - iconSize, y);
+                    ctx.lineTo(iconX + iconSize, y);
+                    ctx.stroke();
+                }
+            }
+            
+            // Add title text
+            ctx.font = `bold ${width / 25}px Arial, sans-serif`;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText(title, width / 2, height - 30);
+            
+            // Add Betrim logo text
+            ctx.font = `${width / 40}px Arial, sans-serif`;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('BETRIM s.r.o.', width - 20, height - 20);
+        }
+
+        // Funkce pro stažení souborů jako ZIP
+        function downloadAsZip() {
+            // Generujeme a přidáváme obrázky do ZIP archivu
+            const zip = new JSZip();
+            
+            const promises = imagesToGenerate.map(image => {
+                return new Promise((resolve) => {
+                    const canvas = document.getElementById(image.id);
+                    canvas.toBlob(blob => {
+                        // Vytvoříme cestu k souboru v ZIP archivu
+                        zip.file(image.path, blob);
+                        resolve();
+                    }, 'image/jpeg', 0.9);
+                });
+            });
+            
+            Promise.all(promises).then(() => {
+                // Generujeme ZIP a nabízíme ke stažení
+                zip.generateAsync({type: 'blob'}).then(content => {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(content);
+                    link.download = 'betrim-images.zip';
+                    link.click();
+                    
+                    showStatus('ZIP soubor s obrázky byl úspěšně vygenerován a stažen.', 'success');
+                });
+            });
+        }
+
+        // Funkce pro zobrazení statusu
+        function showStatus(message, type = '') {
+            const statusContainer = document.getElementById('statusContainer');
+            statusContainer.textContent = message;
+            statusContainer.className = 'status ' + type;
+            statusContainer.style.display = 'block';
+        }
+
+        // Inicializace
+        document.addEventListener('DOMContentLoaded', () => {
+            // Vytvoření canvas elementů
+            createCanvasElements();
+            
+            // Přidání event listeneru pro tlačítko generování
+            document.getElementById('generateBtn').addEventListener('click', () => {
+                // Vykreslení obrázků
+                imagesToGenerate.forEach(image => {
+                    drawPlaceholderImage(
+                        image.id,
+                        image.title,
+                        image.primaryColor,
+                        image.secondaryColor,
+                        image.iconType
+                    );
+                });
+                
+                showStatus('Obrázky byly úspěšně vygenerovány. Nyní je můžete stáhnout jako ZIP soubor.', 'success');
+            });
+            
+            // Přidání event listeneru pro tlačítko stažení ZIP
+            document.getElementById('downloadZipBtn').addEventListener('click', () => {
+                if (!document.getElementById(imagesToGenerate[0].id).toDataURL().includes('data:image')) {
+                    showStatus('Prosím, nejprve vygenerujte obrázky kliknutím na tlačítko "Vygenerovat a uložit obrázky".', 'error');
+                    return;
+                }
+                
+                // Kontrola, zda je k dispozici knihovna JSZip
+                if (typeof JSZip === 'undefined') {
+                    // Načtení knihovny JSZip, pokud ještě není k dispozici
+                    const script = document.createElement('script');
+                    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+                    script.onload = downloadAsZip;
+                    script.onerror = () => {
+                        showStatus('Nepodařilo se načíst knihovnu JSZip. Zkuste to prosím znovu později.', 'error');
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    downloadAsZip();
+                }
+            });
+        });
+    </script>
+    
+    <!-- Načtení JSZip knihovny -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</body>
+</html> 
