@@ -3,26 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0;url=/powder-coat-pro/">
   <title>Přesměrování</title>
   <script>
-    // Jediný segment cesty, který chceme zachovat je první po doméně (tj. 'powder-coat-pro')
-    const pathSegmentsToKeep = 1;
-
-    let l = window.location;
-    let pathName = l.pathname;
-    
-    // Uložíme původní cestu a parametry do sessionStorage pro pozdější obnovení
-    sessionStorage.setItem('redirectPath', pathName + l.search + l.hash);
-    
-    // Přesměrujeme na základní cestu projektu
-    let redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      pathName.split('/').slice(0, pathSegmentsToKeep + 1).join('/') + '/';
-    
-    window.location.href = redirect;
+    // Uložení aktuální cesty do session storage a přesměrování na hlavní stránku
+    sessionStorage.setItem('redirectPath', window.location.pathname);
+    window.location.href = '/powder-coat-pro/';
   </script>
 </head>
 <body>
-  <h1>Přesměrování...</h1>
-  <p>Pokud nejste přesměrováni automaticky, klikněte <a href="/">zde</a>.</p>
+  <p>Přesměrování na hlavní stránku...</p>
 </body>
 </html> 

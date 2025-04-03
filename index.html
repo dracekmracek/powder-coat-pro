@@ -2,7 +2,7 @@
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/betrim-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Betrim - Práškové lakování | Profesionální služby v oblasti práškového lakování pro průmyslové i soukromé zákazníky. Kvalitní povrchová úprava kovů s dlouhou životností." />
     <meta name="keywords" content="práškové lakování, povrchové úpravy, lakovna, komaxit, komaxit práškový, prášková barva, průmyslové lakování" />
@@ -16,13 +16,19 @@
           // Odstranění uložené cesty, aby se nepoužila při dalším načtení
           sessionStorage.removeItem('redirectPath');
           
+          // Získání základní cesty aplikace
+          const basePath = document.querySelector('base')?.getAttribute('href') || '/powder-coat-pro/';
+          
+          // Odstranění základní cesty z přesměrované cesty, pokud existuje
+          const cleanPath = redirectPath.replace(new RegExp(`^${basePath}`), '/');
+          
           // Nastavení správné cesty v historii prohlížeče
-          window.history.replaceState(null, null, redirectPath);
+          window.history.replaceState(null, null, cleanPath);
         }
       })();
     </script>
-    <script type="module" crossorigin src="assets/main-BzYHbVr1.js"></script>
-    <link rel="stylesheet" crossorigin href="assets/main-D94m_F7C.css">
+    <script type="module" crossorigin src="/powder-coat-pro/assets/main-BW4MmPyj.js"></script>
+    <link rel="stylesheet" crossorigin href="/powder-coat-pro/assets/main-Cjei_ydt.css">
   </head>
   <body>
     <div id="root"></div>
