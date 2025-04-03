@@ -86,37 +86,39 @@ const ContactSection: React.FC = () => {
                         transition={{ duration: 0.5, delay: person.delay }}
                         whileHover={{ y: -5, backgroundColor: 'rgba(14, 165, 233, 0.05)' }}
                       >
-                        <div className="flex items-center mb-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 flex-shrink-0">
-                            <User size={16} />
-                          </div>
-                          <div>
-                            <p className="font-semibold">{person.name}</p>
-                            <div className="flex items-center text-xs text-muted-foreground">
-                              <Briefcase size={12} className="mr-1" />
-                              <span>{person.position}</span>
+                        <div className="flex flex-col">
+                          <div className="flex items-center mb-4">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 flex-shrink-0">
+                              <User size={16} />
+                            </div>
+                            <div>
+                              <p className="font-semibold">{person.name}</p>
+                              <div className="flex items-center text-xs text-muted-foreground">
+                                <Briefcase size={12} className="mr-1" />
+                                <span>{person.position}</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="space-y-2 pl-11">
-                          <a 
-                            href={`tel:${person.phone.replace(/\s/g, '')}`} 
-                            className="flex items-center text-sm hover:text-primary transition-colors group"
-                          >
-                            <Phone size={14} className="mr-2" />
-                            <span>{person.phone}</span>
-                            <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </a>
-                          {person.email && (
+                          <div className="space-y-3 mt-1">
                             <a 
-                              href={`mailto:${person.email}`} 
-                              className="flex items-center text-sm hover:text-primary transition-colors group"
+                              href={`tel:${person.phone.replace(/\s/g, '')}`} 
+                              className="flex items-start text-sm hover:text-primary transition-colors group"
                             >
-                              <Mail size={14} className="mr-2" />
-                              <span>{person.email}</span>
-                              <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <Phone size={14} className="mr-2 flex-shrink-0 mt-0.5" />
+                              <span>{person.phone}</span>
+                              <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                             </a>
-                          )}
+                            {person.email && (
+                              <a 
+                                href={`mailto:${person.email}`} 
+                                className="flex items-start text-sm hover:text-primary transition-colors group"
+                              >
+                                <Mail size={14} className="mr-2 flex-shrink-0 mt-0.5" />
+                                <span>{person.email}</span>
+                                <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </motion.div>
                     ))}
@@ -134,7 +136,7 @@ const ContactSection: React.FC = () => {
                   <h4 className="font-semibold text-lg mb-4">Kde nás najdete</h4>
                   <div className="aspect-[16/9] rounded-xl overflow-hidden border border-border shadow-sm">
                     <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20581.569717398906!2d17.86658766211365!3d49.71277257076461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713fa3dc5349f73%3A0x400af0f6614e880!2s742%2045%20Fulnek!5e0!3m2!1scs!2scz!4v1696425901234!5m2!1scs!2scz" 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d844.6025153689475!2d17.910783273848256!3d49.715090847674546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713c3bd4a8a29d1%3A0xf845cce06d18368c!2sBETRIM%20s.r.o.!5e0!3m2!1scs!2scz!4v1743710968647!5m2!1scs!2scz" 
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
