@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
     }),
   };
 
-  const titleWords = "Betrim - Profesionální práškové lakování".split(' ');
+  const titleWords = "BETRIM - Profesionální práškové lakování".split(' ');
   
   return (
     <section id="hero" className="py-16 md:py-20 bg-secondary relative overflow-hidden">

@@ -9,15 +9,13 @@ const AboutSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           title="O naší společnosti"
-          subtitle="Prášková lakovna Betrim - tradice a kvalita ve Fulneku od roku 1997"
+          subtitle="Prášková lakovna BETRIM - tradice a kvalita ve Fulneku od roku 1997"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <ScrollReveal className="order-2 lg:order-1">
-            <h3 className="text-2xl font-semibold mb-4">Specialisté na práškové lakování s více než 25letou zkušeností</h3>
-            <p className="text-muted-foreground mb-6">
-              Společnost Betrim s.r.o. zahájila činnost v oboru práškového lakování počátkem roku 1997 jako první zakázková lakovna ve Fulneku.
-            </p>
+            <h3 className="text-2xl font-semibold mb-4">Specialisté na práškové lakování s dlouholetou tradicí</h3>
+
             <p className="text-muted-foreground mb-6">
               Naší prioritou je spokojenost zákazníka - od začátku obchodního vztahu až po dlouhodobé užívání našich služeb. Klademe důraz na flexibilitu, komplexnost a stoprocentní péči o každou zakázku.
             </p>

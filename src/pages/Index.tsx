@@ -7,6 +7,7 @@ import TechnologySection from '@/components/sections/TechnologySection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import SurfacesSection from '@/components/sections/SurfacesSection';
 import FacilitySection from '@/components/sections/FacilitySection';
+import SolarSection from '@/components/sections/SolarSection';
 import QualitySection from '@/components/sections/QualitySection';
 import ContactSection from '@/components/sections/ContactSection';
 
@@ -36,18 +37,19 @@ const Index: React.FC = () => {
   }, []);
   
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-background">
+    <div id="app-container">
       <Navbar />
-      
-      <HeroSection />
-      <AboutSection />
-      <TechnologySection />
-      <ProcessSection />
-      <SurfacesSection />
-      <FacilitySection />
-      <QualitySection />
-      <ContactSection />
-      
+      <div className="min-h-screen flex flex-col overflow-x-hidden bg-background">
+        <HeroSection />
+        <AboutSection />
+        <TechnologySection />
+        <ProcessSection />
+        <SurfacesSection />
+        <FacilitySection />
+        <SolarSection />
+        <QualitySection />
+        <ContactSection />
+      </div>
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDownIcon, ChevronRightIcon, ThermometerIcon, ClockIcon, DropletIcon, ZapIcon } from 'lucide-react';
+import { ChevronDownIcon, ThermometerIcon, ClockIcon, DropletIcon, ZapIcon } from 'lucide-react';
 
 interface ProcessStepProps {
   number: number;
@@ -59,7 +59,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
   
   return (
     <motion.div 
-      className={`rounded-xl border overflow-hidden ${className}`}
+      className={`rounded-xl border bg-white h-full ${className}`}
       initial={false}
       animate={{
         borderColor: isActive ? 'var(--primary)' : 'var(--border)',
@@ -70,7 +70,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div 
-        className={`flex items-center gap-4 p-4 cursor-pointer bg-card relative overflow-hidden`}
+        className={`flex items-center gap-3 p-3 cursor-pointer bg-card relative overflow-hidden ${isActive ? 'rounded-t-xl' : 'rounded-xl'}`}
         onClick={onToggle}
         whileTap={{ scale: 0.98 }}
       >
@@ -84,9 +84,9 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
           />
         )}
         
-        {/* Gradient line na levé straně */}
+        {/* Gradient line na levé straně - upravený s odsazením od okrajů */}
         <motion.div 
-          className={`absolute left-0 top-0 w-1 h-full bg-gradient-to-b ${getGradientColor()}`}
+          className={`absolute left-0 top-1 bottom-1 w-1 rounded-full bg-gradient-to-b ${getGradientColor()}`}
           initial={{ scaleY: 0 }}
           animate={{ scaleY: isActive || isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
@@ -94,7 +94,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
         
         {/* Číslování kroků s animací */}
         <motion.div 
-          className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-semibold text-lg bg-gradient-to-r ${getGradientColor()} text-white`}
+          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm bg-gradient-to-r ${getGradientColor()} text-white`}
           initial={false}
           animate={{ 
             scale: isActive ? 1.1 : 1,
@@ -105,8 +105,8 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
         </motion.div>
         
         <div className="flex-grow">
-          <h4 className="font-medium text-foreground">{title}</h4>
-          <p className="text-sm text-muted-foreground line-clamp-1">{description}</p>
+          <h4 className="font-medium text-foreground text-sm">{title}</h4>
+          <p className="text-xs text-muted-foreground line-clamp-1">{description}</p>
         </div>
         
         <motion.div
@@ -115,7 +115,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
           transition={{ duration: 0.3 }}
           className={`text-${isActive ? 'primary' : 'muted-foreground'}`}
         >
-          <ChevronDownIcon className="h-5 w-5" />
+          <ChevronDownIcon className="h-4 w-4" />
         </motion.div>
       </motion.div>
       
@@ -128,33 +128,33 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="p-5 pt-2 bg-card border-t border-border/50">
-              <p className="text-muted-foreground mb-5">{description}</p>
+            <div className="p-4 pt-2 bg-card border-t border-border/50 rounded-b-xl">
+              <p className="text-sm text-muted-foreground mb-3">{description}</p>
               
               {parameters.length > 0 && (
-                <div className="space-y-3">
-                  <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-1.5">
-                    <span className={`inline-block h-3 w-3 rounded-full bg-gradient-to-r ${getGradientColor()}`}></span>
+                <div className="space-y-2">
+                  <h5 className="text-xs font-medium text-foreground mb-2 flex items-center gap-1.5">
+                    <span className={`inline-block h-2 w-2 rounded-full bg-gradient-to-r ${getGradientColor()}`}></span>
                     Parametry procesu
                   </h5>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2">
                     {parameters.map((param, index) => (
                       <motion.div 
                         key={index} 
-                        className="bg-muted/20 rounded-lg p-3 flex items-center gap-3"
+                        className="bg-muted/20 rounded-lg p-2 flex items-center gap-2"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                       >
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-muted/30 flex items-center justify-center">
                           {getParameterIcon(param.name)}
                         </div>
                         <div className="flex-grow">
-                          <div className="text-sm text-muted-foreground">{param.name}</div>
-                          <div className="font-medium">
+                          <div className="text-xs text-muted-foreground">{param.name}</div>
+                          <div className="font-medium text-sm">
                             {param.value}
-                            {param.unit && <span className="text-muted-foreground text-sm ml-1">{param.unit}</span>}
+                            {param.unit && <span className="text-muted-foreground text-xs ml-1">{param.unit}</span>}
                           </div>
                         </div>
                       </motion.div>
@@ -162,22 +162,6 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
                   </div>
                 </div>
               )}
-              
-              {/* Vizuální indikátor procesu */}
-              <div className="mt-5 pt-4 border-t border-border/30">
-                <div className="flex justify-between text-xs mb-1.5">
-                  <span className="text-muted-foreground">Začátek</span>
-                  <span className="text-muted-foreground">Konec</span>
-                </div>
-                <div className="h-2 bg-muted/30 rounded-full overflow-hidden">
-                  <motion.div 
-                    className={`h-full bg-gradient-to-r ${getGradientColor()}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
-                    transition={{ duration: 2, ease: 'easeInOut' }}
-                  />
-                </div>
-              </div>
             </div>
           </motion.div>
         )}
