@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../SectionHeader';
 import ScrollReveal from '../ScrollReveal';
-import SprayEffect from '@/components/ui/SprayEffect';
 import ParticleCanvas from '@/components/ui/ParticleCanvas';
 
 const TechnologySection: React.FC = () => {
@@ -19,7 +18,7 @@ const TechnologySection: React.FC = () => {
       description: 'Proces čištění a odmaštění povrchu pro optimální přilnavost laku.',
       content: (
         <div className="space-y-6">
-          <div className="backdrop-blur-sm bg-white/80 shadow-xl p-6 rounded-xl">
+          <div className="bg-white shadow-xl p-6 rounded-xl">
             <p className="text-lg leading-relaxed">
               Příprava povrchu je prováděna v průjezdném postřikovacím stroji s moderní technologií zinečnatého fosfátování.
               Pro dokonalé odmaštění používáme PRAGOLOD 59, což je silně alkalický odmašťovací přípravek. 
@@ -45,7 +44,7 @@ const TechnologySection: React.FC = () => {
               </div>
             </motion.div>
             
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border border-blue-200 shadow-lg">
+            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-200 shadow-lg">
               <h4 className="font-semibold text-xl mb-4 text-blue-800 flex items-center">
                 <span className="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center mr-3">
                   <svg className="w-4 h-4 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,7 +84,7 @@ const TechnologySection: React.FC = () => {
       description: 'Automatické i ruční nanášení s rychlou změnou barvy.',
       content: (
         <div className="space-y-4">
-          <div className="backdrop-blur-sm bg-white/80 shadow-lg p-4 rounded-xl">
+          <div className="bg-white shadow-lg p-4 rounded-xl">
             <p className="leading-relaxed">
               Nanášení práškových barev se provádí pomocí automatického zařízení firmy "WAGNER" v kombinaci s ručním dokončováním složitých tvarů.
               Plastová kabina Super Cube je dimenzována pro rychlou změnu barvy a efektivní vícebarevný provoz.
@@ -114,7 +113,7 @@ const TechnologySection: React.FC = () => {
             </div>
             
             <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-xl border border-slate-200 shadow-lg">
+              <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-lg">
                 <h4 className="font-semibold text-slate-800 flex items-center text-lg mb-3">
                   <span className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center mr-2">
                     <svg className="w-3 h-3 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -137,7 +136,7 @@ const TechnologySection: React.FC = () => {
                 </ul>
               </div>
               
-              <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-4 rounded-xl border border-primary/20 shadow-lg">
+              <div className="bg-blue-50 p-4 rounded-xl border border-primary/20 shadow-lg">
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mr-2">
                     <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -176,7 +175,7 @@ const TechnologySection: React.FC = () => {
       description: 'Vytvrzení práškového laku při teplotách až 225°C.',
       content: (
         <div className="space-y-4">
-          <div className="backdrop-blur-sm bg-white/80 shadow-lg p-4 rounded-xl">
+          <div className="bg-white shadow-lg p-4 rounded-xl">
             <p className="leading-relaxed">
               Po nanesení práškové barvy následuje vytvrzení v moderní vypalovací peci při teplotě až 225°C. 
               Naše pec je v provedení s termosifonovým uzávěrem, který minimalizuje únik tepla do okolí a přispívá k úspoře energie.
@@ -205,7 +204,7 @@ const TechnologySection: React.FC = () => {
             </div>
             
             <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-xl border border-amber-200 shadow-lg">
+              <div className="bg-amber-50 p-4 rounded-xl border border-amber-200 shadow-lg">
                 <h4 className="font-semibold text-amber-800 flex items-center text-lg mb-3">
                   <span className="w-6 h-6 rounded-full bg-amber-200 flex items-center justify-center mr-2">
                     <svg className="w-3 h-3 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -288,13 +287,13 @@ const TechnologySection: React.FC = () => {
   ];
   
   return (
-    <section id="technology" className="py-12 bg-gradient-to-b from-secondary/30 to-background relative overflow-hidden">
-      {/* Interaktivní částicové pozadí */}
+    <section id="technology" className="py-12 bg-white relative overflow-hidden">
+      {/* Interaktivní částicové pozadí - jen na pozadí */}
       <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
         <ParticleCanvas colorScheme="blue" particleCount={60} />
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-20 bg-white pt-8 pb-10 rounded-2xl shadow-sm">
         <ScrollReveal>
           <SectionHeader 
             title="Technologie lakování" 
@@ -314,7 +313,7 @@ const TechnologySection: React.FC = () => {
                       p-3 rounded-xl cursor-pointer transition-all
                       ${activeTab === index 
                         ? 'bg-white shadow-lg border-l-4 border-primary' 
-                        : 'hover:bg-white/70 bg-white/50 hover:shadow-md border-l-4 border-transparent'}
+                        : 'hover:bg-white bg-white hover:shadow-md border-l-4 border-transparent'}
                     `}
                     onClick={() => setActiveTab(index)}
                     whileHover={{ x: 3 }}
@@ -346,17 +345,13 @@ const TechnologySection: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white/50 backdrop-blur-sm rounded-xl p-5 shadow-lg border border-white/10"
+                  className="bg-white rounded-xl p-5 shadow-lg border border-gray-200"
                 >
                   {tabs[activeTab].content}
                 </motion.div>
               </AnimatePresence>
             </ScrollReveal>
           </div>
-        </div>
-        
-        <div className="hidden md:block">
-          <SprayEffect position="right" intensity="light" color="#0ea5e9" size="lg" />
         </div>
       </div>
     </section>
