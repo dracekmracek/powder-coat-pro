@@ -10,6 +10,7 @@ const SolarSection: React.FC = () => {
         <SectionHeader
           title="Fotovoltaická elektrárna"
           subtitle="Udržitelná energie pro ekologický provoz naší práškové lakovny"
+          accent={true}
         />
         
         <div className="max-w-4xl mx-auto bg-white rounded-xl p-6 sm:p-8 shadow-sm border border-border">
@@ -29,7 +30,7 @@ const SolarSection: React.FC = () => {
                     whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="text-primary text-xl font-semibold mb-2">180 kWp</div>
+                    <div className="text-primary text-xl font-semibold mb-2">150 kWp</div>
                     <p className="text-sm text-muted-foreground">Instalovaný výkon elektrárny</p>
                   </motion.div>
                   
@@ -91,9 +92,11 @@ const SolarSection: React.FC = () => {
                 <h4 className="text-xl font-medium mb-4 text-blue-900 text-center">
                   Projekt spolufinancovaný 
                 </h4>
-                <p className="text-blue-700 font-medium text-center mb-8">
-                  Reg. č. CZ.31.3.0/0.0/0.0/22_001/0004206
-                </p>
+                <div className="overflow-x-auto">
+                  <p className="text-blue-700 font-medium text-center mx-auto mb-8 max-w-md bg-blue-50 py-2 px-4 rounded-lg border border-blue-100 text-sm md:text-base break-words">
+                    Reg. č. CZ.31.3.0/0.0/0.0/22_001/0004206
+                  </p>
+                </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 justify-items-center">
                   {/* EU + NextGenEU logo */}
@@ -102,33 +105,21 @@ const SolarSection: React.FC = () => {
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="w-full max-w-[180px] aspect-video bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl mb-3 p-3 relative overflow-hidden shadow-md flex items-center justify-center">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-auto opacity-20">
-                          <circle cx="18" cy="18" r="18" fill="#FFCC00" />
-                          <g transform="translate(4, 4) scale(0.8)">
-                            {Array.from({ length: 12 }).map((_, i) => (
-                              <path
-                                key={i}
-                                d="M18 6L20 12L26 12L21 16L23 22L18 18L13 22L15 16L10 12L16 12L18 6Z"
-                                fill="#FFCC00"
-                                transform={`rotate(${i * 30} 18 18)`}
-                              />
-                            ))}
-                          </g>
-                        </svg>
-                      </div>
-                      <div className="relative z-10 flex flex-col items-center">
-                        <p className="text-white font-bold text-lg leading-tight tracking-wider mb-1">EVROPSKÁ UNIE</p>
-                        <p className="text-yellow-300 font-bold text-xs tracking-wide">NextGenerationEU</p>
-                      </div>
-                      <motion.div 
-                        className="absolute bottom-0 left-0 h-1 bg-yellow-400" 
-                        initial={{ width: 0 }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
+                    <motion.div 
+                      className="w-full max-w-[220px] aspect-video rounded-xl mb-3 p-3 relative overflow-hidden shadow-md flex items-center justify-center bg-white border border-blue-100"
+                      whileHover={{ 
+                        boxShadow: '0 0 25px rgba(59, 130, 246, 0.5)',
+                        filter: 'brightness(1.1)'
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <img 
+                        src="/powder-coat-pro/images/EU.png" 
+                        alt="Evropská Unie logo" 
+                        className="w-full h-full object-contain" 
                       />
-                    </div>
+                    </motion.div>
+                    <p className="text-sm text-blue-900 font-medium text-center">Evropská Unie</p>
                   </motion.div>
                   
                   {/* MPO logo */}
@@ -137,21 +128,21 @@ const SolarSection: React.FC = () => {
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="w-full max-w-[180px] aspect-video bg-gradient-to-r from-red-600 to-red-700 rounded-xl mb-3 p-3 relative overflow-hidden shadow-md flex items-center justify-center">
-                      <div className="relative z-10 flex flex-col items-center">
-                        <p className="text-white font-bold text-xs leading-tight mb-1">MINISTERSTVO</p>
-                        <p className="text-white font-bold text-xs leading-tight mb-1">PRŮMYSLU A OBCHODU</p>
-                        <div className="w-12 h-1 bg-white rounded-full my-1"></div>
-                        <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-6">
-                          <g stroke="white" strokeWidth="6" strokeLinejoin="round">
-                            <path d="M20 10L80 10L80 50L20 50L20 10Z" />
-                            <path d="M35 20H65V40H35V20Z" />
-                            <path d="M50 10V50" />
-                          </g>
-                        </svg>
-                      </div>
-                      <div className="absolute inset-0 bg-red-500/20"></div>
-                    </div>
+                    <motion.div 
+                      className="w-full max-w-[220px] aspect-video rounded-xl mb-3 p-3 relative overflow-hidden shadow-md flex items-center justify-center bg-white border border-red-100"
+                      whileHover={{ 
+                        boxShadow: '0 0 25px rgba(239, 68, 68, 0.5)',
+                        filter: 'brightness(1.1)'
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <img 
+                        src="/powder-coat-pro/images/ministerstvo_prumyslu.png" 
+                        alt="Ministerstvo průmyslu a obchodu logo" 
+                        className="w-full h-full object-contain" 
+                      />
+                    </motion.div>
+                    <p className="text-sm text-blue-900 font-medium text-center">Ministerstvo průmyslu a obchodu</p>
                   </motion.div>
                   
                   {/* Národní plán obnovy logo */}
@@ -160,23 +151,21 @@ const SolarSection: React.FC = () => {
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="w-full max-w-[180px] aspect-video bg-gradient-to-r from-green-600 to-green-700 rounded-xl mb-3 p-3 relative overflow-hidden shadow-md flex items-center justify-center">
-                      <div className="relative z-10 flex flex-col items-center">
-                        <p className="text-white font-bold text-xs leading-tight mb-1">NÁRODNÍ PLÁN</p>
-                        <p className="text-white font-bold text-sm leading-tight mb-1">OBNOVY</p>
-                        <div className="w-12 h-1 bg-white rounded-full my-1"></div>
-                        <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-5">
-                          <path d="M10 20H90" stroke="white" strokeWidth="4" strokeLinecap="round" />
-                          <path d="M50 5V35" stroke="white" strokeWidth="4" strokeLinecap="round" />
-                          <path d="M30 30L50 10" stroke="white" strokeWidth="4" strokeLinecap="round" />
-                          <path d="M70 30L50 10" stroke="white" strokeWidth="4" strokeLinecap="round" />
-                          <circle cx="50" cy="10" r="5" fill="white" />
-                          <circle cx="30" cy="30" r="5" fill="white" />
-                          <circle cx="70" cy="30" r="5" fill="white" />
-                        </svg>
-                      </div>
-                      <div className="absolute inset-0 bg-green-500/20"></div>
-                    </div>
+                    <motion.div 
+                      className="w-full max-w-[220px] aspect-video rounded-xl mb-3 p-3 relative overflow-hidden shadow-md flex items-center justify-center bg-white border border-green-100"
+                      whileHover={{ 
+                        boxShadow: '0 0 25px rgba(16, 185, 129, 0.5)',
+                        filter: 'brightness(1.1)'
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <img 
+                        src="/powder-coat-pro/images/narodni_plan_obnovy.png" 
+                        alt="Národní plán obnovy logo" 
+                        className="w-full h-full object-contain" 
+                      />
+                    </motion.div>
+                    <p className="text-sm text-blue-900 font-medium text-center">Národní plán obnovy</p>
                   </motion.div>
                 </div>
               </motion.div>

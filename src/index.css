@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -51,10 +51,11 @@
     width: 100%;
     position: relative;
     max-width: 100vw;
+    line-height: 1.5;
   }
   
   section {
-    @apply py-16 sm:py-20 relative;
+    @apply py-16 sm:py-20 lg:py-24 relative;
     width: 100%;
     overflow-x: hidden;
   }
@@ -62,11 +63,13 @@
   .section-title {
     @apply text-3xl md:text-4xl font-bold tracking-tight mb-4 mx-auto text-center;
     max-width: 100%;
+    letter-spacing: -0.5px;
   }
   
   .section-subtitle {
     @apply text-lg text-muted-foreground mb-12 mx-auto text-center;
-    max-width: 100%;
+    max-width: 650px;
+    line-height: 1.6;
   }
   
   .container-narrow {
@@ -83,48 +86,80 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight text-foreground;
+    line-height: 1.2;
+  }
+
+  p {
+    @apply text-muted-foreground;
+    line-height: 1.6;
+  }
+
+  a {
+    @apply text-primary transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-primary/80;
+  }
+
+  img {
+    @apply rounded-md;
+  }
+
+  button, .button {
+    @apply transition-all duration-200;
+  }
 }
 
-/* Staggered animations for revealing elements */
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
-.stagger-5 { transition-delay: 0.5s; }
+/* Staggered animations for revealing elements - vylepšeno */
+.stagger-1 { transition-delay: 0.15s; }
+.stagger-2 { transition-delay: 0.3s; }
+.stagger-3 { transition-delay: 0.45s; }
+.stagger-4 { transition-delay: 0.6s; }
+.stagger-5 { transition-delay: 0.75s; }
 
-/* Custom glassmorphism effects */
+/* Custom glassmorphism effects - vylepšeno */
 .glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/20;
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
 }
 
 .glass-dark {
   @apply bg-foreground/10 backdrop-blur-md border border-foreground/10;
 }
 
-/* Enhanced card styles */
+/* Enhanced card styles - vylepšeno */
 .feature-card {
   @apply relative p-6 rounded-xl transition-all duration-300 bg-white border border-border shadow-sm hover:shadow-md;
 }
 
-/* Animace pro metalické efekty */
+/* Animace pro metalické efekty - optimalizovány */
 @keyframes shine {
   0% {
     transform: translateX(-100%) rotate(-45deg);
   }
-  20%, 100% {
+  15%, 100% {
     transform: translateX(200%) rotate(-45deg);
   }
 }
 
 .animate-shine {
+  position: relative;
   overflow: hidden;
 }
 
-.animate-shine div {
+.animate-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%) rotate(-45deg);
   animation: shine 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Animace pro sprejové částice */
+/* Animace pro sprejové částice - vylepšeny */
 @keyframes spray {
   0% {
     opacity: 0;
@@ -142,17 +177,18 @@
 
 .spray-particle {
   animation: spray 2s ease-out forwards;
+  filter: blur(1px);
 }
 
-/* Animace pro pulzování a realistické přechody mezi sekcemi */
+/* Animace pro pulzování - vylepšeny */
 @keyframes pulse {
   0%, 100% {
-    opacity: 0.8;
+    opacity: 0.85;
     transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 }
 
@@ -160,7 +196,7 @@
   animation: pulse 4s infinite ease-in-out;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - optimalizováno */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -178,10 +214,10 @@
   background: hsl(from theme('colors.primary.DEFAULT') h s calc(l - 5%));
 }
 
-/* Barevné stíny a efekty pro lakovací prvky */
+/* Barevné stíny a efekty pro lakovací prvky - vylepšeny */
 .shadow-powder {
-  box-shadow: 0 10px 25px -5px hsl(from theme('colors.primary.DEFAULT') h s calc(l - 10%) / 0.3),
-              0 8px 10px -6px hsl(from theme('colors.primary.DEFAULT') h s calc(l - 10%) / 0.2);
+  box-shadow: 0 10px 25px -5px hsl(from theme('colors.primary.DEFAULT') h s calc(l - 10%) / 0.25),
+              0 8px 10px -6px hsl(from theme('colors.primary.DEFAULT') h s calc(l - 10%) / 0.1);
 }
 
 .spray-bg {
@@ -193,13 +229,13 @@
     transparent 60%);
 }
 
-/* Specifické efekty pro lakovnu */
+/* Specifické efekty pro lakovnu - vylepšeny */
 .coating-pattern {
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4ddff' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Opravy pro responzivitu */
+/* Responzivita - optimalizace */
 .container {
   width: 100%;
   padding-right: 1rem;
@@ -223,12 +259,12 @@
   }
 }
 
-/* Zabránění přetékání obsahu ve všech sekcích */
+/* Zabránění přetékání obsahu */
 div, section, header, footer, nav {
   max-width: 100vw;
 }
 
-/* Vylepšení pro lepší čitelnost */
+/* Vylepšení pro čitelnost */
 p {
   max-width: 65ch;
 }
@@ -238,6 +274,7 @@ p {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
   max-width: 100vw;
 }
@@ -247,4 +284,58 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+/* Utility classes pro konzistentní práci s mezerami */
+.section-spacing {
+  @apply py-12 md:py-16 lg:py-20;
+}
+
+.element-spacing {
+  @apply mb-8 md:mb-10;
+}
+
+/* Vylepšené přechody */
+.smooth-transition {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Hover efekty pro karty */
+.hover-card {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Vylepšené zvýraznění pro aktivní prvky */
+.highlight-active {
+  @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300;
+}
+
+/* Vylepšené ikony */
+.icon-container {
+  @apply w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0;
+}
+
+/* Speciální textové shadow pro zvýraznění */
+.text-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Vylepšené animace pro hover efekty */
+.hover-grow {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.hover-glow {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(14,165,233,0.3)];
+}
+
+/* Vylepšené pozadí pro sekce */
+.section-bg-gradient {
+  @apply bg-gradient-to-br from-white via-blue-50/30 to-white;
+}
+
+/* Optimalizovaný kontejner pro karty */
+.card-container {
+  @apply grid gap-6 md:gap-8;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }

@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavItem {
   id: string;
   label: string;
 }
 
+// Vylepšená navigace s konzistentním pořadím
 const navItems: NavItem[] = [
   { id: 'about', label: 'O nás' },
   { id: 'technology', label: 'Technologie' },
   { id: 'process', label: 'Postup' },
   { id: 'surfaces', label: 'Povrchy' },
   { id: 'facility', label: 'Lakovna' },
+  { id: 'solar', label: 'FVE' },
   { id: 'quality', label: 'Kvalita' },
   { id: 'contact', label: 'Kontakt' }
 ];
@@ -26,37 +29,28 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
-      document.body.style.height = '100%';
-      document.body.style.position = 'fixed'; // Přidáno pro lepší blokování scrollu
-      document.body.style.width = '100%'; // Přidáno pro zabránění horizontálnímu posunu
     } else {
       document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.body.style.position = ''; // Reset pozice
-      document.body.style.width = ''; // Reset šířky
     }
     
     return () => {
       document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
     };
   }, [isMenuOpen]);
 
   const handleScroll = useCallback(() => {
-    setScrollPosition(window.scrollY);
+    const currentPosition = window.scrollY;
+    setScrollPosition(currentPosition);
     
-    // Determine active section based on scroll position
+    // Určení aktivní sekce na základě pozice scrollu
     const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.pageYOffset;
     
     sections.forEach(current => {
       const sectionHeight = (current as HTMLElement).offsetHeight;
       const sectionTop = (current as HTMLElement).offsetTop - 100;
       const sectionId = current.getAttribute('id') || '';
       
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      if (currentPosition > sectionTop && currentPosition <= sectionTop + sectionHeight) {
         setActiveSection(sectionId);
       }
     });
@@ -64,23 +58,28 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Inicializace při načtení
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // Oddělené funkce pro ovládání menu
+  const openMenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsMenuOpen(true);
+  }, []);
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
   }, []);
 
-  // Vylepšená funkce pro navigaci - spolehlivější fungování odkazů
-  const handleNavClick = useCallback((id: string) => {
-    // Nejdřív zavřeme menu okamžitě
-    closeMenu();
+  // Jednoduchá navigační funkce
+  const navigateToSection = useCallback((id: string) => {
+    // Nejprve zavřeme menu
+    setIsMenuOpen(false);
     
-    // Pak se přesuneme na danou sekci s malým zpožděním
+    // Přidáme malé zpoždění
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -93,101 +92,181 @@ const Navbar: React.FC = () => {
           behavior: 'smooth'
         });
       }
-    }, 150); // Zvýšené zpoždění pro spolehlivější fungování
-  }, [closeMenu]);
+    }, 100);
+  }, []);
 
-  // Určuje, zda je navbar průhledný nebo ne na základě pozice scrollu
+  // Určuje, zda je navbar průhledný
   const isTransparent = scrollPosition < 50 && !isMenuOpen;
 
   return (
-    <header 
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
-        isTransparent 
-          ? "bg-transparent" 
-          : "bg-white bg-opacity-90 backdrop-blur-md shadow-sm"
-      )}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <a 
-            href="#hero" 
-            className={cn(
-              "font-bold text-xl z-10 flex items-center",
-              isTransparent ? "text-white" : "text-primary"
-            )}
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick('hero');
+    <>
+      <header 
+        className={cn(
+          "fixed top-0 z-50 w-full transition-all duration-300",
+          isTransparent 
+            ? "bg-transparent" 
+            : "bg-white bg-opacity-95 backdrop-blur-md shadow-sm"
+        )}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo - bez href */}
+            <div
+              className={cn(
+                "font-bold text-xl z-10 flex items-center cursor-pointer",
+                isTransparent ? "text-white" : "text-primary"
+              )}
+              onClick={() => navigateToSection('hero')}
+            >
+              <img 
+                src="/powder-coat-pro/images/Logo_Betrim.png" 
+                alt="Betrim" 
+                className="h-10 w-auto"
+              />
+            </div>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:block">
+              <ul className="flex space-x-1">
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => navigateToSection(item.id)}
+                      className={cn(
+                        "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative",
+                        activeSection === item.id
+                          ? "text-primary"
+                          : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                      )}
+                    >
+                      {item.label}
+                      {activeSection === item.id && (
+                        <span 
+                          className="absolute bottom-0 left-0 h-0.5 bg-primary/70 w-full"
+                        />
+                      )}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            
+            {/* Mobilní menu tlačítko - zjednodušené */}
+            <motion.button 
+              className={cn(
+                "md:hidden z-50 p-2 rounded-md",
+                "text-foreground"
+              )}
+              onClick={openMenu}
+              type="button"
+              aria-label="Otevřít menu"
+              whileTap={{ scale: 0.9 }}
+            >
+              <Menu size={24} />
+            </motion.button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobilní menu - oddělené od hlavní navigace s animací */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-gray-900 text-white shadow-xl z-[100] md:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 30 
             }}
           >
-            <img 
-              src="/powder-coat-pro/images/Logo_Betrim.png" 
-              alt="Betrim" 
-              className="h-10 w-auto" 
-            />
-          </a>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden md:block">
-            <ul className="flex space-x-1">
-              {navItems.map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => handleNavClick(item.id)}
-                    className={cn(
-                      "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200",
-                      activeSection === item.id
-                        ? "text-primary"
-                        : "text-foreground/70 hover:text-primary hover:bg-primary/5"
-                    )}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          
-          {/* Mobile Menu Button */}
-          <button 
-            className={cn(
-              "md:hidden z-50 p-2 rounded-md",
-              isTransparent ? "text-foreground" : "text-foreground"
-            )}
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-          
-          {/* Mobile Navigation - upravené pro lepší fungování odkazů */}
-          {isMenuOpen && (
-            <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-40 flex flex-col justify-start overflow-auto h-[100vh] pt-20 md:hidden">
-              <nav className="container px-4 py-6">
-                <ul className="flex flex-col space-y-6">
-                  {navItems.map((item) => (
-                    <li key={item.id} className="border-b border-border/30 pb-4">
-                      <button
-                        onClick={() => handleNavClick(item.id)}
-                        className={cn(
-                          "block w-full text-left px-4 py-2 text-xl font-medium transition-colors duration-200",
-                          activeSection === item.id
-                            ? "text-primary"
-                            : "text-foreground/80 hover:text-primary"
-                        )}
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+            <div className="flex justify-between items-center p-4 border-b border-gray-700">
+              <div className="flex justify-center items-center">
+                <img 
+                  src="/powder-coat-pro/images/Logo_Betrim_only_logo.png" 
+                  alt="Betrim" 
+                  className="h-12 w-auto"
+                />
+              </div>
+              <motion.button 
+                onClick={closeMenu}
+                type="button"
+                className="p-2 rounded-md text-white hover:bg-gray-800"
+                aria-label="Zavřít menu"
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <X size={24} />
+              </motion.button>
             </div>
-          )}
-        </div>
-      </div>
-    </header>
+            
+            <nav className="p-4">
+              <motion.ul 
+                className="flex flex-col space-y-4"
+                initial="closed"
+                animate="open"
+                variants={{
+                  open: {
+                    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+                  },
+                  closed: {
+                    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+                  }
+                }}
+              >
+                {navItems.map((item) => (
+                  <motion.li 
+                    key={item.id} 
+                    className="border-b border-gray-700 pb-2"
+                    variants={{
+                      open: {
+                        y: 0,
+                        opacity: 1,
+                        transition: {
+                          y: { stiffness: 1000, velocity: -100 }
+                        }
+                      },
+                      closed: {
+                        y: 50,
+                        opacity: 0,
+                        transition: {
+                          y: { stiffness: 1000 }
+                        }
+                      }
+                    }}
+                  >
+                    <motion.button
+                      onClick={() => navigateToSection(item.id)}
+                      className={cn(
+                        "flex justify-between w-full text-left px-4 py-3 rounded-md",
+                        activeSection === item.id
+                          ? "text-primary bg-gray-800"
+                          : "text-gray-100 hover:text-primary hover:bg-gray-800"
+                      )}
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span>{item.label}</span>
+                      {activeSection === item.id && (
+                        <motion.span 
+                          className="h-2 w-2 rounded-full bg-primary" 
+                          layoutId="mobileActiveIndicator"
+                          initial={{ scale: 0.8 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 500 }}
+                        />
+                      )}
+                    </motion.button>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import SectionHeader from '../SectionHeader';
 import ScrollReveal from '../ScrollReveal';
 import SprayEffect from '@/components/ui/SprayEffect';
-import { ChevronDownIcon, ThermometerIcon, ClockIcon, DropletIcon, ZapIcon, InfoIcon } from 'lucide-react';
+import { ChevronDownIcon, ThermometerIcon, ClockIcon, DropletIcon, ZapIcon, InfoIcon, ArrowRight } from 'lucide-react';
 
 // Komponenta pro parametr procesu s ikonou
 const ProcessParameter: React.FC<{
   name: string;
   value: string;
   unit?: string;
-}> = ({ name, value, unit }) => {
+  index: number;
+}> = ({ name, value, unit, index = 0 }) => {
   // Vrátí ikonu podle názvu parametru
   const getParameterIcon = (paramName: string) => {
     const lowerName = paramName.toLowerCase();
@@ -25,7 +26,12 @@ const ProcessParameter: React.FC<{
   };
 
   return (
-    <div className="bg-muted/20 rounded-lg p-1.5 flex items-center gap-1.5">
+    <motion.div 
+      className="bg-muted/20 rounded-lg p-1.5 flex items-center gap-1.5"
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
+    >
       <div className="flex-shrink-0 w-5 h-5 rounded-full bg-muted/30 flex items-center justify-center">
         {getParameterIcon(name)}
       </div>
@@ -36,7 +42,7 @@ const ProcessParameter: React.FC<{
           {unit && <span className="text-muted-foreground text-xs ml-0.5">{unit}</span>}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -44,6 +50,12 @@ const ProcessParameter: React.FC<{
 const ProcessSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [expandedSteps, setExpandedSteps] = useState<number[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
   
   // Toggle pro rozbalení/zabalení kroku v záložce
   const toggleStep = (stepNumber: number) => {
@@ -111,6 +123,17 @@ const ProcessSection: React.FC = () => {
       description: 'Vytvoření ochranné vrstvy na povrchu',
       steps: [
         {
+          number: 5,
+          title: 'Aktivace',
+          description: 'Aktivace povrchu pomocí přípravku PRAGOFOS 1972M pro optimální přípravu před fosfátováním, zlepšující rovnoměrnost a kvalitu následné vrstvy.',
+          parameters: [
+            { name: 'Prostředí', value: 'Kyselé' },
+            { name: 'Teplota', value: '20', unit: '°C' },
+            { name: 'Tlak', value: 'do 1.0', unit: 'bar' },
+            { name: 'Doba', value: '0.5', unit: 'min' },
+          ]
+        },
+        {
           number: 6,
           title: 'Zn-fosfátování',
           description: 'Aplikace zinečnatého fosfátu PRAGOFOS 1920 pro vytvoření ochranné vrstvy a zlepšení přilnavosti práškové barvy.',
@@ -152,7 +175,7 @@ const ProcessSection: React.FC = () => {
         {
           number: 9,
           title: 'Pasivace',
-          description: 'Proces pasivace pro zvýšení korozní odolnosti povrchu a stability fosfátové vrstvy.',
+          description: 'Proces pasivace pro zvýšení korozní odolnosti povrchu a stability fosfátové vrstvy za použití PRAGOKOR BP.',
           parameters: [
             { name: 'Prostředí', value: 'Kyselé' },
             { name: 'Teplota', value: '20', unit: '°C' },
@@ -245,130 +268,264 @@ const ProcessSection: React.FC = () => {
   };
   
   return (
-    <section id="process" className="py-12 md:py-16 bg-white relative overflow-hidden">
+    <section id="process" className="py-16 md:py-24 section-bg-gradient relative overflow-hidden">
       {/* Dekorační prvky */}
       <SprayEffect position="left" intensity="light" color="#0ea5e9" size="lg" className="opacity-30" />
+      <SprayEffect position="right" intensity="light" color="#06b6d4" size="md" className="opacity-20" />
       
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal>
           <SectionHeader 
             title="Technologický postup" 
             subtitle="Detailní přehled našeho procesu práškového lakování pro dosažení nejlepších výsledků"
+            accent={true}
           />
         </ScrollReveal>
         
-        <div className="mt-6 max-w-3xl mx-auto">
+        <div className="mt-8 max-w-3xl mx-auto">
           {/* Informační blok o procesu */}
-          <div className="mb-5 bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100/40 rounded-lg px-4 py-3 flex gap-3 items-start shadow-sm">
-            <div className="flex-shrink-0 mt-0.5">
-              <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                <InfoIcon size={14} />
+          <ScrollReveal delay={100}>
+            <motion.div 
+              className="mb-6 bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100/40 rounded-lg px-4 py-3.5 flex gap-3 items-start shadow-sm hover-card"
+              whileHover={{ y: -2, boxShadow: '0 4px 12px rgba(14, 165, 233, 0.1)' }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex-shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                  <InfoIcon size={18} />
+                </div>
               </div>
-            </div>
-            <div>
-              <h3 className="text-sm font-medium text-blue-900 mb-1">Systém zinečnatého fosfátování</h3>
-              <p className="text-xs text-blue-800/70 leading-relaxed">
-                Náš technologický postup je navržen pro dosažení maximální kvality a dlouhodobé životnosti povrchu. 
-                Zinečnatý fosfát výrazně zvyšuje korozní odolnost a zajišťuje vynikající přilnavost práškových barev.
-                Pro venkovní použití aplikujeme polyesterové barvy fasádní kvality odolné vůči UV záření.
-              </p>
-            </div>
-          </div>
+              <div>
+                <h3 className="text-sm font-medium text-blue-900 mb-1.5">Systém zinečnatého fosfátování</h3>
+                <p className="text-xs text-blue-800/70 leading-relaxed">
+                  Náš technologický postup je navržen pro dosažení maximální kvality a dlouhodobé životnosti povrchu. 
+                  Zinečnatý fosfát výrazně zvyšuje korozní odolnost a zajišťuje vynikající přilnavost práškových barev.
+                  Pro venkovní použití aplikujeme polyesterové barvy fasádní kvality odolné vůči UV záření.
+                </p>
+              </div>
+            </motion.div>
+          </ScrollReveal>
           
           {/* Navigace záložek */}
-          <div className="mb-3">
-            <div className="flex justify-center overflow-x-auto pb-2 scrollbar-hide">
-              <div className="flex space-x-1">
-                {tabs.map((tab, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveTab(index)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all
-                      ${activeTab === index
-                        ? 'bg-primary text-white shadow-sm'
-                        : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
-                      }`}
-                  >
-                    {tab.title}
-                  </button>
-                ))}
+          <ScrollReveal delay={200}>
+            <div className="mb-4">
+              <div className="flex justify-center overflow-x-auto pb-2 scrollbar-hide">
+                <div className="flex space-x-1.5">
+                  {tabs.map((tab, index) => (
+                    <motion.button
+                      key={index}
+                      onClick={() => setActiveTab(index)}
+                      className={`px-3.5 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all
+                        ${activeTab === index
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
+                        }`}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                    >
+                      {tab.title}
+                    </motion.button>
+                  ))}
+                </div>
               </div>
+              <motion.div 
+                className="mt-1.5 text-xs text-center text-muted-foreground"
+                key={activeTab}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {tabs[activeTab].description}
+              </motion.div>
             </div>
-            <div className="mt-1 text-xs text-center text-muted-foreground">
-              {tabs[activeTab].description}
-            </div>
-          </div>
+          </ScrollReveal>
           
           {/* Obsah aktivní záložky */}
-          <div className="bg-card rounded-xl border shadow-sm overflow-hidden">
-            <div className="p-4">
-              <div className="space-y-2">
-                {tabs[activeTab].steps.map((step) => (
-                  <div key={step.number} className="rounded-lg border">
-                    {/* Hlavička kroku */}
-                    <div 
-                      className={`p-2 flex items-center gap-2 cursor-pointer ${expandedSteps.includes(step.number) ? 'bg-muted/20' : 'bg-white'}`}
-                      onClick={() => toggleStep(step.number)}
-                    >
-                      {/* Číslo kroku */}
-                      <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-semibold text-xs bg-gradient-to-r ${getGradientColor(step.number)} text-white`}>
-                        {step.number}
-                      </div>
-                      
-                      {/* Název a popis */}
-                      <div className="flex-grow">
-                        <h4 className="font-medium text-xs">{step.title}</h4>
-                        <p className={`text-xs text-muted-foreground leading-tight ${expandedSteps.includes(step.number) ? '' : 'line-clamp-1'}`}>
-                          {step.description}
-                        </p>
-                      </div>
-                      
-                      {/* Ikona rozbalení */}
-                      <div className={`text-muted-foreground transition-transform ${expandedSteps.includes(step.number) ? 'rotate-180' : ''}`}>
-                        <ChevronDownIcon className="h-4 w-4" />
-                      </div>
-                    </div>
-                    
-                    {/* Detaily kroku */}
-                    {expandedSteps.includes(step.number) && (
-                      <div className="p-3 pt-2 border-t border-border/50">
-                        <div className="mb-2">
-                          <p className="text-xs text-muted-foreground">
-                            {step.description}
-                          </p>
-                        </div>
-                        
-                        {step.parameters.length > 0 && (
-                          <div>
-                            <h5 className="text-xs font-medium mb-2 flex items-center gap-1.5">
-                              <span className={`inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r ${getGradientColor(step.number)}`}></span>
-                              Parametry procesu
-                            </h5>
+          <ScrollReveal delay={300}>
+            <motion.div 
+              className="bg-card rounded-xl border shadow-sm overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="p-4">
+                <AnimatePresence mode="wait">
+                  <motion.div 
+                    key={activeTab}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-2"
+                  >
+                    {tabs[activeTab].steps.map((step, stepIndex) => (
+                      <motion.div 
+                        key={step.number} 
+                        className="rounded-lg border hover-card overflow-hidden"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: stepIndex * 0.05 }}
+                        layout
+                        layoutId={`step-${step.number}`}
+                      >
+                        <LayoutGroup id={`step-${step.number}-group`}>
+                          {/* Hlavička kroku */}
+                          <motion.div 
+                            className={`p-2.5 flex items-center gap-2 cursor-pointer transition-all ${expandedSteps.includes(step.number) ? 'bg-muted/20' : 'bg-white'}`}
+                            onClick={() => toggleStep(step.number)}
+                            whileHover={{ backgroundColor: expandedSteps.includes(step.number) ? 'rgba(0,0,0,0.05)' : 'rgba(0,0,0,0.01)' }}
+                            whileTap={{ scale: 0.995 }}
+                            layout
+                            layoutId={`header-${step.number}`}
+                          >
+                            {/* Číslo kroku */}
+                            <motion.div 
+                              className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-semibold text-xs bg-gradient-to-r ${getGradientColor(step.number)} text-white shadow-sm`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              animate={{ 
+                                scale: expandedSteps.includes(step.number) ? 1.1 : 1,
+                                transition: { duration: 0.2 }
+                              }}
+                              layout
+                              layoutId={`number-${step.number}`}
+                            >
+                              {step.number}
+                            </motion.div>
                             
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-                              {step.parameters.map((param, index) => (
-                                <ProcessParameter
-                                  key={index}
-                                  name={param.name}
-                                  value={param.value}
-                                  unit={param.unit}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                            {/* Název a popis */}
+                            <motion.div className="flex-grow" layout layoutId={`content-${step.number}`}>
+                              <motion.h4 
+                                className="font-medium text-xs"
+                                animate={{
+                                  color: expandedSteps.includes(step.number) ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0.8)',
+                                }}
+                                layout
+                              >
+                                {step.title}
+                              </motion.h4>
+                              <motion.p 
+                                className={`text-xs text-muted-foreground leading-tight ${expandedSteps.includes(step.number) ? '' : 'line-clamp-1'}`}
+                                layout
+                              >
+                                {step.description}
+                              </motion.p>
+                            </motion.div>
+                            
+                            {/* Ikona rozbalení */}
+                            <motion.div 
+                              className="text-muted-foreground"
+                              animate={{ 
+                                rotate: expandedSteps.includes(step.number) ? 180 : 0,
+                                scale: expandedSteps.includes(step.number) ? 1.2 : 1,
+                              }}
+                              transition={{ 
+                                duration: 0.3,
+                                type: "spring",
+                                stiffness: 260,
+                                damping: 20 
+                              }}
+                            >
+                              <ChevronDownIcon className="h-4 w-4" />
+                            </motion.div>
+                          </motion.div>
+                          
+                          {/* Detaily kroku */}
+                          <AnimatePresence mode="wait">
+                            {expandedSteps.includes(step.number) && (
+                              <motion.div 
+                                className="overflow-hidden border-t border-border/50"
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ 
+                                  height: 'auto', 
+                                  opacity: 1,
+                                  transition: { 
+                                    height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
+                                    opacity: { duration: 0.2, delay: 0.1 }
+                                  }
+                                }}
+                                exit={{ 
+                                  height: 0, 
+                                  opacity: 0,
+                                  transition: { 
+                                    height: { duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] },
+                                    opacity: { duration: 0.1 }
+                                  }
+                                }}
+                              >
+                                <div className="p-3 pt-2">
+                                  {step.parameters.length > 0 && (
+                                    <div className="space-y-2">
+                                      <div className="text-xs font-medium mb-2 flex items-center gap-1.5 opacity-0">
+                                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-transparent"></span>
+                                        Parametry procesu
+                                      </div>
+                                      
+                                      <AnimatePresence>
+                                        <motion.div
+                                          initial={{ opacity: 0 }}
+                                          animate={{ opacity: 1 }}
+                                          transition={{ duration: 0.2, delay: 0.2 }}
+                                          className="space-y-2"
+                                        >
+                                          <motion.div 
+                                            className="text-xs font-medium mb-2 flex items-center gap-1.5"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ duration: 0.2, delay: 0.25 }}
+                                          >
+                                            <motion.span 
+                                              className={`inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r ${getGradientColor(step.number)}`}
+                                              initial={{ opacity: 0 }}
+                                              animate={{ opacity: 1 }}
+                                              transition={{ duration: 0.2, delay: 0.3 }}
+                                            ></motion.span>
+                                            Parametry procesu
+                                          </motion.div>
+                                          
+                                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                                            {step.parameters.map((param, index) => (
+                                              <ProcessParameter
+                                                key={index}
+                                                name={param.name}
+                                                value={param.value}
+                                                unit={param.unit}
+                                                index={index}
+                                              />
+                                            ))}
+                                          </div>
+                                        </motion.div>
+                                      </AnimatePresence>
+                                    </div>
+                                  )}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </LayoutGroup>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </ScrollReveal>
           
           {/* Pozn. pro uživatele */}
-          <div className="mt-3 text-center text-xs text-muted-foreground">
-            Kliknutím na jednotlivé kroky zobrazíte podrobné parametry procesu
-          </div>
+          <ScrollReveal delay={400}>
+            <motion.div 
+              className="mt-3 text-center text-xs text-muted-foreground flex items-center justify-center gap-1.5"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <span>Kliknutím na jednotlivé kroky zobrazíte podrobné parametry procesu</span>
+              <ChevronDownIcon className="h-3 w-3" />
+            </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -9,6 +9,7 @@ const QualitySection: React.FC = () => {
         <SectionHeader
           title="Politika kvality"
           subtitle="Kvalita našich služeb je základem dlouhodobé spokojenosti zákazníků"
+          accent={true}
         />
         
         <div className="max-w-4xl mx-auto bg-white rounded-xl p-6 sm:p-8 shadow-sm border border-border">
@@ -41,7 +42,7 @@ const QualitySection: React.FC = () => {
             <ScrollReveal className="order-1 lg:order-2">
               <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl border border-border">
                 <img 
-                  src="/powder-coat-pro/images/quality-control.jpg" 
+                  src="/powder-coat-pro/images/imageBetrim.png" 
                   alt="Kontrola kvality Betrim" 
                   className="w-full h-full object-cover"
                 />

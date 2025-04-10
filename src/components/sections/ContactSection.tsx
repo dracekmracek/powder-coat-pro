@@ -20,18 +20,35 @@ const ContactSection: React.FC = () => {
             <div className="bg-white rounded-xl p-6 shadow-sm border border-border h-full">
               <h3 className="text-xl font-semibold mb-4">Kontaktní informace</h3>
               <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mr-3">
-                    <MapPin size={24} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">Betrim s.r.o.</h4>
-                    <p className="text-muted-foreground">Masarykova 411</p>
-                    <p className="text-muted-foreground">742 45 Fulnek</p>
-                    <div className="mt-2 bg-primary/5 px-3 py-2 rounded-md inline-block">
-                      <p className="text-sm text-muted-foreground">IČO: <span className="font-medium text-foreground">25376837</span></p>
-                      <p className="text-sm text-muted-foreground">DIČ: <span className="font-medium text-foreground">CZ25376837</span></p>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mr-3">
+                      <MapPin size={24} className="text-primary" />
                     </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-1">Betrim s.r.o.</h4>
+                      <p className="text-muted-foreground">Masarykova 411</p>
+                      <p className="text-muted-foreground">742 45 Fulnek</p>
+                      <div className="mt-2 bg-primary/5 px-3 py-2 rounded-md inline-block">
+                        <p className="text-sm text-muted-foreground">IČO: <span className="font-medium text-foreground">25376837</span></p>
+                        <p className="text-sm text-muted-foreground">DIČ: <span className="font-medium text-foreground">CZ25376837</span></p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="hidden md:flex items-center justify-center flex-shrink-0">
+                    <motion.img 
+                      src="/powder-coat-pro/images/Logo_Betrim_only_logo.png" 
+                      alt="Betrim logo" 
+                      className="h-24 w-auto object-contain" 
+                      initial={{ opacity: 0.8 }}
+                      whileHover={{ 
+                        opacity: 1,
+                        scale: 1.05,
+                        filter: "drop-shadow(0 0 8px rgba(14, 165, 233, 0.3))"
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
                   </div>
                 </div>
                 
@@ -47,7 +64,7 @@ const ContactSection: React.FC = () => {
                     />
                   </h4>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-wrap -mx-2">
                     {[
                       {
                         name: "Jindřich Schich",
@@ -71,57 +88,101 @@ const ContactSection: React.FC = () => {
                         delay: 0.3
                       },
                       {
-                        name: "Vlastimil Fojtík",
+                        name: "Kamil Schich",
                         position: "Vedoucí výroby",
-                        phone: "+420 604 818 247",
+                        phone: "+420 608 825 561",
+                        email: "kamil.schich@betrim.cz",
                         delay: 0.4
+                      },
+                      {
+                        name: "Vojtěch Galetka",
+                        position: "Technolog",
+                        phone: "+420 776 166 352",
+                        email: "galetka@betrim.cz",
+                        delay: 0.5
                       }
                     ].map((person, index) => (
+                      <div key={index} className="w-full md:w-1/2 p-2">
+                        <motion.div 
+                          className="bg-white rounded-lg p-4 border border-border/50 shadow-sm hover:shadow-md transition-shadow h-full"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: person.delay }}
+                          whileHover={{ y: -5, backgroundColor: 'rgba(14, 165, 233, 0.05)' }}
+                        >
+                          <div className="flex flex-col">
+                            <div className="flex items-center mb-4">
+                              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 flex-shrink-0">
+                                <User size={16} />
+                              </div>
+                              <div>
+                                <p className="font-semibold">{person.name}</p>
+                                <div className="flex items-center text-xs text-muted-foreground">
+                                  <Briefcase size={12} className="mr-1" />
+                                  <span>{person.position}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="space-y-3 mt-1">
+                              <a 
+                                href={`tel:${person.phone.replace(/\s/g, '')}`} 
+                                className="flex items-start text-sm hover:text-primary transition-colors group"
+                              >
+                                <Phone size={14} className="mr-2 flex-shrink-0 mt-0.5" />
+                                <span>{person.phone}</span>
+                                <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                              </a>
+                              {person.email && (
+                                <a 
+                                  href={`mailto:${person.email}`} 
+                                  className="flex items-start text-sm hover:text-primary transition-colors group"
+                                >
+                                  <Mail size={14} className="mr-2 flex-shrink-0 mt-0.5" />
+                                  <span>{person.email}</span>
+                                  <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      </div>
+                    ))}
+                    
+                    {/* Doplňkové informace */}
+                    <div className="w-full md:w-1/2 p-2">
                       <motion.div 
-                        key={index}
-                        className="bg-white rounded-lg p-4 border border-border/50 shadow-sm hover:shadow-md transition-shadow"
+                        className="bg-gradient-to-br from-blue-50 to-sky-50 rounded-lg p-4 border border-blue-100/50 shadow-sm h-full"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: person.delay }}
-                        whileHover={{ y: -5, backgroundColor: 'rgba(14, 165, 233, 0.05)' }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        whileHover={{ y: -5, boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}
                       >
-                        <div className="flex flex-col">
-                          <div className="flex items-center mb-4">
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3 flex-shrink-0">
-                              <User size={16} />
+                        <div className="flex flex-col h-full">
+                          <div className="flex items-center mb-3">
+                            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 flex-shrink-0">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                              </svg>
                             </div>
-                            <div>
-                              <p className="font-semibold">{person.name}</p>
-                              <div className="flex items-center text-xs text-muted-foreground">
-                                <Briefcase size={12} className="mr-1" />
-                                <span>{person.position}</span>
-                              </div>
-                            </div>
+                            <h4 className="font-semibold text-blue-900">Provozní doba</h4>
                           </div>
-                          <div className="space-y-3 mt-1">
-                            <a 
-                              href={`tel:${person.phone.replace(/\s/g, '')}`} 
-                              className="flex items-start text-sm hover:text-primary transition-colors group"
-                            >
-                              <Phone size={14} className="mr-2 flex-shrink-0 mt-0.5" />
-                              <span>{person.phone}</span>
-                              <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                            </a>
-                            {person.email && (
-                              <a 
-                                href={`mailto:${person.email}`} 
-                                className="flex items-start text-sm hover:text-primary transition-colors group"
-                              >
-                                <Mail size={14} className="mr-2 flex-shrink-0 mt-0.5" />
-                                <span>{person.email}</span>
-                                <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                              </a>
-                            )}
+                          
+                          <div className="space-y-2 text-sm text-blue-800">
+                            <div className="flex justify-between">
+                              <span>Pondělí - Pátek:</span>
+                              <span className="font-medium">7:00 - 15:30</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Víkendy a svátky:</span>
+                              <span className="font-medium">Zavřeno</span>
+                            </div>
                           </div>
                         </div>
                       </motion.div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </div>

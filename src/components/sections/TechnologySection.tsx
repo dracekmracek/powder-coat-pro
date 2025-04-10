@@ -1,124 +1,164 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../SectionHeader';
 import ScrollReveal from '../ScrollReveal';
 import SprayEffect from '@/components/ui/SprayEffect';
-import ThreeDModel from '@/components/ui/3DModel';
 import ParticleCanvas from '@/components/ui/ParticleCanvas';
 
 const TechnologySection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [isHovered, setIsHovered] = useState<number | null>(null);
   
   const tabs = [
     {
       title: 'Příprava povrchu',
+      icon: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+      ),
       description: 'Proces čištění a odmaštění povrchu pro optimální přilnavost laku.',
       content: (
-        <div className="space-y-4">
-          <p>
-            Příprava povrchu je prováděna v průjezdném postřikovacím stroji s moderní technologií zinečnatého fosfátování.
-            Pro dokonalé odmaštění používáme PRAGOLOD 59, což je silně alkalický odmašťovací přípravek. 
-          </p>
-          <motion.div 
-            className="rounded-xl overflow-hidden shadow-xl relative"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img 
-              src="/powder-coat-pro/images/surface-preparation.jpg" 
-              alt="Příprava povrchu" 
-              className="w-full h-64 object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-              <div className="p-4 text-white">
-                <h4 className="font-semibold mb-1">Proces odmaštění a fosfátování</h4>
-                <p className="text-sm opacity-90">Vysoká kvalita předúpravy pro maximální životnost lakovaných povrchů</p>
+        <div className="space-y-6">
+          <div className="backdrop-blur-sm bg-white/80 shadow-xl p-6 rounded-xl">
+            <p className="text-lg leading-relaxed">
+              Příprava povrchu je prováděna v průjezdném postřikovacím stroji s moderní technologií zinečnatého fosfátování.
+              Pro dokonalé odmaštění používáme PRAGOLOD 59, což je silně alkalický odmašťovací přípravek. 
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <motion.div 
+              className="rounded-2xl overflow-hidden shadow-xl relative group h-full"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <img 
+                src="/powder-coat-pro/images/image7831.png" 
+                alt="Příprava povrchu" 
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end">
+                <div className="p-3 text-white w-full" style={{ textShadow: '0px 0px 8px rgba(0,0,0,0.9)' }}>
+                  <h4 className="font-bold text-lg text-white" style={{ textShadow: '0px 0px 8px rgba(0,0,0,1), 0px 0px 15px rgba(0,0,0,1)' }}>Příprava povrchu</h4>
+                  <p className="text-xs opacity-100 text-white">Vysoká kvalita předúpravy pro maximální životnost</p>
+                </div>
               </div>
+            </motion.div>
+            
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border border-blue-200 shadow-lg">
+              <h4 className="font-semibold text-xl mb-4 text-blue-800 flex items-center">
+                <span className="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center mr-3">
+                  <svg className="w-4 h-4 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </span>
+                Technologický postup
+              </h4>
+              <ol className="list-none space-y-4">
+                {[
+                  "Odmaštění pomocí PRAGOLOD 59",
+                  "Dvoustupňový průtočný oplach demineralizovanou vodou",
+                  "Aktivace povrchu PRAGOFOS 1927M",
+                  "Fosfátování pomocí PRAGOFOS 1920M",
+                  "Sušení v peci při teplotě 80 až 120°C"
+                ].map((step, index) => (
+                  <li key={index} className="flex items-center">
+                    <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex-shrink-0 flex items-center justify-center mr-3">
+                      {index + 1}
+                    </div>
+                    <span className="text-blue-900">{step}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
-          </motion.div>
-          <div className="bg-muted/30 p-4 rounded-lg">
-            <h4 className="font-medium mb-2">Technologický postup:</h4>
-            <ol className="list-decimal list-inside space-y-2 text-sm">
-              <li className="pl-2">Odmaštění pomocí PRAGOLOD 59</li>
-              <li className="pl-2">Dvoustupňový průtočný oplach demineralizovanou vodou</li>
-              <li className="pl-2">Aktivace povrchu PRAGOFOS 1927</li>
-              <li className="pl-2">Fosfátování pomocí PRAGOFOS 1920</li>
-              <li className="pl-2">Sušení v peci při teplotě 100 až 120°C</li>
-            </ol>
           </div>
         </div>
       ),
     },
     {
       title: 'Nanášení prášku',
+      icon: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      ),
       description: 'Automatické i ruční nanášení s rychlou změnou barvy.',
       content: (
         <div className="space-y-4">
-          <p>
-            Nanášení práškových barev se provádí pomocí automatického zařízení firmy "WAGNER" v kombinaci s ručním dokončováním složitých tvarů.
-            Plastová kabina Super Cube je dimenzována pro rychlou změnu barvy a efektivní vícebarevný provoz.
-          </p>
+          <div className="backdrop-blur-sm bg-white/80 shadow-lg p-4 rounded-xl">
+            <p className="leading-relaxed">
+              Nanášení práškových barev se provádí pomocí automatického zařízení firmy "WAGNER" v kombinaci s ručním dokončováním složitých tvarů.
+              Plastová kabina Super Cube je dimenzována pro rychlou změnu barvy a efektivní vícebarevný provoz.
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="relative">
-              <ThreeDModel className="mb-4" />
-              <p className="text-sm text-center text-muted-foreground">
-                <em>Interaktivní 3D model - pohybujte myší pro změnu úhlu pohledu</em>
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="lg:col-span-1">
+              <motion.div
+                className="rounded-xl overflow-hidden shadow-lg h-full group relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="/powder-coat-pro/images/powder_airbrush.jpg" 
+                  alt="Nanášení práškové barvy" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end">
+                  <div className="p-3 text-white w-full" style={{ textShadow: '0px 0px 8px rgba(0,0,0,0.9)' }}>
+                    <h4 className="font-bold text-lg text-white" style={{ textShadow: '0px 0px 8px rgba(0,0,0,1), 0px 0px 15px rgba(0,0,0,1)' }}>Aplikace práškové barvy</h4>
+                    <p className="text-xs opacity-100 text-white">Přesné nanášení pro kvalitu a úsporu</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
             
-            <div className="space-y-4">
-              <div className="bg-muted/30 p-4 rounded-lg">
-                <h4 className="font-medium mb-2">Technické parametry:</h4>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex justify-between">
-                    <span>Typ zařízení:</span>
-                    <span className="font-medium">WAGNER PEM-C4-HiCoat</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Typ kabiny:</span>
-                    <span className="font-medium">Super Cube</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Odsávání:</span>
-                    <span className="font-medium">Filtrační s cyklónovým odlučovačem</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Max. výška:</span>
-                    <span className="font-medium">1,500 mm</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Max. šířka:</span>
-                    <span className="font-medium">1,200 mm</span>
-                  </li>
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-xl border border-slate-200 shadow-lg">
+                <h4 className="font-semibold text-slate-800 flex items-center text-lg mb-3">
+                  <span className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center mr-2">
+                    <svg className="w-3 h-3 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </span>
+                  Technické parametry
+                </h4>
+                <ul className="space-y-2">
+                  {[
+                    {label: "Typ zařízení", value: "WAGNER PEM-C4-HiCoat"},
+                    {label: "Typ kabiny", value: "Super Cube"},
+                    {label: "Odsávání", value: "Filtrační s cyklónem"}
+                  ].map((item, index) => (
+                    <li key={index} className="flex justify-between items-center p-2 border-b border-slate-200 last:border-0 text-sm">
+                      <span className="text-slate-600">{item.label}</span>
+                      <span className="font-medium text-slate-900 bg-slate-100 px-3 py-1 rounded-full text-xs">{item.value}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               
-              <div className="rounded-lg overflow-hidden border border-primary/20">
-                <div className="bg-primary/10 p-3 border-b border-primary/20">
-                  <h4 className="font-medium">Výhody našeho systému nanášení</h4>
-                </div>
-                <div className="p-3">
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center text-primary">✓</div>
-                      <span>Rychlá změna barvy při vícebarevném provozu</span>
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-4 rounded-xl border border-primary/20 shadow-lg">
+                <h4 className="font-semibold text-lg mb-3 flex items-center">
+                  <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mr-2">
+                    <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  Výhody systému
+                </h4>
+                <ul className="space-y-2 text-sm">
+                  {[
+                    "Rychlá změna barvy při vícebarevném provozu",
+                    "Kombinace auto/ručního nanášení",
+                    "Přesné dávkování pro úsporu materiálu",
+                    "Recyklace barvy pro ekologický provoz"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2 p-1 hover:bg-primary/5 rounded-lg transition-colors">
+                      <div className="w-5 h-5 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center text-primary mt-0.5">✓</div>
+                      <span className="text-xs">{item}</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center text-primary">✓</div>
-                      <span>Kombinace automatického a ručního nanášení</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center text-primary">✓</div>
-                      <span>Přesné dávkování pro úsporu materiálu</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center text-primary">✓</div>
-                      <span>Důsledná recyklace barvy pro ekologický provoz</span>
-                    </li>
-                  </ul>
-                </div>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -127,117 +167,119 @@ const TechnologySection: React.FC = () => {
     },
     {
       title: 'Vypalování',
+      icon: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+        </svg>
+      ),
       description: 'Vytvrzení práškového laku při teplotách až 225°C.',
       content: (
         <div className="space-y-4">
-          <p>
-            Po nanesení práškové barvy následuje vytvrzení v moderní vypalovací peci při teplotě až 225°C. 
-            Naše pec je v provedení s termosifonovým uzávěrem, který minimalizuje únik tepla do okolí a přispívá k úspoře energie.
-          </p>
-          
-          <div className="relative rounded-xl overflow-hidden shadow-xl h-64">
-            <img 
-              src="/powder-coat-pro/images/powder-coating-oven.jpg" 
-              alt="Vypalovací pec" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute inset-0 bg-black/40" />
-              <motion.div 
-                className="z-10 bg-white/90 backdrop-blur-sm p-6 rounded-lg max-w-md text-center"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="mb-2 mx-auto w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3V4M12 20V21M21 12H20M4 12H3M18.364 18.364L17.657 17.657M6.343 6.343L5.636 5.636M18.364 5.636L17.657 6.343M6.343 17.657L5.636 18.364M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <h4 className="font-semibold mb-1">Vypalovací pec s přesnou teplotní kontrolou</h4>
-                <p className="text-sm">Konstantní teplota a rovnoměrný ohřev zajišťují dokonalé vytvrzení povrchu</p>
-              </motion.div>
-            </div>
+          <div className="backdrop-blur-sm bg-white/80 shadow-lg p-4 rounded-xl">
+            <p className="leading-relaxed">
+              Po nanesení práškové barvy následuje vytvrzení v moderní vypalovací peci při teplotě až 225°C. 
+              Naše pec je v provedení s termosifonovým uzávěrem, který minimalizuje únik tepla do okolí a přispívá k úspoře energie.
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-5 rounded-lg border border-amber-200">
-              <h4 className="font-medium mb-3 text-amber-800">Parametry teplotního procesu</h4>
-              <div className="space-y-3">
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">Cílová teplota</span>
-                    <span className="text-sm font-medium">225°C</span>
-                  </div>
-                  <div className="h-2 bg-amber-200 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="h-full bg-amber-500"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '100%' }}
-                      transition={{ duration: 1.5 }}
-                      viewport={{ once: true }}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">Doba vytvrzování</span>
-                    <span className="text-sm font-medium">25 min</span>
-                  </div>
-                  <div className="h-2 bg-amber-200 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="h-full bg-amber-500"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '80%' }}
-                      transition={{ duration: 1.2 }}
-                      viewport={{ once: true }}
-                    />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="lg:col-span-1">
+              <motion.div 
+                className="rounded-xl overflow-hidden shadow-lg h-full group relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="/powder-coat-pro/images/image7501.png" 
+                  alt="Vypalovací pec" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end">
+                  <div className="p-3 text-white w-full" style={{ textShadow: '0px 0px 8px rgba(0,0,0,0.9)' }}>
+                    <h4 className="font-bold text-lg text-white" style={{ textShadow: '0px 0px 8px rgba(0,0,0,1), 0px 0px 15px rgba(0,0,0,1)' }}>Vypalovací pec</h4>
+                    <p className="text-xs opacity-100 text-white">Přesná teplotní kontrola</p>
                   </div>
                 </div>
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">Energetická efektivita</span>
-                    <span className="text-sm font-medium">92%</span>
-                  </div>
-                  <div className="h-2 bg-amber-200 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="h-full bg-amber-500"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '92%' }}
-                      transition={{ duration: 1.3 }}
-                      viewport={{ once: true }}
-                    />
-                  </div>
-                </div>
-              </div>
+              </motion.div>
             </div>
             
-            <div className="p-5 rounded-lg border border-muted bg-muted/10">
-              <h4 className="font-medium mb-3">Výhody procesu vypalování</h4>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">1</div>
-                  <div>
-                    <p className="font-medium">Termosifonový uzávěr</p>
-                    <p className="text-muted-foreground">Minimalizace úniku tepla a úspora energie až o 30%</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">2</div>
-                  <div>
-                    <p className="font-medium">Přesné řízení teploty</p>
-                    <p className="text-muted-foreground">Rovnoměrné vytvrzení po celé ploše dílu</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">3</div>
-                  <div>
-                    <p className="font-medium">Monitorování procesu</p>
-                    <p className="text-muted-foreground">Kontinuální kontrola parametrů pro konzistentní výsledky</p>
-                  </div>
-                </li>
-              </ul>
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-xl border border-amber-200 shadow-lg">
+                <h4 className="font-semibold text-amber-800 flex items-center text-lg mb-3">
+                  <span className="w-6 h-6 rounded-full bg-amber-200 flex items-center justify-center mr-2">
+                    <svg className="w-3 h-3 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </span>
+                  Parametry procesu
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    {label: "Cílová teplota", value: "až 225°C", percent: 100},
+                    {label: "Doba vytvrzování", value: "až 25 min", percent: 80},
+                    {label: "Efektivita", value: "92%", percent: 92}
+                  ].map((item, index) => (
+                    <div key={index}>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span className="font-medium text-amber-800">{item.label}</span>
+                        <span className="font-medium text-amber-900">{item.value}</span>
+                      </div>
+                      <div className="h-2 bg-amber-200 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-amber-500"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${item.percent}%` }}
+                          transition={{ duration: 1.5 }}
+                          viewport={{ once: true }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-lg">
+                <h4 className="font-semibold text-lg mb-3 flex items-center">
+                  <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mr-2">
+                    <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </span>
+                  Výhody procesu
+                </h4>
+                <ul className="space-y-2 text-sm">
+                  {[
+                    {
+                      title: "Termosifonový uzávěr",
+                      description: "Úspora energie až o 30%"
+                    },
+                    {
+                      title: "Přesné řízení teploty",
+                      description: "Rovnoměrné vytvrzení dílu"
+                    },
+                    {
+                      title: "Monitorování procesu",
+                      description: "Kontinuální kontrola parametrů"
+                    }
+                  ].map((item, index) => (
+                    <motion.li 
+                      key={index} 
+                      className="flex items-start gap-2 p-1 hover:bg-slate-50 transition-colors rounded-lg"
+                      whileHover={{ x: 2 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="mt-0.5 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">{item.title}</p>
+                        <p className="text-xs text-muted-foreground">{item.description}</p>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -246,9 +288,9 @@ const TechnologySection: React.FC = () => {
   ];
   
   return (
-    <section id="technology" className="py-16 bg-secondary/40 relative overflow-hidden">
+    <section id="technology" className="py-12 bg-gradient-to-b from-secondary/30 to-background relative overflow-hidden">
       {/* Interaktivní částicové pozadí */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
+      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
         <ParticleCanvas colorScheme="blue" particleCount={60} />
       </div>
       
@@ -257,53 +299,62 @@ const TechnologySection: React.FC = () => {
           <SectionHeader 
             title="Technologie lakování" 
             subtitle="Používáme moderní technologické postupy a zařízení pro dosažení nejlepších výsledků"
+            accent={true}
           />
         </ScrollReveal>
         
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-1">
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="lg:col-span-1 order-1 lg:order-1">
             <ScrollReveal>
-              <div className="sticky top-20 space-y-2">
+              <div className="lg:sticky lg:top-20 space-y-3">
                 {tabs.map((tab, index) => (
-                  <motion.div
+                  <motion.div 
                     key={index}
-                    className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${activeTab === index ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-white hover:bg-muted/50'}`}
+                    className={`
+                      p-3 rounded-xl cursor-pointer transition-all
+                      ${activeTab === index 
+                        ? 'bg-white shadow-lg border-l-4 border-primary' 
+                        : 'hover:bg-white/70 bg-white/50 hover:shadow-md border-l-4 border-transparent'}
+                    `}
                     onClick={() => setActiveTab(index)}
-                    onMouseEnter={() => setIsHovered(index)}
-                    onMouseLeave={() => setIsHovered(null)}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    whileTap={{ scale: 0.98 }}
-                    animate={{
-                      y: isHovered === index && activeTab !== index ? -5 : 0,
-                      boxShadow: activeTab === index ? '0 10px 25px rgba(14, 165, 233, 0.2)' : isHovered === index ? '0 5px 15px rgba(0, 0, 0, 0.1)' : '0 1px 2px rgba(0, 0, 0, 0.05)',
-                    }}
+                    whileHover={{ x: 3 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <h3 className={`font-medium text-lg ${activeTab === index ? 'text-white' : 'text-foreground'}`}>{tab.title}</h3>
-                    <p className={`text-sm ${activeTab === index ? 'text-white/80' : 'text-muted-foreground'}`}>{tab.description}</p>
+                    <div className="flex items-start">
+                      <div className={`mr-3 p-1.5 rounded-lg ${activeTab === index ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
+                        {tab.icon}
+                      </div>
+                      <div>
+                        <h3 className={`font-semibold mb-0.5 ${activeTab === index ? 'text-primary' : 'text-foreground'}`}>
+                          {tab.title}
+                        </h3>
+                        <p className="text-muted-foreground text-xs line-clamp-2">{tab.description}</p>
+                      </div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </ScrollReveal>
           </div>
           
-          <div className="lg:col-span-2">
-            <ScrollReveal>
-              <motion.div 
-                key={activeTab}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white rounded-xl shadow-lg p-6"
-              >
-                {tabs[activeTab].content}
-              </motion.div>
+          <div className="lg:col-span-3 order-2 lg:order-2">
+            <ScrollReveal delay={100}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white/50 backdrop-blur-sm rounded-xl p-5 shadow-lg border border-white/10"
+                >
+                  {tabs[activeTab].content}
+                </motion.div>
+              </AnimatePresence>
             </ScrollReveal>
           </div>
         </div>
         
-        {/* Dekorativní spray efekt */}
         <div className="hidden md:block">
           <SprayEffect position="right" intensity="light" color="#0ea5e9" size="lg" />
         </div>
