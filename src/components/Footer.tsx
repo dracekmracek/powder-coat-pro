@@ -191,8 +191,9 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <a href="#" className="hover:text-white transition-colors duration-200">Ochrana osobních údajů</a>
-            <a href="#" className="hover:text-white transition-colors duration-200">Podmínky použití</a>
+            <a href="/powder-coat-pro/privacy" className="hover:text-white transition-colors duration-200">Ochrana osobních údajů</a>
+            <a href="/powder-coat-pro/terms" className="hover:text-white transition-colors duration-200">Podmínky použití</a>
+            <a href="/powder-coat-pro/cookies" className="hover:text-white transition-colors duration-200">Zásady cookies</a>
           </motion.div>
         </div>
       </div>

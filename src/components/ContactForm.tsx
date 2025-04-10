@@ -1,40 +1,44 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Mail, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState('');
   
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    // Nastavit URL pouze na klientské straně
+    setCurrentUrl(window.location.href);
+  }, []);
   
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Pro FormSubmit necháváme původní chování formuláře
+    // Pouze přidáváme UI feedback
     setIsSubmitting(true);
     
-    // Simulate form submission
+    // Zobrazit UI feedback 
     setTimeout(() => {
-      toast.success('Zpráva byla úspěšně odeslána! Budeme vás kontaktovat.');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-      });
       setIsSubmitting(false);
     }, 1000);
   };
+  
+  if (isSubmitted) {
+    return (
+      <div className="bg-white rounded-xl shadow-sm p-8 border border-border">
+        <div className="text-center py-8">
+          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-semibold mb-2">Děkujeme za zprávu!</h3>
+          <p className="text-muted-foreground">Vaše zpráva byla úspěšně odeslána. Ozveme se vám co nejdříve.</p>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="bg-white rounded-xl shadow-sm p-8 border border-border">
@@ -45,7 +49,25 @@ const ContactForm: React.FC = () => {
         <h3 className="text-xl font-semibold">Napište nám</h3>
       </div>
       
-      <form onSubmit={handleSubmit}>
+      <form 
+        action="https://formsubmit.co/info@webseidon.cz" 
+        method="POST" 
+        onSubmit={handleSubmit}
+      >
+        {/* FormSubmit skrytá pole - pouze základní */}
+        <input type="hidden" name="_subject" value="Nová zpráva z webu Betrim Formuláře" />
+        <input type="hidden" name="_next" value={currentUrl} />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" style={{ display: 'none' }} />
+        <input type="hidden" name="_template" value="table" />
+        
+        {/* Překlad a úprava nadpisu */}
+        <input type="hidden" name="_title" value="Betrim - Kontaktni formular" />
+        
+        {/* Přeložené popisky */}
+        <input type="hidden" name="form-name" value="Betrim" />
+        <input type="hidden" name="_formsubmit_id" value="Kontaktni formular Betrim" />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">
@@ -54,9 +76,7 @@ const ContactForm: React.FC = () => {
             <input
               type="text"
               id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              name="Jmeno"
               required
               className={cn(
                 "w-full px-4 py-2.5 rounded-md border border-input",
@@ -74,9 +94,7 @@ const ContactForm: React.FC = () => {
             <input
               type="email"
               id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              name="Email"
               required
               className={cn(
                 "w-full px-4 py-2.5 rounded-md border border-input",
@@ -95,9 +113,7 @@ const ContactForm: React.FC = () => {
           <input
             type="tel"
             id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
+            name="Telefon"
             className={cn(
               "w-full px-4 py-2.5 rounded-md border border-input",
               "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary",
@@ -113,9 +129,7 @@ const ContactForm: React.FC = () => {
           </label>
           <textarea
             id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
+            name="Zprava"
             required
             rows={4}
             className={cn(
@@ -126,6 +140,10 @@ const ContactForm: React.FC = () => {
             placeholder="Jak vám můžeme pomoci?"
           />
         </div>
+        
+        {/* Přidáno pole pro typ zprávy */}
+        <input type="hidden" name="Typ_zpravy" value="Webovy formular" />
+        <input type="hidden" name="Odeslano_z" value="Betrim.cz" />
         
         <button
           type="submit"
