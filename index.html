@@ -2,7 +2,16 @@
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/betrim-icon.svg" />
+    <base href="/powder-coat-pro/" />
+    <!-- Favicon ikony -->
+    <link rel="shortcut icon" href="/powder-coat-pro/assets/favicon-CRRVlHCR.ico" type="image/x-icon">
+    <link rel="icon" href="/powder-coat-pro/assets/favicon-CRRVlHCR.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/powder-coat-pro/assets/apple-touch-icon-BNuWrd-s.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/powder-coat-pro/assets/favicon-32x32-DQ3pOSb_.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/powder-coat-pro/assets/favicon-16x16-D1Nr6Mi8.png">
+    <link rel="manifest" href="/powder-coat-pro/assets/site-CHWY52aI.webmanifest">
+    <meta name="msapplication-TileColor" content="#0e65a9">
+    <meta name="theme-color" content="#0e65a9">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Betrim - Práškové lakování | Profesionální služby v oblasti práškového lakování pro průmyslové i soukromé zákazníky. Kvalitní povrchová úprava kovů s dlouhou životností." />
     <meta name="keywords" content="práškové lakování, povrchové úpravy, lakovna, komaxit, komaxit práškový, prášková barva, průmyslové lakování" />
@@ -25,10 +34,21 @@
           // Nastavení správné cesty v historii prohlížeče
           window.history.replaceState(null, null, cleanPath);
         }
+        
+        // Dynamicky upravit základní cestu podle prostředí
+        function isLocalhost() {
+          return location.hostname === 'localhost' || 
+                 location.hostname === '127.0.0.1' ||
+                 location.hostname.startsWith('192.168.');
+        }
+        
+        if (isLocalhost()) {
+          document.querySelector('base').setAttribute('href', '/');
+        }
       })();
     </script>
-    <script type="module" crossorigin src="/powder-coat-pro/assets/main-CiwL5VLo.js"></script>
-    <link rel="stylesheet" crossorigin href="/powder-coat-pro/assets/main-BhnHR__Q.css">
+    <script type="module" crossorigin src="/powder-coat-pro/assets/main-CoE71oRc.js"></script>
+    <link rel="stylesheet" crossorigin href="/powder-coat-pro/assets/main-CMmxxzZQ.css">
   </head>
   <body>
     <div id="root"></div>
