@@ -102,7 +102,7 @@ const FacilitySection: React.FC = () => {
           <ScrollReveal delay={200}>
             <div className="aspect-video rounded-xl overflow-hidden shadow-xl border border-border">
               <img 
-                src="/powder-coat-pro/images/IMG-0255-1024x768.png" 
+                src="/images/IMG-0255-1024x768.png" 
                 alt="Lakovna Betrim" 
                 className="w-full h-full object-cover"
               />
@@ -111,14 +111,14 @@ const FacilitySection: React.FC = () => {
             <div className="mt-6 grid grid-cols-2 gap-6">
               <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
                 <img 
-                  src="/powder-coat-pro/images/IMG-0256-1024x768.png" 
+                  src="/images/IMG-0256-1024x768.png" 
                   alt="Vybavení lakovny Betrim" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square rounded-xl overflow-hidden shadow-sm border border-border">
                 <img 
-                  src="/powder-coat-pro/images/IMG-0258-1024x768.png" 
+                  src="/images/IMG-0258-1024x768.png" 
                   alt="Práškové lakování Betrim" 
                   className="w-full h-full object-cover"
                 />

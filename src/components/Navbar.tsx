@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
               onClick={() => navigateToSection('hero')}
             >
               <img 
-                src="/powder-coat-pro/images/Logo_Betrim.png" 
+                src="/images/Logo_Betrim.png" 
                 alt="Betrim" 
                 className="h-10 w-auto"
               />
@@ -185,7 +185,7 @@ const Navbar: React.FC = () => {
             <div className="flex justify-between items-center p-4 border-b border-gray-700">
               <div className="flex justify-center items-center">
                 <img 
-                  src="/powder-coat-pro/images/Logo_Betrim_only_logo.png" 
+                  src="/images/Logo_Betrim_only_logo.png" 
                   alt="Betrim" 
                   className="h-12 w-auto"
                 />

@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
             >
               <div className="bg-white p-2 rounded-xl mr-4 shadow-lg">
                 <img 
-                  src="/powder-coat-pro/images/Logo_Betrim.png" 
+                  src="/images/Logo_Betrim.png" 
                   alt="Betrim" 
                   className="h-12 w-auto" 
                 />
@@ -182,6 +182,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             © {currentYear} Betrim s.r.o. | IČO: 25376837 | DIČ: CZ25376837 | Všechna práva vyhrazena
+            <span className="block md:inline md:ml-2">| Vytvořil <a href="https://webseidon.cz" target="_blank" rel="noopener noreferrer" className="text-primary-light hover:underline transition-colors duration-200">webseidon.cz</a></span>
           </motion.p>
           
           <motion.div 
@@ -191,9 +192,9 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <a href="/powder-coat-pro/privacy" className="hover:text-white transition-colors duration-200">Ochrana osobních údajů</a>
-            <a href="/powder-coat-pro/terms" className="hover:text-white transition-colors duration-200">Podmínky použití</a>
-            <a href="/powder-coat-pro/cookies" className="hover:text-white transition-colors duration-200">Zásady cookies</a>
+            <a href="/privacy" className="hover:text-white transition-colors duration-200">Ochrana osobních údajů</a>
+            <a href="/terms" className="hover:text-white transition-colors duration-200">Podmínky použití</a>
+            <a href="/cookies" className="hover:text-white transition-colors duration-200">Zásady cookies</a>
           </motion.div>
         </div>
       </div>

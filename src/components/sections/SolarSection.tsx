@@ -114,7 +114,7 @@ const SolarSection: React.FC = () => {
                       transition={{ duration: 0.5 }}
                     >
                       <img 
-                        src="/powder-coat-pro/images/EU.png" 
+                        src="/images/EU.png" 
                         alt="Evropská Unie logo" 
                         className="w-full h-full object-contain" 
                       />
@@ -137,7 +137,7 @@ const SolarSection: React.FC = () => {
                       transition={{ duration: 0.5 }}
                     >
                       <img 
-                        src="/powder-coat-pro/images/ministerstvo_prumyslu.png" 
+                        src="/images/ministerstvo_prumyslu.png" 
                         alt="Ministerstvo průmyslu a obchodu logo" 
                         className="w-full h-full object-contain" 
                       />
@@ -160,7 +160,7 @@ const SolarSection: React.FC = () => {
                       transition={{ duration: 0.5 }}
                     >
                       <img 
-                        src="/powder-coat-pro/images/narodni_plan_obnovy.png" 
+                        src="/images/narodni_plan_obnovy.png" 
                         alt="Národní plán obnovy logo" 
                         className="w-full h-full object-contain" 
                       />

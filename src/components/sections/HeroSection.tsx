@@ -230,7 +230,7 @@ const HeroSection: React.FC = () => {
                       <div className="relative">
                         <div className="group h-[400px] lg:h-[500px] overflow-hidden rounded-2xl">
                           <img
-                            src="/powder-coat-pro/images/powder-coating-hero.jpg"
+                            src="/images/powder-coating-hero.jpg"
                             alt="Práškové lakování Betrim"
                             className="w-full h-full object-cover transition-transform duration-10000 ease-in-out group-hover:scale-110 rounded-2xl"
                           />
@@ -281,7 +281,7 @@ const HeroSection: React.FC = () => {
                     >
                       <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center p-3">
                         <img 
-                          src="/powder-coat-pro/images/Logo_Betrim_only_logo.png" 
+                          src="/images/Logo_Betrim_only_logo.png" 
                           alt="Betrim logo"
                           className="w-full h-auto"
                         />

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Povolit existující soubory a adresáře
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Ignorovat povolené cesty (/privacy, /terms, /cookies)
+RewriteCond %{REQUEST_URI} !^/(privacy|cookies|terms)/?$
+
+# Přesměrovat všechny ostatní neexistující stránky přímo na hlavní stránku
+RewriteRule ^.*$ / [R=301,L]

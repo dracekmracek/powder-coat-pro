@@ -2,7 +2,7 @@
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
-    <base href="/powder-coat-pro/" />
+    <base href="/" />
     <!-- Favicon ikony -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -26,7 +26,7 @@
           sessionStorage.removeItem('redirectPath');
           
           // Získání základní cesty aplikace
-          const basePath = document.querySelector('base')?.getAttribute('href') || '/powder-coat-pro/';
+          const basePath = document.querySelector('base')?.getAttribute('href') || '/';
           
           // Odstranění základní cesty z přesměrované cesty, pokud existuje
           const cleanPath = redirectPath.replace(new RegExp(`^${basePath}`), '/');

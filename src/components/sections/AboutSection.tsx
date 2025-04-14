@@ -140,7 +140,7 @@ const AboutSection: React.FC = () => {
                 <div className="relative w-full h-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10"></div>
                   <img 
-                    src="/powder-coat-pro/images/imageBetrim.png" 
+                    src="/images/imageBetrim.png" 
                     alt="Lakovna Betrim" 
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                   />

@@ -38,7 +38,7 @@ const ContactSection: React.FC = () => {
                   
                   <div className="hidden md:flex items-center justify-center flex-shrink-0">
                     <motion.img 
-                      src="/powder-coat-pro/images/Logo_Betrim_only_logo.png" 
+                      src="/images/Logo_Betrim_only_logo.png" 
                       alt="Betrim logo" 
                       className="h-24 w-auto object-contain" 
                       initial={{ opacity: 0.8 }}

@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0;url=/powder-coat-pro/">
   <title>Přesměrování</title>
   <script>
-    // Uložení aktuální cesty do session storage a přesměrování na hlavní stránku
-    sessionStorage.setItem('redirectPath', window.location.pathname);
-    window.location.href = '/powder-coat-pro/';
+    // Funkce pro získání aktuální cesty
+    const currentPath = window.location.pathname;
+    
+    // Kontrola, zda cesta je jednou z povolených
+    const isValidRoute = ['/privacy', '/privacy/', '/cookies', '/cookies/', '/terms', '/terms/'].includes(currentPath);
+    
+    // Pokud jde o validní cestu, přesměruj s uchováním cesty, jinak přesměruj přímo na hlavní stránku
+    if (isValidRoute) {
+      sessionStorage.setItem('redirectPath', currentPath);
+      window.location.href = '/';
+    } else {
+      // Pro všechny ostatní cesty přesměruj přímo na hlavní stránku bez ukládání cesty
+      window.location.href = '/';
+    }
   </script>
+  
+  <!-- Záložní meta refresh přesměrování, pokud by JavaScript selhal -->
+  <meta http-equiv="refresh" content="0;url=/">
 </head>
 <body>
   <p>Přesměrování na hlavní stránku...</p>

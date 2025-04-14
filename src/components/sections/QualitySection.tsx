@@ -42,7 +42,7 @@ const QualitySection: React.FC = () => {
             <ScrollReveal className="order-1 lg:order-2">
               <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl border border-border">
                 <img 
-                  src="/powder-coat-pro/images/imageBetrim.png" 
+                  src="/images/imageBetrim.png" 
                   alt="Kontrola kvality Betrim" 
                   className="w-full h-full object-cover"
                 />

@@ -32,7 +32,7 @@ const TechnologySection: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <img 
-                src="/powder-coat-pro/images/image7831.png" 
+                src="/images/image7831.png" 
                 alt="Příprava povrchu" 
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
@@ -99,7 +99,7 @@ const TechnologySection: React.FC = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img 
-                  src="/powder-coat-pro/images/powder_airbrush.jpg" 
+                  src="/images/powder_airbrush.jpg" 
                   alt="Nanášení práškové barvy" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
@@ -190,7 +190,7 @@ const TechnologySection: React.FC = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img 
-                  src="/powder-coat-pro/images/image7501.png" 
+                  src="/images/image7501.png" 
                   alt="Vypalovací pec" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
