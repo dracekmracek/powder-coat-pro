@@ -1,26 +1,47 @@
 import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 import { Mail, Send } from 'lucide-react';
-import { toast } from 'sonner';
+
+type FormValues = {
+  Jmeno: string;
+  Email: string;
+  Telefon?: string;
+  Zprava: string;
+  _honey?: string;
+};
 
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentUrl, setCurrentUrl] = useState('');
   
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormValues>();
+  
   useEffect(() => {
     // Nastavit URL pouze na klientské straně
-    setCurrentUrl(window.location.href);
+    setCurrentUrl(window.location.href.split('?')[0]); // Odstranit parametry z URL
+    
+    // Zkontrolovat, jestli URL obsahuje parametr "odeslano=true"
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('odeslano') === 'true') {
+      setIsSubmitted(true);
+    }
   }, []);
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // Pro FormSubmit necháváme původní chování formuláře
-    // Pouze přidáváme UI feedback
+  const onSubmit = () => {
+    // UI feedback pro uživatele
     setIsSubmitting(true);
     
-    // Zobrazit UI feedback 
+    // FormSubmit.co přesměruje na _next URL, ale pro lokální testování
+    // simulujeme úspěšné odeslání po krátkém čase
     setTimeout(() => {
       setIsSubmitting(false);
+      setIsSubmitted(true);
     }, 1000);
   };
   
@@ -52,13 +73,23 @@ const ContactForm: React.FC = () => {
       <form 
         action="https://formsubmit.co/info@webseidon.cz" 
         method="POST" 
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         {/* FormSubmit skrytá pole - pouze základní */}
         <input type="hidden" name="_subject" value="Nová zpráva z webu Betrim Formuláře" />
-        <input type="hidden" name="_next" value={currentUrl} />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="text" name="_honey" style={{ display: 'none' }} />
+        <input type="hidden" name="_next" value={`${currentUrl}?odeslano=true`} />
+        <input type="hidden" name="_captcha" value="true" />
+        
+        {/* Honeypot proti spambot */}
+        <input 
+          type="text" 
+          {...register('_honey')} 
+          name="_honey" 
+          className="hidden" 
+          autoComplete="off" 
+          tabIndex={-1} 
+        />
+        
         <input type="hidden" name="_template" value="table" />
         
         {/* Překlad a úprava nadpisu */}
@@ -76,15 +107,19 @@ const ContactForm: React.FC = () => {
             <input
               type="text"
               id="name"
+              {...register('Jmeno', { required: 'Jméno je povinné' })}
               name="Jmeno"
-              required
               className={cn(
                 "w-full px-4 py-2.5 rounded-md border border-input",
                 "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary",
-                "transition-colors"
+                "transition-colors",
+                errors.Jmeno && "border-red-500 focus:border-red-500 focus:ring-red-200"
               )}
               placeholder="Vaše jméno"
             />
+            {errors.Jmeno && (
+              <p className="text-red-500 text-sm mt-1">{errors.Jmeno.message}</p>
+            )}
           </div>
           
           <div>
@@ -94,15 +129,25 @@ const ContactForm: React.FC = () => {
             <input
               type="email"
               id="email"
+              {...register('Email', {
+                required: 'Email je povinný',
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: 'Neplatný formát emailu',
+                }
+              })}
               name="Email"
-              required
               className={cn(
                 "w-full px-4 py-2.5 rounded-md border border-input",
                 "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary",
-                "transition-colors"
+                "transition-colors",
+                errors.Email && "border-red-500 focus:border-red-500 focus:ring-red-200"
               )}
               placeholder="vas@email.cz"
             />
+            {errors.Email && (
+              <p className="text-red-500 text-sm mt-1">{errors.Email.message}</p>
+            )}
           </div>
         </div>
         
@@ -113,6 +158,7 @@ const ContactForm: React.FC = () => {
           <input
             type="tel"
             id="phone"
+            {...register('Telefon')}
             name="Telefon"
             className={cn(
               "w-full px-4 py-2.5 rounded-md border border-input",
@@ -129,16 +175,20 @@ const ContactForm: React.FC = () => {
           </label>
           <textarea
             id="message"
+            {...register('Zprava', { required: 'Zpráva je povinná' })}
             name="Zprava"
-            required
             rows={4}
             className={cn(
               "w-full px-4 py-2.5 rounded-md border border-input",
               "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary",
-              "transition-colors"
+              "transition-colors",
+              errors.Zprava && "border-red-500 focus:border-red-500 focus:ring-red-200"
             )}
             placeholder="Jak vám můžeme pomoci?"
           />
+          {errors.Zprava && (
+            <p className="text-red-500 text-sm mt-1">{errors.Zprava.message}</p>
+          )}
         </div>
         
         {/* Přidáno pole pro typ zprávy */}
