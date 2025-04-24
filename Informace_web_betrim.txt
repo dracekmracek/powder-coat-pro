@@ -1,0 +1,247 @@
+# BETRIM - KOMPLEXNÍ DOKUMENTACE PROJEKTU
+
+## 1. SHRNUTÍ PROJEKTU
+- **Název:** Betrim - Práškové lakování (webová prezentace)
+- **Účel:** Digitální vizitka a informační portál pro společnost Betrim s.r.o., poskytovatele služeb práškového lakování. Cílem je prezentovat služby, technologie, kvalitu a umožnit snadný kontakt.
+- **URL:** https://www.betrim.cz
+- **Cílová skupina:** Firmy (B2B) i jednotlivci (B2C) v regionu Moravskoslezského kraje a širším okolí s potřebou kvalitní povrchové úpravy kovů.
+- **Klíčové vlastnosti:** Responzivní design, moderní UI/UX, detailní popis technologií a procesu, interaktivní prvky, kontaktní formulář, SEO optimalizace.
+
+## Klíčová slova
+- práškové lakování
+- povrchové úpravy
+- lakovna
+- komaxit
+- průmyslové lakování
+- prášková barva
+- Fulnek
+
+## 2. POUŽITÉ TECHNOLOGIE A NÁSTROJE
+
+### 2.1. Frontend (Klientská část)
+- **Jádro:** React `18.3.1` (deklarativní JavaScript knihovna pro tvorbu UI)
+- **Jazyk:** TypeScript `5.5.3` (staticky typovaný nadstavba JavaScriptu pro robustnější kód a lepší vývojářskou zkušenost)
+- **Build Systém:** Vite `5.4.14`
+    - Extrémně rychlý nástroj pro vývoj a build moderních webových aplikací.
+    - Využívá nativní ES moduly během vývoje pro okamžitý start serveru a HMR (Hot Module Replacement).
+    - Pro produkční build využívá Rollup pro optimalizaci (tree-shaking, minifikace, code splitting).
+    - Plugin: `@vitejs/plugin-react` `4.3.4` pro integraci Reactu (Fast Refresh, JSX transformace).
+- **Routing:** React Router DOM `6.26.2`
+    - Standardní knihovna pro navigaci v React aplikacích.
+    - Umožňuje definovat cesty (routes) a přiřazovat k nim komponenty.
+    - Zajišťuje navigaci bez nutnosti znovunačtení celé stránky (SPA - Single Page Application charakter).
+- **Stylování:** Tailwind CSS `3.4.11`
+    - Utility-first CSS framework pro rychlý vývoj UI přímo v HTML (JSX).
+    - Konfigurace (`tailwind.config.ts`) definuje design systém (barvy, písma, rozestupy, breakpointy) podle Shadcn UI konvencí.
+    - Využívá PostCSS `8.4.47` s Autoprefixer `10.4.20` pro přidání vendor prefixů pro lepší kompatibilitu prohlížečů.
+    - TailwindCSS Animate `1.0.7` pro snadné použití předdefinovaných animací.
+- **UI Komponenty:**
+    - **Základ:** Shadcn UI (filozofie, nikoli knihovna komponent)
+        - Používá se sada komponent (`./src/components/ui/`) vytvořených kombinací Radix UI primitiv a Tailwind CSS.
+        - Komponenty jsou součástí projektu, snadno upravitelné a stylovatelné.
+        - Příklady použitých komponent: `Button`, `Input`, `Card`, `Dialog`, `Tooltip`, `Accordion`, `Carousel`, `Select`, `Label`, `Toast`, `Separator`, `ScrollArea`, atd.
+    - **Primitiva:** Radix UI (použito jako základ pro Shadcn komponenty)
+        - Nízkoúrovňové, neostylované, ale plně přístupné (A11Y) a funkční UI primitiva (např. `@radix-ui/react-dialog`, `@radix-ui/react-tooltip`).
+    - **Vlastní Specializované Komponenty:** (`./src/components/ui/`, `./src/components/sections/`)
+        - `SectionHeader`: Opakovaně použitelná hlavička sekce.
+        - `ScrollReveal`: Komponenta pro animace prvků při jejich zobrazení během scrollování.
+        - `SprayEffect`, `CoatingTexture`, `ParticleCanvas`: Vizuální efekty simulující proces lakování.
+        - `3DModel`: Komponenta pro zobrazení 3D modelu (pravděpodobně pomocí knihovny jako Three.js nebo React Three Fiber, i když není explicitně v závislostech).
+        - `ProcessStep`: Komponenta pro vizualizaci kroků procesu.
+- **Animace:** Framer Motion `12.5.0`
+    - Výkonná knihovna pro komplexní animace v Reactu.
+    - Použita pro jemné přechody, animace při interakcích (hover efekty) a vstupní animace komponent (viz `ContactSection.tsx`).
+- **Správa Formulářů:** React Hook Form `7.53.0`
+    - Knihovna pro efektivní správu stavu formulářů, validaci a odesílání.
+    - Minimalizuje zbytečné překreslování komponent.
+    - **Validace:** Zod `3.23.8` - Knihovna pro definici schémat a validaci dat (silná typová inference s TypeScriptem).
+    - **Odesílání:** `@formspree/react` `^3.0.0` - Indikuje použití služby Formspree jako backendu pro odesílání kontaktního formuláře (jednoduché řešení bez vlastního backendu).
+- **Asynchronní Operace / State Management:** TanStack Query (React Query) `v5.56.2`
+    - Knihovna pro správu serverového stavu: fetchování, cachování, synchronizace a aktualizace dat.
+    - I když aplikace nemá komplexní interakci se serverem, může být použita pro správu lokálního asynchronního stavu nebo budoucí rozšíření.
+- **Ikony:** Lucide React `^0.462.0`
+    - Rozsáhlá sada jednoduchých a konzistentních SVG ikon.
+- **Utility Knihovny:**
+    - `clsx` `^2.1.1`: Malá utilita pro podmíněné spojování CSS tříd.
+    - `tailwind-merge` `^2.5.2`: Utilita pro inteligentní slučování Tailwind tříd (řeší konflikty).
+
+### 2.2. Vývojové Nástroje a Kvalita Kódu
+- **Linting:** ESLint `9.9.0` s `typescript-eslint` `8.0.1`
+    - Nástroj pro statickou analýzu kódu, hledání potenciálních chyb a vynucování kódovacích standardů.
+    - Konfigurace (`eslint.config.js`) definuje pravidla pro TypeScript a React (včetně pravidel pro hooks).
+- **Verzování:** Git (spravováno lokálně a pravděpodobně na platformě jako GitHub/GitLab).
+
+### 2.3. Infrastruktura a Deployment
+- **Původní Nastavení Hostingu:** 
+    - Skript `build-deploy.sh` byl navržen pro automatické sestavení a nasazení statického buildu na `gh-pages` větev repozitáře.
+- **Aktuální Hosting:** MIRAMO spol. s.r.o.
+    - Odkazy: `sitemap.xml` a `robots.txt` odkazují na vlastní doménu `https://www.betrim.cz`.
+    - Možnosti: Netlify, Vercel, Cloudflare Pages, statický hosting u poskytovatele domény, vlastní server.
+- **Deployment Proces:**
+    - 1.  `npm run build`: Spustí `tsc` (kontrola typů TypeScriptu) a poté `vite build` (vytvoření optimalizovaného produkčního buildu ve složce `./dist`).
+    - 2.  `npm run deploy`: Spustí skript `build-deploy.sh`.
+    - **Poznámka:** Pro nasazení na `www.betrim.cz` je nutný **jiný mechanismus** než původní skript cílený na GitHub Pages (např. ruční nahrání přes FTP/SFTP, CI/CD pipeline napojená na Git repozitář a hostingovou platformu).
+
+## 3. ARCHITEKTURA A DESIGN
+
+- **Architektura:** Component-Based Architecture (CBA)
+    - Aplikace je postavena z nezávislých, opakovaně použitelných komponent (React).
+    - Struktura `src/` podporuje modularitu (oddělení komponent, stránek, hooků, utilit).
+- **Typ Aplikace:** Single Page Application (SPA)
+    - Většina obsahu je dynamicky načítána a měněna na jediné HTML stránce (`index.html`) pomocí JavaScriptu a React Routeru.
+    - Výjimkou mohou být oddělené HTML soubory pro specifické účely (např. `404.html`).
+- **Design Vzory:**
+    - **Utility-First CSS:** (Tailwind CSS) Styly jsou aplikovány pomocí malých, jednoúčelových tříd.
+    - **Komponentová Kompozice:** Větší celky (sekce, stránky) jsou skládány z menších, znovupoužitelných komponent.
+    - **Využití Provider Pattern:** (React Context API) Pro poskytování globálního stavu nebo funkcí (např. `TooltipProvider`, `QueryClientProvider`).
+- **Struktura Složek:**
+```
+src/
+├── components/      # Opakovaně použitelné UI komponenty
+│   ├── sections/    # Komponenty reprezentující jednotlivé sekce stránky
+│   └── ui/          # Základní UI prvky (Shadcn UI + vlastní)
+├── hooks/           # Vlastní React hooks
+├── lib/             # Utility funkce, konfigurace (např. utils.ts)
+├── pages/           # Komponenty reprezentující jednotlivé stránky/route
+│   └── legal/       # Právní stránky (Cookies, Privacy, Terms)
+├── App.tsx          # Hlavní App komponenta (routing, providery)
+├── main.tsx         # Vstupní bod aplikace, renderování Root
+└── index.css        # Globální CSS styly (primárně Tailwind base, components, utilities)
+```
+    - `src/components/ui`: Základní, obecné UI prvky (dle Shadcn konvence).
+    - `src/components/sections`: Větší komponenty specifické pro jednotlivé části hlavní stránky.
+    - `src/pages`: Komponenty mapované na konkrétní URL cesty.
+    - `src/lib`: Pomocné funkce, utility (např. `cn` funkce v `utils.ts`).
+    - `src/hooks`: Místo pro vlastní React Hooks (pokud by byly potřeba).
+- **Responzivita:** Mobile-First přístup implementovaný pomocí Tailwind CSS breakpointů (`sm`, `md`, `lg`, `xl`, `2xl`).
+
+## 4. FUNKCIONALITA A UŽIVATELSKÉ ROZHRANÍ
+
+- **Hlavní Stránka (`Index.tsx`):** Slouží jako centrální bod, obsahuje všechny hlavní informační sekce.
+- **Navigace:** Horní lišta (`Navbar.tsx`) s odkazy, které plynule scrollují na odpovídající sekce na hlavní stránce (`#about`, `#technology`, atd.). Obsahuje také mobilní (hamburger) menu.
+- **Interaktivní Sekce:**
+    - **Hero:** Obsahuje vizuálně atraktivní úvod s animacemi.
+    - **Proces:** Detailní, interaktivní, vizualizace jednotlivých kroků lakování (`ProcessStep.tsx`).
+    - **Povrchy:** Prezentace různých povrchů s využitím `Carousel` (`./src/components/ui/carousel.tsx`, využívá `embla-carousel-react`).
+    - **Kontakt:** Obsahuje mapu (`iframe` z Google Maps), detailní kontaktní údaje na osoby a provozní dobu, a kontaktní formulář (`ContactForm.tsx`).
+- **Animace a Efekty:**
+    - **Scroll Reveal:** Prvky se plynule objevují při scrollování (`ScrollReveal.tsx`).
+    - **Hover Efekty:** Jemné vizuální změny při najetí myší (např. na karty kontaktních osob, tlačítka).
+    - **Vlastní Efekty:** `SprayEffect`, `CoatingTexture`, `ParticleCanvas` dodávají unikátní vizuální identitu spojenou s lakováním.
+- **Formulář:**
+    - Zpracování odeslání pomocí externí služby `Formsubmit.co` (bezpečnost a jednoduchost).
+- **Cookie Consent:** Banner (`CookieConsent.tsx`) informující o používání cookies a umožňující uživateli spravovat souhlas (důležité pro GDPR).
+- **Právní Stránky:** Samostatné stránky pro Zásady ochrany osobních údajů, Cookies a Podmínky používání, dostupné přes odkazy (typicky v patičce).
+- **Patička (`Footer.tsx`):** Obsahuje copyright, odkazy na právní stránky, případně další navigační prvky nebo sociální sítě.
+
+## 5. SEO (OPTIMALIZACE PRO VYHLEDÁVAČE)
+
+- **On-Page SEO Základy:**
+    - **Meta Tagy:** `index.html` obsahuje `<title>`, `<meta name="description">`, `<meta name="keywords">` pro základní informace pro vyhledávače.
+    - **Sémantické HTML:** Použití správných HTML tagů (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<h1>`-`<h6>`, atd.) pro lepší pochopení struktury obsahu vyhledávači.
+    - **Struktura Nadpisů:** Logická hierarchie nadpisů (`h1`-`h6`) na stránkách.
+    - **Optimalizace Obrázků:** Použití `alt` atributů u obrázků pro popis jejich obsahu.
+    - **Responzivita:** Web je plně responzivní, což je klíčový hodnotící faktor pro Google (Mobile-First Indexing).
+    - **Čisté URL:** `react-router-dom` umožňuje používat srozumitelné URL adresy.
+- **Technické SEO:**
+    - **`sitemap.xml`:** Poskytuje vyhledávačům mapu webu s informacemi o důležitosti a frekvenci aktualizací stránek. Odkazuje na produkční URL.
+    - **`robots.txt`:** Instruuje webové crawlery, které části webu mohou a nemohou procházet. Odkazuje na `sitemap.xml`.
+    - **Favicon:** Kompletní sada ikon (`favicon.ico`, `apple-touch-icon`, `*.png`, `manifest`) definovaná v `index.html` pro různá zařízení a platformy.
+    - **Rychlost Načítání:** Optimalizace výkonu (viz níže) pozitivně ovlivňuje SEO hodnocení.
+    - **HTTPS:** Produkční web běží na zabezpečeném HTTPS protokolu.
+- **Obsah:** Kvalita a relevance textového obsahu je klíčová (mimo rámec této technické dokumentace).
+
+## 6. VÝKON (PERFORMANCE)
+
+- **Nástroje a Techniky:**
+    - **Vite:** Optimalizovaný produkční build (minifikace JS/CSS, tree-shaking pro odstranění nepoužitého kódu, efektivní code splitting).
+    - **Code Splitting:** Automatické rozdělení kódu na menší části (chunks), které se načítají podle potřeby (např. pro různé stránky), zlepšuje počáteční čas načítání.
+    - **Lazy Loading:** Obrázky (`loading="lazy"` atribut u `<iframe>` mapy) a potenciálně další zdroje se načítají až když jsou potřeba (blízko viewportu).
+    - **Optimalizace Assetů:**
+        - Předpokládá se manuální optimalizace obrázků (komprese, správné rozměry, moderní formáty jako WebP – i když není explicitně vynuceno konfigurací).
+        - CSS a JS jsou minifikovány v produkčním buildu.
+    - **Efektivní Knihovny:** Použití výkonných knihoven jako `React Hook Form` a `TanStack Query` minimalizuje zbytečné operace a re-rendery.
+    - **Tailwind CSS:** Generuje pouze použité CSS třídy v produkčním buildu, což vede k malé velikosti CSS souboru.
+- **Metriky (Web Vitals):**
+    - Cílem je dosáhnout dobrých hodnot Core Web Vitals (LCP, FID/INP, CLS) pro optimální uživatelskou zkušenost a SEO.
+    - Minimalizace CLS (Cumulative Layout Shift) je podpořena správným načítáním fontů a definováním rozměrů médií.
+- **Caching:**
+    - **Prohlížečový Caching:** Správné HTTP hlavičky na straně serveru (hostingu) mohou instruovat prohlížeč, aby cachoval statické assety (JS, CSS, obrázky, fonty) pro rychlejší opakované návštěvy.
+    - **CDN (Content Delivery Network):** Pokud hosting využívá CDN, assety jsou distribuovány z geograficky bližších serverů, což zrychluje načítání pro uživatele po celém světě.
+
+## 7. BEZPEČNOST
+
+- **Frontend Bezpečnost:**
+    - **Odesílání Formulářů:** Využití externí služby (Formsubmit.co) přenáší zodpovědnost za bezpečné zpracování formulářových dat na poskytovatele služby, čímž se snižuje riziko na straně aplikace (např. email injection).
+    - **Validace Vstupů:** `Zod` a `React Hook Form` zajišťují validaci dat na straně klienta, což snižuje množství nevalidních požadavků odeslaných na backend/službu.
+    - **Prevence XSS (Cross-Site Scripting):** React defaultně escapuje obsah v JSX, což chrání proti základním XSS útokům. Je důležité dbát opatrnosti při používání `dangerouslySetInnerHTML` (zde pravděpodobně nepoužito).
+    - **Aktualizace Závislostí:** Pravidelná aktualizace npm balíčků je klíčová pro záplatování známých bezpečnostních zranitelností.
+- **Infrastrukturní Bezpečnost:**
+    - **HTTPS:** Nasazení na HTTPS je standardem a zajišťuje šifrovanou komunikaci mezi klientem a serverem.
+    - **Hosting:** Zabezpečení závisí na zvolené hostingové platformě a její konfiguraci.
+- **GDPR:** Implementace `CookieConsent` banneru a existence stránek se zásadami ochrany osobních údajů jsou kroky k naplnění požadavků GDPR.
+
+## 8. PŘÍSTUPNOST (ACCESSIBILITY - A11Y)
+
+- **Základy:**
+    - **Sémantické HTML:** Použití sémantických tagů pomáhá asistivním technologiím (čtečky obrazovky) interpretovat obsah.
+    - **Radix UI:** Komponenty postavené na Radix UI primitivech jsou navrženy s důrazem na přístupnost (správa fokusu, ARIA atributy, klávesová navigace).
+    - **Atributy `alt`:** Poskytují textové alternativy pro obrázky.
+    - **Kontrast:** Design by měl dbát na dostatečný kontrast mezi textem a pozadím (kontrolovatelné nástroji).
+    - **Focus Management:** Důležité pro uživatele navigující pomocí klávesnice (Radix UI toto často řeší).
+    - **Labeling Formulářů:** Správné použití `<label>` elementů s formulářovými prvky (`Input`, `Select`, atd.).
+
+## 9. LOKÁLNÍ VÝVOJ A DEPLOYMENT
+
+### 9.1. Spuštění Lokálního Vývojového Prostředí
+1.  **Předpoklady:** Nainstalovaný Node.js (včetně npm) nebo Bun.
+2.  **Klonování Repozitáře:** `git clone <adresa-repozitare>`
+3.  **Přechod do Složky:** `cd betrim`
+4.  **Instalace Závislostí:** `npm install` (nebo `bun install`)
+5.  **Spuštění Vývojového Serveru:** `npm run dev`
+6.  **Přístup:** Aplikace bude dostupná v prohlížeči na `http://localhost:8080` (nebo jiném portu, pokud je 8080 obsazený). Server podporuje Hot Module Replacement (HMR) pro okamžité promítnutí změn v kódu bez nutnosti obnovení stránky.
+
+### 9.2. Vytvoření Produkčního Buildu
+-   **Příkaz:** `npm run build`
+-   **Proces:**
+    1.  `tsc --noEmit`: Provede kontrolu typů TypeScript bez generování JavaScriptu.
+    2.  `vite build`: Vytvoří optimalizovanou verzi aplikace pro nasazení.
+-   **Výstup:** Statické soubory (HTML, CSS, JS, obrázky, fonty) budou vygenerovány ve složce `./dist`.
+
+### 9.3. Nasazení (Deployment)
+-   **Původní Metoda (GitHub Pages):**
+    -   Příkaz: `npm run deploy`
+    -   Spustí skript `build-deploy.sh`, který automaticky:
+        -   Ověří čistotu Git repozitáře.
+        -   Spustí `npm run build`.
+        -   Zkopíruje `404.html` do `dist`.
+        -   Přepne na větev `gh-pages`.
+        -   Vymaže její obsah.
+        -   Zkopíruje obsah `dist` do kořene větve.
+        -   Commitne a pushne změny na `gh-pages` větev.
+        -   Přepne zpět na původní větev.
+-   **Aktuální Metoda (pro www.betrim.cz):**
+    -   **Zahrnuje:**
+        1.  Vytvoření produkčního buildu (`npm run build`).
+        2.  Nahrání obsahu složky `dist` na server hostingu (např. pomocí SFTP klienta, rsync, nebo přes rozhraní hostingové platformy).
+        -   **Alternativa:** Nastavení CI/CD pipeline (např. GitHub Actions, GitLab CI), která automaticky provede build a deployment po pushnutí změn do hlavní větve repozitáře.
+
+## 10. BUDOUCÍ ROZVOJ A ÚDRŽBA
+
+- **Údržba:**
+    - Pravidelná aktualizace závislostí (`npm update` nebo specifické aktualizace) pro zajištění bezpečnosti a kompatibility.
+    - Monitorování funkčnosti (kontaktní formulář, interaktivní prvky).
+    - Zálohování kódu (zajištěno Git repozitářem).
+- **Možnosti Rozšíření:**
+    - **Blog/Aktuality:** Přidání sekce s novinkami nebo články o technologiích lakování.
+    - **Detailnější Reference/Case Studies:** Rozšíření ukázek realizovaných projektů.
+    - **Kalkulačka Ceny:** Interaktivní nástroj pro odhad ceny lakování (vyžadovalo by složitější logiku a možná backend).
+    - **Integrace s CRM:** Propojení kontaktního formuláře přímo se systémem pro správu zákazníků.
+    - **Vícejazyčnost:** Přidání dalších jazykových verzí webu.
+    - **Pokročilejší SEO:** Implementace strukturovaných dat (Schema.org) pro lepší prezentaci ve výsledcích vyhledávání.
+
+---
+
+Dokument vytvořen: 24.4.2025
+Verze dokumentu: 2.0
+Verze webu: 1.0

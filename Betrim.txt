@@ -1,0 +1,150 @@
+# BETRIM - DOKUMENTACE PROJEKTU
+
+## ZÁKLADNÍ INFORMACE
+- **Název projektu:** Betrim - Práškové lakování
+- **Popis:** Webová prezentace pro firmu zabývající se práškovým lakováním kovů
+- **Jazyk webu:** Čeština
+- **Cílová skupina:** Průmysloví i soukromí zákazníci hledající služby v oblasti práškového lakování
+
+## TECHNOLOGIE
+
+### Frontend
+- **Framework:** React 18.3.1 s TypeScript 5.5.3
+- **Build systém:** Vite 5.4.14
+- **Routing:** React Router DOM 6.26.2
+- **UI komponenty:** 
+  - Vlastní komponenty založené na Radix UI (kompletní sada komponent)
+  - Stylování pomocí Tailwind CSS 3.4.11
+  - Animace a efekty pomocí Framer Motion 12.5.0
+- **Formuláře:** Formsubmit.co
+- **State management:** React Query (TanStack Query) 5.56.2
+- **Vizualizace dat:** Recharts 2.12.7
+
+### Deployment a hostování
+- **Hosting:** Miramo spol. s.r.o.
+- **Deployment:** Automatizovaný pomocí vlastního skriptu (build-deploy.sh)
+- **Verzování:** Git
+
+## STRUKTURA PROJEKTU
+```
+src/
+├── components/      # Opakovaně použitelné UI komponenty
+│   ├── sections/    # Komponenty reprezentující jednotlivé sekce stránky
+│   └── ui/          # Základní UI prvky (Shadcn UI + vlastní)
+├── hooks/           # Vlastní React hooks
+├── lib/             # Utility funkce, konfigurace (např. utils.ts)
+├── pages/           # Komponenty reprezentující jednotlivé stránky/route
+│   └── legal/       # Právní stránky (Cookies, Privacy, Terms)
+├── App.tsx          # Hlavní App komponenta (routing, providery)
+├── main.tsx         # Vstupní bod aplikace, renderování Root
+└── index.css        # Globální CSS styly (primárně Tailwind base, components, utilities)
+```
+### Hlavní sekce webu
+1. **Hero sekce** - Úvodní obrazovka s hlavním sdělením
+2. **O nás** (About) - Informace o firmě Betrim
+3. **Technologie** - Popis používaných technologií práškového lakování
+4. **Proces** - Detailní popis procesu práškového lakování
+5. **Povrchy** - Ukázky různých povrchů a jejich vlastností
+6. **Vybavení provozovny** - Prezentace vybavení lakovny
+7. **Solární panely** - Speciální sekce věnovaná solárním panelům
+8. **Kvalita** - Důraz na kvalitu služeb
+9. **Kontakt** - Kontaktní formulář a informace
+
+### Právní stránky
+- Podmínky používání (Terms of Use)
+- Zásady ochrany osobních údajů (Privacy Policy)
+- Zásady používání cookies (Cookies Policy)
+- Stránka 404
+
+## FUNKCE A KOMPONENTY
+
+### Uživatelské rozhraní
+- Responzivní design optimalizovaný pro mobilní zařízení i desktop
+- Moderní UI prvky včetně animací, přechodů a interaktivních prvků
+- Vlastní komponenty jako SprayEffect, CoatingTexture a 3DModel pro vizualizaci práškového lakování
+- Rozbalovací menu pro mobilní zobrazení
+- Cookie consent banner s možností volby preferencí
+
+### Interaktivní prvky
+- Kontaktní formulář s validací
+- Accordion komponenta pro rozbalování obsahu
+- Interaktivní zobrazení procesu práškového lakování
+- Animace při scrollování (scroll reveal efekty)
+
+### Performance optimalizace
+- Lazy loading obrázků
+- Optimalizované velikosti assetů
+- Code splitting pro rychlejší načítání
+- Minimalizace kódu v produkčním buildu
+
+## SEO OPTIMALIZACE
+
+### Implementované prvky
+- Meta tagy pro popis a klíčová slova
+- Strukturovaný sitemap.xml s prioritou stránek
+- Optimalizovaný robots.txt
+- Správně strukturované HTML s sémantickými tagy
+- Optimalizované nadpisy (h1, h2, atd.)
+- Responzivní design (mobile-friendly)
+- Zadání Canonical URL
+- Favicon a všechny potřebné ikony pro různá zařízení
+
+### Klíčová slova
+- práškové lakování
+- povrchové úpravy
+- lakovna
+- komaxit
+- průmyslové lakování
+- prášková barva
+- Fulnek
+
+## OPTIMALIZACE VÝKONU
+
+### Frontend optimalizace
+- Využití React Server Components pro snížení velikosti bundle
+- Optimalizace velikosti obrázků a dalších assetů
+- Lazy loading komponent a obrázků
+- Efektivní Lighthouse skóre
+- Webová aplikace optimalizovaná pro minimální CLS (Cumulative Layout Shift)
+
+### CDN
+- Efektivní caching statických assetů
+
+## BEZPEČNOST
+
+### Implementovaná bezpečnostní opatření
+- Content Security Policy pro ochranu před XSS útoky
+- GDPR-compliant cookie consent
+- Zabezpečené formuláře s validací na straně klienta i serveru
+- Ochrana proti CSRF útokům
+
+## PŘÍSTUPNOST (A11Y)
+
+- Semantické HTML struktura
+- ARIA atributy pro lepší přístupnost
+- Dostatečný kontrast textu
+- Klávesová navigace
+- Přístupné formulářové prvky
+
+## JAK PROJEKT SPUSTIT A UPRAVOVAT
+
+### Lokální vývoj
+1. Naklonování repozitáře
+2. Instalace závislostí: `npm install`
+3. Spuštění vývojového serveru: `npm run dev`
+4. Server běží na http://localhost:8080
+
+### Sestavení a nasazení
+1. Sestavení produkční verze: `npm run build`
+2. Nasazení na FTP: `npm run deploy` (používá vlastní skript build-deploy.sh)
+
+## KONTAKT A PODPORA
+
+Pro další informace nebo podporu kontaktujte:
+- Web: https://webseidon.cz
+- Provozovna: Kontaktní údaje uvedené na webu v sekci Kontakt
+
+---
+
+Dokument vytvořen: 24.4.2025
+Verze webu: 1.0 

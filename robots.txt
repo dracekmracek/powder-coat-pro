@@ -1,5 +1,9 @@
 User-agent: *
-Allow: /
+Allow: /$
+Allow: /cookies$
+Allow: /privacy$
+Allow: /terms$
+Disallow: /
 
 # Zakázat přístup k privátním cestám
 Disallow: /assets/
