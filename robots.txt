@@ -7,7 +7,6 @@ Disallow: /
 
 # Zakázat přístup k privátním cestám
 Disallow: /assets/
-Disallow: /*.json$
 Disallow: /*.js$
 Disallow: /*.css$
 
