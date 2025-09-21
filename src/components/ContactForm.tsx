@@ -71,7 +71,7 @@ const ContactForm: React.FC = () => {
       </div>
       
       <form 
-        action="https://formsubmit.co/info@webseidon.cz" 
+        action="https://formsubmit.co/zemanova@betrim.cz" 
         method="POST" 
         onSubmit={handleSubmit(onSubmit)}
       >
