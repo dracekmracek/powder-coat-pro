@@ -1,14 +1,15 @@
-User-agent: *
-Allow: /$
-Allow: /cookies$
-Allow: /privacy$
-Allow: /terms$
-Disallow: /
+# Robots.txt pro Betrim.cz
 
-# Zakázat přístup k privátním cestám
-Disallow: /assets/
-Disallow: /*.js$
-Disallow: /*.css$
+User-agent: *
+Allow: /
+
+# Povolit crawlerům najít favicon
+Allow: /favicon.ico
+Allow: /images/favicon/
+
+# Zakázat privátní soubory
+Disallow: /assets/*.js
+Disallow: /assets/*.css
 
 # Sitemap
-Sitemap: https://www.betrim.cz/sitemap.xml 
+Sitemap: https://www.betrim.cz/sitemap.xml

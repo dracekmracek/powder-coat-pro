@@ -1,15 +1,28 @@
 RewriteEngine On
 
+# Zabránit přímému přístupu k adresářům /images/ a /assets/
+# Přesměrovat požadavky na adresáře (ne soubory) na hlavní stránku
+RewriteCond %{REQUEST_URI} ^/(images|assets)/?$
+RewriteRule ^ / [R=301,L]
+
+# Zakázat přístup k souborům .htaccess
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
 # Základní pravidla pro SPA routování
 
 # Pokud požadovaný soubor existuje jako skutečný soubor, použij ho
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule . - [L]
 
-# Pokud požadovaný soubor existuje jako adresář, použij ho
-RewriteCond %{REQUEST_FILENAME} -d 
+# Pokud požadovaný adresář existuje A požadavek je na konkrétní soubor uvnitř, použij ho
+# Ale nepouštěj požadavky přímo na adresáře (bez koncového souboru)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} !/$
 RewriteRule . - [L]
 
 # Všechny ostatní požadavky přesměruj na index.html
-# Toto pravidlo zachytí VŠECHNY cesty, které nejsou existující soubory nebo adresáře
+# Toto pravidlo zachytí VŠECHNY cesty, které nejsou existující soubory
 RewriteRule . index.html [L]

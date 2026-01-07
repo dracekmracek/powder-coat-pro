@@ -95,11 +95,23 @@ const ContactSection: React.FC = () => {
                         delay: 0.4
                       },
                       {
-                        name: "Vojtěch Galetka",
+                        name: "Vlastimil Wojtyla",
                         position: "Technolog",
-                        phone: "+420 776 166 352",
-                        email: "galetka@betrim.cz",
+                        phone: "+420 605 080 016",
+                        email: "wojtyla@betrim.cz",
                         delay: 0.5
+                      },
+                      {
+                        name: "Alžběta Bušová",
+                        position: "Manažerka kvality",
+                        email: "busova@betrim.cz",
+                        delay: 0.6
+                      },
+                      {
+                        name: "Lucie Šipovičová",
+                        position: "Expedice",
+                        email: "expedice@betrim.cz",
+                        delay: 0.7
                       }
                     ].map((person, index) => (
                       <div key={index} className="w-full md:w-1/2 p-2">
@@ -125,14 +137,16 @@ const ContactSection: React.FC = () => {
                               </div>
                             </div>
                             <div className="space-y-3 mt-1">
-                              <a 
-                                href={`tel:${person.phone.replace(/\s/g, '')}`} 
-                                className="flex items-start text-sm hover:text-primary transition-colors group"
-                              >
-                                <Phone size={14} className="mr-2 flex-shrink-0 mt-0.5" />
-                                <span>{person.phone}</span>
-                                <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                              </a>
+                              {'phone' in person && person.phone && (
+                                <a 
+                                  href={`tel:${person.phone.replace(/\s/g, '')}`} 
+                                  className="flex items-start text-sm hover:text-primary transition-colors group"
+                                >
+                                  <Phone size={14} className="mr-2 flex-shrink-0 mt-0.5" />
+                                  <span>{person.phone}</span>
+                                  <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                                </a>
+                              )}
                               {person.email && (
                                 <a 
                                   href={`mailto:${person.email}`} 
