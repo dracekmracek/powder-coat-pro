@@ -1,5 +1,40 @@
 RewriteEngine On
 
+# ============================================
+# CACHE CONTROL - Zakázat cachování HTML
+# ============================================
+<IfModule mod_headers.c>
+    # HTML soubory - žádné cachování
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+    
+    # CSS a JS - krátká cache (1 hodina) s revalidací
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+    
+    # Obrázky a favicony - střední cache (1 den)
+    <FilesMatch "\.(ico|png|jpg|jpeg|gif|webp|svg)$">
+        Header set Cache-Control "public, max-age=86400"
+    </FilesMatch>
+</IfModule>
+
+# ============================================
+# EXPIRES MODULE - záložní řešení pro cache
+# ============================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 hour"
+    ExpiresByType application/javascript "access plus 1 hour"
+    ExpiresByType image/x-icon "access plus 1 day"
+    ExpiresByType image/png "access plus 1 day"
+    ExpiresByType image/jpeg "access plus 1 day"
+</IfModule>
+
 # Zabránit přímému přístupu k adresářům /images/ a /assets/
 # Přesměrovat požadavky na adresáře (ne soubory) na hlavní stránku
 RewriteCond %{REQUEST_URI} ^/(images|assets)/?$
